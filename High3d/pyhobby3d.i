@@ -1,5 +1,5 @@
 
-%module ms3d
+%module pyhobby3d
 %{
         #include "shader.h"
         #include "ms3d.h"

@@ -1,5 +1,5 @@
 
-%module jms3d
+%module jhobby3d
 %{
         #include "shader.h"
         #include "ms3d.h"

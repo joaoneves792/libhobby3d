@@ -47,8 +47,8 @@ Shadows::Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int wi
 }
 
 Shadows::~Shadows(){
-	glDeleteTextures(1, &_depthTexture);
-	glDeleteFramebuffers(1, &_framebuffer);
+	/*glDeleteTextures(1, &_depthTexture);
+	glDeleteFramebuffers(1, &_framebuffer);*/
 }
 
 void Shadows::changeOrthoBox(float left, float right, float bottom, float top, float near, float far){

@@ -1,0 +1,301 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CMS3DFile	MS3DFile.cpp	/^CMS3DFile::CMS3DFile()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile	MS3DFile.h	/^	CMS3DFile();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile	MS3DFile.h	/^	CMS3DFile(const CMS3DFile& rhs);$/;"	p	class:CMS3DFile	access:public	signature:(const CMS3DFile& rhs)
+CMS3DFile	MS3DFile.h	/^class CMS3DFile$/;"	c
+CMS3DFile::CMS3DFile	MS3DFile.cpp	/^CMS3DFile::CMS3DFile()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::CMS3DFile	MS3DFile.h	/^	CMS3DFile();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::CMS3DFile	MS3DFile.h	/^	CMS3DFile(const CMS3DFile& rhs);$/;"	p	class:CMS3DFile	access:public	signature:(const CMS3DFile& rhs)
+CMS3DFile::Clear	MS3DFile.cpp	/^void CMS3DFile::Clear()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::Clear	MS3DFile.h	/^	void Clear();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::FindGroupByName	MS3DFile.cpp	/^int CMS3DFile::FindGroupByName(const char* lpszName)$/;"	f	class:CMS3DFile	signature:(const char* lpszName)
+CMS3DFile::FindGroupByName	MS3DFile.h	/^	int FindGroupByName(const char* lpszName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszName)
+CMS3DFile::FindJointByName	MS3DFile.cpp	/^int CMS3DFile::FindJointByName(const char* lpszName)$/;"	f	class:CMS3DFile	signature:(const char* lpszName)
+CMS3DFile::FindJointByName	MS3DFile.h	/^	int FindJointByName(const char* lpszName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszName)
+CMS3DFile::GetAnimationFPS	MS3DFile.cpp	/^float CMS3DFile::GetAnimationFPS()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetAnimationFPS	MS3DFile.h	/^	float GetAnimationFPS();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetCurrentTime	MS3DFile.cpp	/^float CMS3DFile::GetCurrentTime()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetCurrentTime	MS3DFile.h	/^	float GetCurrentTime();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetEdgeAt	MS3DFile.cpp	/^void CMS3DFile::GetEdgeAt(int nIndex, ms3d_edge_t **ppEdge)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_edge_t **ppEdge)
+CMS3DFile::GetEdgeAt	MS3DFile.h	/^	void GetEdgeAt(int nIndex, ms3d_edge_t **ppEdge);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_edge_t **ppEdge)
+CMS3DFile::GetGroupAt	MS3DFile.cpp	/^void CMS3DFile::GetGroupAt(int nIndex, ms3d_group_t **ppGroup)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_group_t **ppGroup)
+CMS3DFile::GetGroupAt	MS3DFile.h	/^	void GetGroupAt(int nIndex, ms3d_group_t **ppGroup);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_group_t **ppGroup)
+CMS3DFile::GetJointAt	MS3DFile.cpp	/^void CMS3DFile::GetJointAt(int nIndex, ms3d_joint_t **ppJoint)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_joint_t **ppJoint)
+CMS3DFile::GetJointAt	MS3DFile.h	/^	void GetJointAt(int nIndex, ms3d_joint_t **ppJoint);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_joint_t **ppJoint)
+CMS3DFile::GetMaterialAt	MS3DFile.cpp	/^void CMS3DFile::GetMaterialAt(int nIndex, ms3d_material_t **ppMaterial)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_material_t **ppMaterial)
+CMS3DFile::GetMaterialAt	MS3DFile.h	/^	void GetMaterialAt(int nIndex, ms3d_material_t **ppMaterial);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_material_t **ppMaterial)
+CMS3DFile::GetNumEdges	MS3DFile.cpp	/^int CMS3DFile::GetNumEdges()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetNumEdges	MS3DFile.h	/^	int GetNumEdges();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetNumGroups	MS3DFile.cpp	/^int CMS3DFile::GetNumGroups()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetNumGroups	MS3DFile.h	/^	int GetNumGroups();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetNumJoints	MS3DFile.cpp	/^int CMS3DFile::GetNumJoints()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetNumJoints	MS3DFile.h	/^	int GetNumJoints();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetNumMaterials	MS3DFile.cpp	/^int CMS3DFile::GetNumMaterials()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetNumMaterials	MS3DFile.h	/^	int GetNumMaterials();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetNumTriangles	MS3DFile.cpp	/^int CMS3DFile::GetNumTriangles()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetNumTriangles	MS3DFile.h	/^	int GetNumTriangles();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetNumVertices	MS3DFile.cpp	/^int CMS3DFile::GetNumVertices()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetNumVertices	MS3DFile.h	/^	int GetNumVertices();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetTotalFrames	MS3DFile.cpp	/^int CMS3DFile::GetTotalFrames()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::GetTotalFrames	MS3DFile.h	/^	int GetTotalFrames();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::GetTriangleAt	MS3DFile.cpp	/^void CMS3DFile::GetTriangleAt(int nIndex, ms3d_triangle_t **ppTriangle)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_triangle_t **ppTriangle)
+CMS3DFile::GetTriangleAt	MS3DFile.h	/^	void GetTriangleAt(int nIndex, ms3d_triangle_t **ppTriangle);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_triangle_t **ppTriangle)
+CMS3DFile::GetVertexAt	MS3DFile.cpp	/^void CMS3DFile::GetVertexAt(int nIndex, ms3d_vertex_t **ppVertex)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_vertex_t **ppVertex)
+CMS3DFile::GetVertexAt	MS3DFile.h	/^	void GetVertexAt(int nIndex, ms3d_vertex_t **ppVertex);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_vertex_t **ppVertex)
+CMS3DFile::LoadFromFile	MS3DFile.cpp	/^bool CMS3DFile::LoadFromFile(const char* lpszFileName)$/;"	f	class:CMS3DFile	signature:(const char* lpszFileName)
+CMS3DFile::LoadFromFile	MS3DFile.h	/^	bool LoadFromFile(const char* lpszFileName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszFileName)
+CMS3DFile::SaveToFile	MS3DFile.cpp	/^bool CMS3DFile::SaveToFile(const char* lpszFileName)$/;"	f	class:CMS3DFile	signature:(const char* lpszFileName)
+CMS3DFile::SaveToFile	MS3DFile.h	/^	bool SaveToFile(const char* lpszFileName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszFileName)
+CMS3DFile::_black	MS3DFile.h	/^	float* _black;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::_i	MS3DFile.h	/^	CMS3DFileI *_i;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::_overrideAmbient	MS3DFile.h	/^	bool _overrideAmbient;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::_overrideDiffuse	MS3DFile.h	/^	bool _overrideDiffuse;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::_overrideEmissive	MS3DFile.h	/^	bool _overrideEmissive;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::_overrideSpecular	MS3DFile.h	/^	bool _overrideSpecular;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::_white	MS3DFile.h	/^	float* _white;$/;"	m	class:CMS3DFile	access:private
+CMS3DFile::draw	MS3DFile.cpp	/^void CMS3DFile::draw(){$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::draw	MS3DFile.h	/^	void draw();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::drawGroup	MS3DFile.cpp	/^void CMS3DFile::drawGroup(ms3d_group_t* group){$/;"	f	class:CMS3DFile	signature:(ms3d_group_t* group)
+CMS3DFile::drawGroup	MS3DFile.h	/^	void drawGroup(ms3d_group_t* group);$/;"	p	class:CMS3DFile	access:public	signature:(ms3d_group_t* group)
+CMS3DFile::mergeGroups	MS3DFile.h	/^	void mergeGroups();$/;"	p	class:CMS3DFile	access:private	signature:()
+CMS3DFile::mergeGroups	optimizations.cpp	/^void CMS3DFile::mergeGroups(){$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::operator =	MS3DFile.h	/^	CMS3DFile& operator=(const CMS3DFile& rhs);$/;"	p	class:CMS3DFile	access:public	signature:(const CMS3DFile& rhs)
+CMS3DFile::optimize	MS3DFile.cpp	/^void CMS3DFile::optimize(){$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::optimize	MS3DFile.h	/^	void optimize();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::prepareGroup	MS3DFile.cpp	/^void CMS3DFile::prepareGroup(ms3d_group_t* group, GLuint vao){$/;"	f	class:CMS3DFile	signature:(ms3d_group_t* group, GLuint vao)
+CMS3DFile::prepareGroup	MS3DFile.h	/^	void prepareGroup(ms3d_group_t* group, GLuint vao);$/;"	p	class:CMS3DFile	access:public	signature:(ms3d_group_t* group, GLuint vao)
+CMS3DFile::prepareModel	MS3DFile.cpp	/^void CMS3DFile::prepareModel(){$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::prepareModel	MS3DFile.h	/^	void prepareModel();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFile::removeUnusedMaterials	MS3DFile.h	/^	void removeUnusedMaterials();$/;"	p	class:CMS3DFile	access:private	signature:()
+CMS3DFile::removeUnusedMaterials	optimizations.cpp	/^void CMS3DFile::removeUnusedMaterials(){$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::setMaterial	MS3DFile.cpp	/^void CMS3DFile::setMaterial(int texture, ms3d_group_t* group){$/;"	f	class:CMS3DFile	signature:(int texture, ms3d_group_t* group)
+CMS3DFile::setMaterial	MS3DFile.cpp	/^void CMS3DFile::setMaterial(ms3d_material_t* material, int textureIndex){$/;"	f	class:CMS3DFile	signature:(ms3d_material_t* material, int textureIndex)
+CMS3DFile::setMaterial	MS3DFile.h	/^	void setMaterial(int texture, ms3d_group_t* group);$/;"	p	class:CMS3DFile	access:public	signature:(int texture, ms3d_group_t* group)
+CMS3DFile::setMaterial	MS3DFile.h	/^	void setMaterial(ms3d_material_t* material, int textureIndex);$/;"	p	class:CMS3DFile	access:public	signature:(ms3d_material_t* material, int textureIndex)
+CMS3DFile::setOverrideAmbient	MS3DFile.cpp	/^void CMS3DFile::setOverrideAmbient(bool overrideAmbient){$/;"	f	class:CMS3DFile	signature:(bool overrideAmbient)
+CMS3DFile::setOverrideAmbient	MS3DFile.h	/^	void setOverrideAmbient(bool overrideAmbient);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideAmbient)
+CMS3DFile::setOverrideDiffuse	MS3DFile.cpp	/^void CMS3DFile::setOverrideDiffuse(bool overrideDiffuse){$/;"	f	class:CMS3DFile	signature:(bool overrideDiffuse)
+CMS3DFile::setOverrideDiffuse	MS3DFile.h	/^	void setOverrideDiffuse(bool overrideDiffuse);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideDiffuse)
+CMS3DFile::setOverrideEmissive	MS3DFile.cpp	/^void CMS3DFile::setOverrideEmissive(bool overrideEmissive){$/;"	f	class:CMS3DFile	signature:(bool overrideEmissive)
+CMS3DFile::setOverrideEmissive	MS3DFile.h	/^	void setOverrideEmissive(bool overrideEmissive);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideEmissive)
+CMS3DFile::setOverrideSpecular	MS3DFile.cpp	/^void CMS3DFile::setOverrideSpecular(bool overrideSpecular){$/;"	f	class:CMS3DFile	signature:(bool overrideSpecular)
+CMS3DFile::setOverrideSpecular	MS3DFile.h	/^	void setOverrideSpecular(bool overrideSpecular);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideSpecular)
+CMS3DFile::~CMS3DFile	MS3DFile.cpp	/^CMS3DFile::~CMS3DFile()$/;"	f	class:CMS3DFile	signature:()
+CMS3DFile::~CMS3DFile	MS3DFile.h	/^	virtual ~CMS3DFile();$/;"	p	class:CMS3DFile	access:public	signature:()
+CMS3DFileI	MS3DFileI.h	/^	CMS3DFileI()$/;"	f	class:CMS3DFileI	access:public	signature:()
+CMS3DFileI	MS3DFileI.h	/^class CMS3DFileI{$/;"	c
+CMS3DFileI::CMS3DFileI	MS3DFileI.h	/^	CMS3DFileI()$/;"	f	class:CMS3DFileI	access:public	signature:()
+CMS3DFileI::arrEdges	MS3DFileI.h	/^	std::vector<ms3d_edge_t> arrEdges;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::arrGroups	MS3DFileI.h	/^	std::vector<ms3d_group_t> arrGroups;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::arrJoints	MS3DFileI.h	/^	std::vector<ms3d_joint_t> arrJoints;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::arrMaterials	MS3DFileI.h	/^	std::vector<ms3d_material_t> arrMaterials;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::arrTextures	MS3DFileI.h	/^	std::vector<int> arrTextures; \/\/Contains the ids of the OpenGL textures, Indexes match between this and arrMaterials$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::arrTriangles	MS3DFileI.h	/^	std::vector<ms3d_triangle_t> arrTriangles;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::arrVertices	MS3DFileI.h	/^	std::vector<ms3d_vertex_t> arrVertices;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::fAnimationFPS	MS3DFileI.h	/^	float fAnimationFPS;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::fCurrentTime	MS3DFileI.h	/^	float fCurrentTime;$/;"	m	class:CMS3DFileI	access:public
+CMS3DFileI::iTotalFrames	MS3DFileI.h	/^	int iTotalFrames;$/;"	m	class:CMS3DFileI	access:public
+Clear	MS3DFile.cpp	/^void CMS3DFile::Clear()$/;"	f	class:CMS3DFile	signature:()
+Clear	MS3DFile.h	/^	void Clear();$/;"	p	class:CMS3DFile	access:public	signature:()
+FindGroupByName	MS3DFile.cpp	/^int CMS3DFile::FindGroupByName(const char* lpszName)$/;"	f	class:CMS3DFile	signature:(const char* lpszName)
+FindGroupByName	MS3DFile.h	/^	int FindGroupByName(const char* lpszName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszName)
+FindJointByName	MS3DFile.cpp	/^int CMS3DFile::FindJointByName(const char* lpszName)$/;"	f	class:CMS3DFile	signature:(const char* lpszName)
+FindJointByName	MS3DFile.h	/^	int FindJointByName(const char* lpszName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszName)
+GetAnimationFPS	MS3DFile.cpp	/^float CMS3DFile::GetAnimationFPS()$/;"	f	class:CMS3DFile	signature:()
+GetAnimationFPS	MS3DFile.h	/^	float GetAnimationFPS();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetCurrentTime	MS3DFile.cpp	/^float CMS3DFile::GetCurrentTime()$/;"	f	class:CMS3DFile	signature:()
+GetCurrentTime	MS3DFile.h	/^	float GetCurrentTime();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetEdgeAt	MS3DFile.cpp	/^void CMS3DFile::GetEdgeAt(int nIndex, ms3d_edge_t **ppEdge)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_edge_t **ppEdge)
+GetEdgeAt	MS3DFile.h	/^	void GetEdgeAt(int nIndex, ms3d_edge_t **ppEdge);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_edge_t **ppEdge)
+GetGroupAt	MS3DFile.cpp	/^void CMS3DFile::GetGroupAt(int nIndex, ms3d_group_t **ppGroup)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_group_t **ppGroup)
+GetGroupAt	MS3DFile.h	/^	void GetGroupAt(int nIndex, ms3d_group_t **ppGroup);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_group_t **ppGroup)
+GetJointAt	MS3DFile.cpp	/^void CMS3DFile::GetJointAt(int nIndex, ms3d_joint_t **ppJoint)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_joint_t **ppJoint)
+GetJointAt	MS3DFile.h	/^	void GetJointAt(int nIndex, ms3d_joint_t **ppJoint);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_joint_t **ppJoint)
+GetMaterialAt	MS3DFile.cpp	/^void CMS3DFile::GetMaterialAt(int nIndex, ms3d_material_t **ppMaterial)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_material_t **ppMaterial)
+GetMaterialAt	MS3DFile.h	/^	void GetMaterialAt(int nIndex, ms3d_material_t **ppMaterial);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_material_t **ppMaterial)
+GetNumEdges	MS3DFile.cpp	/^int CMS3DFile::GetNumEdges()$/;"	f	class:CMS3DFile	signature:()
+GetNumEdges	MS3DFile.h	/^	int GetNumEdges();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetNumGroups	MS3DFile.cpp	/^int CMS3DFile::GetNumGroups()$/;"	f	class:CMS3DFile	signature:()
+GetNumGroups	MS3DFile.h	/^	int GetNumGroups();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetNumJoints	MS3DFile.cpp	/^int CMS3DFile::GetNumJoints()$/;"	f	class:CMS3DFile	signature:()
+GetNumJoints	MS3DFile.h	/^	int GetNumJoints();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetNumMaterials	MS3DFile.cpp	/^int CMS3DFile::GetNumMaterials()$/;"	f	class:CMS3DFile	signature:()
+GetNumMaterials	MS3DFile.h	/^	int GetNumMaterials();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetNumTriangles	MS3DFile.cpp	/^int CMS3DFile::GetNumTriangles()$/;"	f	class:CMS3DFile	signature:()
+GetNumTriangles	MS3DFile.h	/^	int GetNumTriangles();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetNumVertices	MS3DFile.cpp	/^int CMS3DFile::GetNumVertices()$/;"	f	class:CMS3DFile	signature:()
+GetNumVertices	MS3DFile.h	/^	int GetNumVertices();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetTotalFrames	MS3DFile.cpp	/^int CMS3DFile::GetTotalFrames()$/;"	f	class:CMS3DFile	signature:()
+GetTotalFrames	MS3DFile.h	/^	int GetTotalFrames();$/;"	p	class:CMS3DFile	access:public	signature:()
+GetTriangleAt	MS3DFile.cpp	/^void CMS3DFile::GetTriangleAt(int nIndex, ms3d_triangle_t **ppTriangle)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_triangle_t **ppTriangle)
+GetTriangleAt	MS3DFile.h	/^	void GetTriangleAt(int nIndex, ms3d_triangle_t **ppTriangle);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_triangle_t **ppTriangle)
+GetVertexAt	MS3DFile.cpp	/^void CMS3DFile::GetVertexAt(int nIndex, ms3d_vertex_t **ppVertex)$/;"	f	class:CMS3DFile	signature:(int nIndex, ms3d_vertex_t **ppVertex)
+GetVertexAt	MS3DFile.h	/^	void GetVertexAt(int nIndex, ms3d_vertex_t **ppVertex);$/;"	p	class:CMS3DFile	access:public	signature:(int nIndex, ms3d_vertex_t **ppVertex)
+LoadFromFile	MS3DFile.cpp	/^bool CMS3DFile::LoadFromFile(const char* lpszFileName)$/;"	f	class:CMS3DFile	signature:(const char* lpszFileName)
+LoadFromFile	MS3DFile.h	/^	bool LoadFromFile(const char* lpszFileName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszFileName)
+LoadGLTexture	Textures.cpp	/^GLuint LoadGLTexture(const char* name){$/;"	f	signature:(const char* name)
+LoadGLTexture	Textures.h	/^GLuint LoadGLTexture( const char *filename );                    \/\/ Load Bitmaps And Convert To Textures$/;"	p	signature:( const char *filename )
+MAKEDWORD	MS3DFile.cpp	21;"	d	file:
+SaveToFile	MS3DFile.cpp	/^bool CMS3DFile::SaveToFile(const char* lpszFileName)$/;"	f	class:CMS3DFile	signature:(const char* lpszFileName)
+SaveToFile	MS3DFile.h	/^	bool SaveToFile(const char* lpszFileName);$/;"	p	class:CMS3DFile	access:public	signature:(const char* lpszFileName)
+TEXTURES_H_	Textures.h	9;"	d
+_MS3DFILE_H_	MS3DFile.h	11;"	d
+__anon10::flags	MS3DFile.h	/^    byte            flags;                              \/\/ SELECTED | DIRTY$/;"	m	struct:__anon10	access:public
+__anon10::keyFramesRot	MS3DFile.h	/^	ms3d_keyframe_rot_t* keyFramesRot;      \/\/ local animation matrices$/;"	m	struct:__anon10	access:public
+__anon10::keyFramesTrans	MS3DFile.h	/^    ms3d_keyframe_pos_t* keyFramesTrans;  \/\/ local animation matrices$/;"	m	struct:__anon10	access:public
+__anon10::name	MS3DFile.h	/^    char            name[32];                           \/\/$/;"	m	struct:__anon10	access:public
+__anon10::numKeyFramesRot	MS3DFile.h	/^    word            numKeyFramesRot;                    \/\/$/;"	m	struct:__anon10	access:public
+__anon10::numKeyFramesTrans	MS3DFile.h	/^    word            numKeyFramesTrans;                  \/\/$/;"	m	struct:__anon10	access:public
+__anon10::parentName	MS3DFile.h	/^    char            parentName[32];                     \/\/$/;"	m	struct:__anon10	access:public
+__anon10::position	MS3DFile.h	/^    float           position[3];$/;"	m	struct:__anon10	access:public
+__anon10::rotation	MS3DFile.h	/^    float           rotation[3];                        \/\/ local reference matrix$/;"	m	struct:__anon10	access:public
+__anon1::alpha	Textures.cpp	/^    bool alpha;$/;"	m	struct:__anon1	file:	access:public
+__anon1::data	Textures.cpp	/^    unsigned char *data;$/;"	m	struct:__anon1	file:	access:public
+__anon1::height	Textures.cpp	/^    int height;$/;"	m	struct:__anon1	file:	access:public
+__anon1::width	Textures.cpp	/^    int width;$/;"	m	struct:__anon1	file:	access:public
+__anon2::id	MS3DFile.h	/^    char    id[10];                                     \/\/ always "MS3D000000"$/;"	m	struct:__anon2	access:public
+__anon2::version	MS3DFile.h	/^    int     version;                                    \/\/ 4$/;"	m	struct:__anon2	access:public
+__anon3::boneId	MS3DFile.h	/^    char    boneId;                                     \/\/ -1 = no bone$/;"	m	struct:__anon3	access:public
+__anon3::flags	MS3DFile.h	/^    byte    flags;                                      \/\/ SELECTED | SELECTED2 | HIDDEN$/;"	m	struct:__anon3	access:public
+__anon3::referenceCount	MS3DFile.h	/^    byte    referenceCount;$/;"	m	struct:__anon3	access:public
+__anon3::vertex	MS3DFile.h	/^    float   vertex[3];                                  \/\/$/;"	m	struct:__anon3	access:public
+__anon4::flags	MS3DFile.h	/^    word    flags;                                      \/\/ SELECTED | SELECTED2 | HIDDEN$/;"	m	struct:__anon4	access:public
+__anon4::groupIndex	MS3DFile.h	/^    byte    groupIndex;                                 \/\/$/;"	m	struct:__anon4	access:public
+__anon4::s	MS3DFile.h	/^    float   s[3];                                       \/\/$/;"	m	struct:__anon4	access:public
+__anon4::smoothingGroup	MS3DFile.h	/^    byte    smoothingGroup;                             \/\/ 1 - 32$/;"	m	struct:__anon4	access:public
+__anon4::t	MS3DFile.h	/^    float   t[3];                                       \/\/$/;"	m	struct:__anon4	access:public
+__anon4::vertexIndices	MS3DFile.h	/^    word    vertexIndices[3];                           \/\/$/;"	m	struct:__anon4	access:public
+__anon4::vertexNormals	MS3DFile.h	/^    float   vertexNormals[3][3];                        \/\/$/;"	m	struct:__anon4	access:public
+__anon5::edgeIndices	MS3DFile.h	/^	word edgeIndices[2];$/;"	m	struct:__anon5	access:public
+__anon6::flags	MS3DFile.h	/^    byte            flags;                              \/\/ SELECTED | HIDDEN$/;"	m	struct:__anon6	access:public
+__anon6::materialIndex	MS3DFile.h	/^    char            materialIndex;                      \/\/ -1 = no material$/;"	m	struct:__anon6	access:public
+__anon6::name	MS3DFile.h	/^    char            name[32];                           \/\/$/;"	m	struct:__anon6	access:public
+__anon6::numtriangles	MS3DFile.h	/^    word            numtriangles;                       \/\/$/;"	m	struct:__anon6	access:public
+__anon6::triangleIndices	MS3DFile.h	/^    word*	    triangleIndices;			\/\/ the groups group the triangles$/;"	m	struct:__anon6	access:public
+__anon7::alphamap	MS3DFile.h	/^    char            alphamap[128];                       \/\/ alpha.bmp$/;"	m	struct:__anon7	access:public
+__anon7::ambient	MS3DFile.h	/^    float           ambient[4];                         \/\/$/;"	m	struct:__anon7	access:public
+__anon7::diffuse	MS3DFile.h	/^    float           diffuse[4];                         \/\/$/;"	m	struct:__anon7	access:public
+__anon7::emissive	MS3DFile.h	/^    float           emissive[4];                        \/\/$/;"	m	struct:__anon7	access:public
+__anon7::mode	MS3DFile.h	/^    char            mode;                               \/\/ 0, 1, 2 is unused now$/;"	m	struct:__anon7	access:public
+__anon7::name	MS3DFile.h	/^    char            name[32];                           \/\/$/;"	m	struct:__anon7	access:public
+__anon7::shininess	MS3DFile.h	/^    float           shininess;                          \/\/ 0.0f - 128.0f$/;"	m	struct:__anon7	access:public
+__anon7::specular	MS3DFile.h	/^    float           specular[4];                        \/\/$/;"	m	struct:__anon7	access:public
+__anon7::texture	MS3DFile.h	/^    char            texture[128];                        \/\/ texture.bmp$/;"	m	struct:__anon7	access:public
+__anon7::transparency	MS3DFile.h	/^    float           transparency;                       \/\/ 0.0f - 1.0f$/;"	m	struct:__anon7	access:public
+__anon8::rotation	MS3DFile.h	/^    float           rotation[3];                        \/\/ x, y, z angles$/;"	m	struct:__anon8	access:public
+__anon8::time	MS3DFile.h	/^    float           time;                               \/\/ time in seconds$/;"	m	struct:__anon8	access:public
+__anon9::position	MS3DFile.h	/^    float           position[3];                        \/\/ local position$/;"	m	struct:__anon9	access:public
+__anon9::time	MS3DFile.h	/^    float           time;                               \/\/ time in seconds$/;"	m	struct:__anon9	access:public
+_black	MS3DFile.h	/^	float* _black;$/;"	m	class:CMS3DFile	access:private
+_i	MS3DFile.h	/^	CMS3DFileI *_i;$/;"	m	class:CMS3DFile	access:private
+_overrideAmbient	MS3DFile.h	/^	bool _overrideAmbient;$/;"	m	class:CMS3DFile	access:private
+_overrideDiffuse	MS3DFile.h	/^	bool _overrideDiffuse;$/;"	m	class:CMS3DFile	access:private
+_overrideEmissive	MS3DFile.h	/^	bool _overrideEmissive;$/;"	m	class:CMS3DFile	access:private
+_overrideSpecular	MS3DFile.h	/^	bool _overrideSpecular;$/;"	m	class:CMS3DFile	access:private
+_white	MS3DFile.h	/^	float* _white;$/;"	m	class:CMS3DFile	access:private
+alpha	Textures.cpp	/^    bool alpha;$/;"	m	struct:__anon1	file:	access:public
+alphamap	MS3DFile.h	/^    char            alphamap[128];                       \/\/ alpha.bmp$/;"	m	struct:__anon7	access:public
+ambient	MS3DFile.h	/^    float           ambient[4];                         \/\/$/;"	m	struct:__anon7	access:public
+arrEdges	MS3DFileI.h	/^	std::vector<ms3d_edge_t> arrEdges;$/;"	m	class:CMS3DFileI	access:public
+arrGroups	MS3DFileI.h	/^	std::vector<ms3d_group_t> arrGroups;$/;"	m	class:CMS3DFileI	access:public
+arrJoints	MS3DFileI.h	/^	std::vector<ms3d_joint_t> arrJoints;$/;"	m	class:CMS3DFileI	access:public
+arrMaterials	MS3DFileI.h	/^	std::vector<ms3d_material_t> arrMaterials;$/;"	m	class:CMS3DFileI	access:public
+arrTextures	MS3DFileI.h	/^	std::vector<int> arrTextures; \/\/Contains the ids of the OpenGL textures, Indexes match between this and arrMaterials$/;"	m	class:CMS3DFileI	access:public
+arrTriangles	MS3DFileI.h	/^	std::vector<ms3d_triangle_t> arrTriangles;$/;"	m	class:CMS3DFileI	access:public
+arrVertices	MS3DFileI.h	/^	std::vector<ms3d_vertex_t> arrVertices;$/;"	m	class:CMS3DFileI	access:public
+boneId	MS3DFile.h	/^    char    boneId;                                     \/\/ -1 = no bone$/;"	m	struct:__anon3	access:public
+byte	MS3DFile.h	/^typedef unsigned char byte;$/;"	t
+data	Textures.cpp	/^    unsigned char *data;$/;"	m	struct:__anon1	file:	access:public
+diffuse	MS3DFile.h	/^    float           diffuse[4];                         \/\/$/;"	m	struct:__anon7	access:public
+draw	MS3DFile.cpp	/^void CMS3DFile::draw(){$/;"	f	class:CMS3DFile	signature:()
+draw	MS3DFile.h	/^	void draw();$/;"	p	class:CMS3DFile	access:public	signature:()
+drawGroup	MS3DFile.cpp	/^void CMS3DFile::drawGroup(ms3d_group_t* group){$/;"	f	class:CMS3DFile	signature:(ms3d_group_t* group)
+drawGroup	MS3DFile.h	/^	void drawGroup(ms3d_group_t* group);$/;"	p	class:CMS3DFile	access:public	signature:(ms3d_group_t* group)
+edgeIndices	MS3DFile.h	/^	word edgeIndices[2];$/;"	m	struct:__anon5	access:public
+emissive	MS3DFile.h	/^    float           emissive[4];                        \/\/$/;"	m	struct:__anon7	access:public
+fAnimationFPS	MS3DFileI.h	/^	float fAnimationFPS;$/;"	m	class:CMS3DFileI	access:public
+fCurrentTime	MS3DFileI.h	/^	float fCurrentTime;$/;"	m	class:CMS3DFileI	access:public
+flags	MS3DFile.h	/^    byte            flags;                              \/\/ SELECTED | DIRTY$/;"	m	struct:__anon10	access:public
+flags	MS3DFile.h	/^    byte            flags;                              \/\/ SELECTED | HIDDEN$/;"	m	struct:__anon6	access:public
+flags	MS3DFile.h	/^    byte    flags;                                      \/\/ SELECTED | SELECTED2 | HIDDEN$/;"	m	struct:__anon3	access:public
+flags	MS3DFile.h	/^    word    flags;                                      \/\/ SELECTED | SELECTED2 | HIDDEN$/;"	m	struct:__anon4	access:public
+groupIndex	MS3DFile.h	/^    byte    groupIndex;                                 \/\/$/;"	m	struct:__anon4	access:public
+height	Textures.cpp	/^    int height;$/;"	m	struct:__anon1	file:	access:public
+iTotalFrames	MS3DFileI.h	/^	int iTotalFrames;$/;"	m	class:CMS3DFileI	access:public
+id	MS3DFile.h	/^    char    id[10];                                     \/\/ always "MS3D000000"$/;"	m	struct:__anon2	access:public
+keyFramesRot	MS3DFile.h	/^	ms3d_keyframe_rot_t* keyFramesRot;      \/\/ local animation matrices$/;"	m	struct:__anon10	access:public
+keyFramesTrans	MS3DFile.h	/^    ms3d_keyframe_pos_t* keyFramesTrans;  \/\/ local animation matrices$/;"	m	struct:__anon10	access:public
+loadBMP	Textures.cpp	/^int loadBMP(const char *filename, textureImage *texture)$/;"	f	signature:(const char *filename, textureImage *texture)
+loadJPEG	Textures.cpp	/^int loadJPEG(const char* filename, textureImage* texture){$/;"	f	signature:(const char* filename, textureImage* texture)
+loadPNG	Textures.cpp	/^int loadPNG(const char* file_name, textureImage* texture){$/;"	f	signature:(const char* file_name, textureImage* texture)
+main	optimizer.cpp	/^int main(int argc, char** argv){$/;"	f	signature:(int argc, char** argv)
+materialIndex	MS3DFile.h	/^    char            materialIndex;                      \/\/ -1 = no material$/;"	m	struct:__anon6	access:public
+mergeGroups	MS3DFile.h	/^	void mergeGroups();$/;"	p	class:CMS3DFile	access:private	signature:()
+mergeGroups	optimizations.cpp	/^void CMS3DFile::mergeGroups(){$/;"	f	class:CMS3DFile	signature:()
+mode	MS3DFile.h	/^    char            mode;                               \/\/ 0, 1, 2 is unused now$/;"	m	struct:__anon7	access:public
+ms3d_edge_t	MS3DFile.h	/^} ms3d_edge_t;$/;"	t	typeref:struct:__anon5
+ms3d_group_t	MS3DFile.h	/^} ms3d_group_t;$/;"	t	typeref:struct:__anon6
+ms3d_header_t	MS3DFile.h	/^} ms3d_header_t;$/;"	t	typeref:struct:__anon2
+ms3d_joint_t	MS3DFile.h	/^} ms3d_joint_t;$/;"	t	typeref:struct:__anon10
+ms3d_keyframe_pos_t	MS3DFile.h	/^} ms3d_keyframe_pos_t;$/;"	t	typeref:struct:__anon9
+ms3d_keyframe_rot_t	MS3DFile.h	/^} ms3d_keyframe_rot_t;$/;"	t	typeref:struct:__anon8
+ms3d_material_t	MS3DFile.h	/^} ms3d_material_t;$/;"	t	typeref:struct:__anon7
+ms3d_triangle_t	MS3DFile.h	/^} ms3d_triangle_t;$/;"	t	typeref:struct:__anon4
+ms3d_vertex_t	MS3DFile.h	/^} ms3d_vertex_t;$/;"	t	typeref:struct:__anon3
+name	MS3DFile.h	/^    char            name[32];                           \/\/$/;"	m	struct:__anon10	access:public
+name	MS3DFile.h	/^    char            name[32];                           \/\/$/;"	m	struct:__anon6	access:public
+name	MS3DFile.h	/^    char            name[32];                           \/\/$/;"	m	struct:__anon7	access:public
+numKeyFramesRot	MS3DFile.h	/^    word            numKeyFramesRot;                    \/\/$/;"	m	struct:__anon10	access:public
+numKeyFramesTrans	MS3DFile.h	/^    word            numKeyFramesTrans;                  \/\/$/;"	m	struct:__anon10	access:public
+numtriangles	MS3DFile.h	/^    word            numtriangles;                       \/\/$/;"	m	struct:__anon6	access:public
+operator =	MS3DFile.h	/^	CMS3DFile& operator=(const CMS3DFile& rhs);$/;"	p	class:CMS3DFile	access:public	signature:(const CMS3DFile& rhs)
+optimize	MS3DFile.cpp	/^void CMS3DFile::optimize(){$/;"	f	class:CMS3DFile	signature:()
+optimize	MS3DFile.h	/^	void optimize();$/;"	p	class:CMS3DFile	access:public	signature:()
+parentName	MS3DFile.h	/^    char            parentName[32];                     \/\/$/;"	m	struct:__anon10	access:public
+position	MS3DFile.h	/^    float           position[3];                        \/\/ local position$/;"	m	struct:__anon9	access:public
+position	MS3DFile.h	/^    float           position[3];$/;"	m	struct:__anon10	access:public
+prepareGroup	MS3DFile.cpp	/^void CMS3DFile::prepareGroup(ms3d_group_t* group, GLuint vao){$/;"	f	class:CMS3DFile	signature:(ms3d_group_t* group, GLuint vao)
+prepareGroup	MS3DFile.h	/^	void prepareGroup(ms3d_group_t* group, GLuint vao);$/;"	p	class:CMS3DFile	access:public	signature:(ms3d_group_t* group, GLuint vao)
+prepareModel	MS3DFile.cpp	/^void CMS3DFile::prepareModel(){$/;"	f	class:CMS3DFile	signature:()
+prepareModel	MS3DFile.h	/^	void prepareModel();$/;"	p	class:CMS3DFile	access:public	signature:()
+referenceCount	MS3DFile.h	/^    byte    referenceCount;$/;"	m	struct:__anon3	access:public
+removeUnusedMaterials	MS3DFile.h	/^	void removeUnusedMaterials();$/;"	p	class:CMS3DFile	access:private	signature:()
+removeUnusedMaterials	optimizations.cpp	/^void CMS3DFile::removeUnusedMaterials(){$/;"	f	class:CMS3DFile	signature:()
+rotation	MS3DFile.h	/^    float           rotation[3];                        \/\/ local reference matrix$/;"	m	struct:__anon10	access:public
+rotation	MS3DFile.h	/^    float           rotation[3];                        \/\/ x, y, z angles$/;"	m	struct:__anon8	access:public
+s	MS3DFile.h	/^    float   s[3];                                       \/\/$/;"	m	struct:__anon4	access:public
+setMaterial	MS3DFile.cpp	/^void CMS3DFile::setMaterial(int texture, ms3d_group_t* group){$/;"	f	class:CMS3DFile	signature:(int texture, ms3d_group_t* group)
+setMaterial	MS3DFile.cpp	/^void CMS3DFile::setMaterial(ms3d_material_t* material, int textureIndex){$/;"	f	class:CMS3DFile	signature:(ms3d_material_t* material, int textureIndex)
+setMaterial	MS3DFile.h	/^	void setMaterial(int texture, ms3d_group_t* group);$/;"	p	class:CMS3DFile	access:public	signature:(int texture, ms3d_group_t* group)
+setMaterial	MS3DFile.h	/^	void setMaterial(ms3d_material_t* material, int textureIndex);$/;"	p	class:CMS3DFile	access:public	signature:(ms3d_material_t* material, int textureIndex)
+setOverrideAmbient	MS3DFile.cpp	/^void CMS3DFile::setOverrideAmbient(bool overrideAmbient){$/;"	f	class:CMS3DFile	signature:(bool overrideAmbient)
+setOverrideAmbient	MS3DFile.h	/^	void setOverrideAmbient(bool overrideAmbient);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideAmbient)
+setOverrideDiffuse	MS3DFile.cpp	/^void CMS3DFile::setOverrideDiffuse(bool overrideDiffuse){$/;"	f	class:CMS3DFile	signature:(bool overrideDiffuse)
+setOverrideDiffuse	MS3DFile.h	/^	void setOverrideDiffuse(bool overrideDiffuse);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideDiffuse)
+setOverrideEmissive	MS3DFile.cpp	/^void CMS3DFile::setOverrideEmissive(bool overrideEmissive){$/;"	f	class:CMS3DFile	signature:(bool overrideEmissive)
+setOverrideEmissive	MS3DFile.h	/^	void setOverrideEmissive(bool overrideEmissive);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideEmissive)
+setOverrideSpecular	MS3DFile.cpp	/^void CMS3DFile::setOverrideSpecular(bool overrideSpecular){$/;"	f	class:CMS3DFile	signature:(bool overrideSpecular)
+setOverrideSpecular	MS3DFile.h	/^	void setOverrideSpecular(bool overrideSpecular);$/;"	p	class:CMS3DFile	access:public	signature:(bool overrideSpecular)
+shininess	MS3DFile.h	/^    float           shininess;                          \/\/ 0.0f - 128.0f$/;"	m	struct:__anon7	access:public
+smoothingGroup	MS3DFile.h	/^    byte    smoothingGroup;                             \/\/ 1 - 32$/;"	m	struct:__anon4	access:public
+specular	MS3DFile.h	/^    float           specular[4];                        \/\/$/;"	m	struct:__anon7	access:public
+t	MS3DFile.h	/^    float   t[3];                                       \/\/$/;"	m	struct:__anon4	access:public
+texture	MS3DFile.h	/^    char            texture[128];                        \/\/ texture.bmp$/;"	m	struct:__anon7	access:public
+textureImage	Textures.cpp	/^}textureImage;$/;"	t	typeref:struct:__anon1	file:
+time	MS3DFile.h	/^    float           time;                               \/\/ time in seconds$/;"	m	struct:__anon8	access:public
+time	MS3DFile.h	/^    float           time;                               \/\/ time in seconds$/;"	m	struct:__anon9	access:public
+transparency	MS3DFile.h	/^    float           transparency;                       \/\/ 0.0f - 1.0f$/;"	m	struct:__anon7	access:public
+triangleIndices	MS3DFile.h	/^    word*	    triangleIndices;			\/\/ the groups group the triangles$/;"	m	struct:__anon6	access:public
+version	MS3DFile.h	/^    int     version;                                    \/\/ 4$/;"	m	struct:__anon2	access:public
+vertex	MS3DFile.h	/^    float   vertex[3];                                  \/\/$/;"	m	struct:__anon3	access:public
+vertexIndices	MS3DFile.h	/^    word    vertexIndices[3];                           \/\/$/;"	m	struct:__anon4	access:public
+vertexNormals	MS3DFile.h	/^    float   vertexNormals[3][3];                        \/\/$/;"	m	struct:__anon4	access:public
+width	Textures.cpp	/^    int width;$/;"	m	struct:__anon1	file:	access:public
+word	MS3DFile.h	/^typedef unsigned short word;$/;"	t
+~CMS3DFile	MS3DFile.cpp	/^CMS3DFile::~CMS3DFile()$/;"	f	class:CMS3DFile	signature:()
+~CMS3DFile	MS3DFile.h	/^	virtual ~CMS3DFile();$/;"	p	class:CMS3DFile	access:public	signature:()

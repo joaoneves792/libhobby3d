@@ -1,0 +1,4 @@
+/usr/local/../lib/libms3d.so
+/usr/local/../include/ms3d/MS3DFile.h
+/usr/local/../include/ms3d/Textures.h
+/usr/local/../include/ms3d/Shader.h

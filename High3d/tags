@@ -1,0 +1,1054 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+GCC_HASCLASSVISIBILITY	ms3d_wrap.cxx	111;"	d	file:
+GLM	GLM.cpp	/^GLM::GLM(shader* shader){$/;"	f	class:GLM	signature:(shader* shader)
+GLM	ms3d.h	/^	GLM(shader* shader);$/;"	p	class:GLM	access:public	signature:(shader* shader)
+GLM	ms3d.h	/^class GLM{$/;"	c
+GLM	ms3d.py	/^class GLM(_object):$/;"	c	inherits:_object
+GLM::GLM	GLM.cpp	/^GLM::GLM(shader* shader){$/;"	f	class:GLM	signature:(shader* shader)
+GLM::GLM	ms3d.h	/^	GLM(shader* shader);$/;"	p	class:GLM	access:public	signature:(shader* shader)
+GLM::_Model	ms3d.h	/^	glm::mat4 _Model;$/;"	m	class:GLM	access:private
+GLM::_Projection	ms3d.h	/^	glm::mat4 _Projection;$/;"	m	class:GLM	access:private
+GLM::_View	ms3d.h	/^	glm::mat4 _View;$/;"	m	class:GLM	access:private
+GLM::_activeMatrix	ms3d.h	/^	glm::mat4* _activeMatrix;$/;"	m	class:GLM	access:private
+GLM::_activeMatrixID	ms3d.h	/^	int _activeMatrixID;$/;"	m	class:GLM	access:private
+GLM::_modelID	ms3d.h	/^	GLuint _modelID;$/;"	m	class:GLM	access:private
+GLM::_projectionID	ms3d.h	/^	GLuint _projectionID;$/;"	m	class:GLM	access:private
+GLM::_shader	ms3d.h	/^	shader* _shader;$/;"	m	class:GLM	access:private
+GLM::_stack	ms3d.h	/^	std::stack<glm::mat4> _stack;$/;"	m	class:GLM	access:private
+GLM::_viewID	ms3d.h	/^	GLuint _viewID;$/;"	m	class:GLM	access:private
+GLM::changeShader	GLM.cpp	/^void GLM::changeShader(shader* newShader){$/;"	f	class:GLM	signature:(shader* newShader)
+GLM::changeShader	ms3d.h	/^	void changeShader(shader* newShader);$/;"	p	class:GLM	access:public	signature:(shader* newShader)
+GLM::getMVP	GLM.cpp	/^glm::mat4 GLM::getMVP(){$/;"	f	class:GLM	signature:()
+GLM::getMVP	ms3d.h	/^	glm::mat4 getMVP();$/;"	p	class:GLM	access:public	signature:()
+GLM::loadIdentity	GLM.cpp	/^void GLM::loadIdentity(){$/;"	f	class:GLM	signature:()
+GLM::loadIdentity	ms3d.h	/^	void loadIdentity();$/;"	p	class:GLM	access:public	signature:()
+GLM::lookAt	GLM.cpp	/^void GLM::lookAt(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ){$/;"	f	class:GLM	signature:(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ)
+GLM::lookAt	ms3d.h	/^	void lookAt(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ);$/;"	p	class:GLM	access:public	signature:(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ)
+GLM::otho	GLM.cpp	/^void GLM::otho(double left, double right, double bottom, double top, double near, double far){$/;"	f	class:GLM	signature:(double left, double right, double bottom, double top, double near, double far)
+GLM::otho	ms3d.h	/^	void otho(double left, double right, double bottom, double top, double near, double far);$/;"	p	class:GLM	access:public	signature:(double left, double right, double bottom, double top, double near, double far)
+GLM::perspective	GLM.cpp	/^void GLM::perspective(double fov_degrees, double aspect_ratio, double near, double far){$/;"	f	class:GLM	signature:(double fov_degrees, double aspect_ratio, double near, double far)
+GLM::perspective	ms3d.h	/^	void perspective(double fov_degrees, double aspect_ratio, double near, double far);$/;"	p	class:GLM	access:public	signature:(double fov_degrees, double aspect_ratio, double near, double far)
+GLM::popMatrix	GLM.cpp	/^void GLM::popMatrix(){$/;"	f	class:GLM	signature:()
+GLM::popMatrix	ms3d.h	/^	void popMatrix();$/;"	p	class:GLM	access:public	signature:()
+GLM::pushMatrix	GLM.cpp	/^void GLM::pushMatrix(){$/;"	f	class:GLM	signature:()
+GLM::pushMatrix	ms3d.h	/^	void pushMatrix();$/;"	p	class:GLM	access:public	signature:()
+GLM::rotate	GLM.cpp	/^void GLM::rotate(float angle, double x, double y, double z){$/;"	f	class:GLM	signature:(float angle, double x, double y, double z)
+GLM::rotate	ms3d.h	/^	void rotate(float angle, double x, double y, double z);$/;"	p	class:GLM	access:public	signature:(float angle, double x, double y, double z)
+GLM::scale	GLM.cpp	/^void GLM::scale(double x, double y, double z){$/;"	f	class:GLM	signature:(double x, double y, double z)
+GLM::scale	ms3d.h	/^	void scale(double x, double y, double z);$/;"	p	class:GLM	access:public	signature:(double x, double y, double z)
+GLM::selectMatrix	GLM.cpp	/^void GLM::selectMatrix(int Matrix){$/;"	f	class:GLM	signature:(int Matrix)
+GLM::selectMatrix	ms3d.h	/^	void selectMatrix(int Matrix);$/;"	p	class:GLM	access:public	signature:(int Matrix)
+GLM::translate	GLM.cpp	/^void GLM::translate(double x, double y, double z){$/;"	f	class:GLM	signature:(double x, double y, double z)
+GLM::translate	ms3d.h	/^	void translate(double x, double y, double z);$/;"	p	class:GLM	access:public	signature:(double x, double y, double z)
+GLM::uploadMatrix	GLM.cpp	/^void GLM::uploadMatrix(){$/;"	f	class:GLM	signature:()
+GLM::uploadMatrix	ms3d.h	/^	void uploadMatrix();$/;"	p	class:GLM	access:private	signature:()
+GLM::~GLM	GLM.cpp	/^GLM::~GLM(){$/;"	f	class:GLM	signature:()
+GLM::~GLM	ms3d.h	/^	virtual ~GLM();$/;"	p	class:GLM	access:public	signature:()
+GLM_swigregister	ms3d.py	/^GLM_swigregister = _ms3d.GLM_swigregister$/;"	v
+LIGHTS	constants.py	/^class LIGHTS:$/;"	c	inherits:
+LIGHTS	ms3d.py	/^class LIGHTS:$/;"	c	inherits:
+LIGHT_0	constants.py	/^    LIGHT_0 = 0$/;"	v	class:LIGHTS
+LIGHT_0	ms3d.py	/^    LIGHT_0 = 0$/;"	v	class:LIGHTS
+LIGHT_1	constants.py	/^    LIGHT_1 = 1$/;"	v	class:LIGHTS
+LIGHT_1	ms3d.py	/^    LIGHT_1 = 1$/;"	v	class:LIGHTS
+LIGHT_2	constants.py	/^    LIGHT_2 = 2$/;"	v	class:LIGHTS
+LIGHT_2	ms3d.py	/^    LIGHT_2 = 2$/;"	v	class:LIGHTS
+LIGHT_3	constants.py	/^    LIGHT_3 = 3$/;"	v	class:LIGHTS
+LIGHT_3	ms3d.py	/^    LIGHT_3 = 3$/;"	v	class:LIGHTS
+LIGHT_4	constants.py	/^    LIGHT_4 = 4$/;"	v	class:LIGHTS
+LIGHT_4	ms3d.py	/^    LIGHT_4 = 4$/;"	v	class:LIGHTS
+LIGHT_5	constants.py	/^    LIGHT_5 = 5$/;"	v	class:LIGHTS
+LIGHT_5	ms3d.py	/^    LIGHT_5 = 5$/;"	v	class:LIGHTS
+LIGHT_6	constants.py	/^    LIGHT_6 = 6$/;"	v	class:LIGHTS
+LIGHT_6	ms3d.py	/^    LIGHT_6 = 6$/;"	v	class:LIGHTS
+LIGHT_7	constants.py	/^    LIGHT_7 = 7$/;"	v	class:LIGHTS
+LIGHT_7	ms3d.py	/^    LIGHT_7 = 7$/;"	v	class:LIGHTS
+LIGHT_8	constants.py	/^    LIGHT_8 = 8$/;"	v	class:LIGHTS
+LIGHT_8	ms3d.py	/^    LIGHT_8 = 8$/;"	v	class:LIGHTS
+LIGHT_9	constants.py	/^    LIGHT_9 = 9$/;"	v	class:LIGHTS
+LIGHT_9	ms3d.py	/^    LIGHT_9 = 9$/;"	v	class:LIGHTS
+LLONG_MAX	ms3d_wrap.cxx	3421;"	d	file:
+LLONG_MIN	ms3d_wrap.cxx	3422;"	d	file:
+Lights	Lights.cpp	/^Lights::Lights(shader* shader){$/;"	f	class:Lights	signature:(shader* shader)
+Lights	ms3d.h	/^	Lights(shader* shader);$/;"	p	class:Lights	access:public	signature:(shader* shader)
+Lights	ms3d.h	/^class Lights{$/;"	c
+Lights	ms3d.py	/^class Lights(_object):$/;"	c	inherits:_object
+Lights::Lights	Lights.cpp	/^Lights::Lights(shader* shader){$/;"	f	class:Lights	signature:(shader* shader)
+Lights::Lights	ms3d.h	/^	Lights(shader* shader);$/;"	p	class:Lights	access:public	signature:(shader* shader)
+Lights::_colorsID	ms3d.h	/^	GLint _colorsID[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+Lights::_conesID	ms3d.h	/^	GLint _conesID[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+Lights::_enabled	ms3d.h	/^	GLint _enabled[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+Lights::_enabledID	ms3d.h	/^	GLint _enabledID;$/;"	m	class:Lights	access:private
+Lights::_lightingDisabledID	ms3d.h	/^	GLint _lightingDisabledID;$/;"	m	class:Lights	access:private
+Lights::_positionID	ms3d.h	/^	GLint _positionID[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+Lights::disable	Lights.cpp	/^void Lights::disable(int light){$/;"	f	class:Lights	signature:(int light)
+Lights::disable	ms3d.h	/^	void disable(int light);$/;"	p	class:Lights	access:public	signature:(int light)
+Lights::disableLighting	Lights.cpp	/^void Lights::disableLighting(){$/;"	f	class:Lights	signature:()
+Lights::disableLighting	ms3d.h	/^	void disableLighting();$/;"	p	class:Lights	access:public	signature:()
+Lights::enable	Lights.cpp	/^void Lights::enable(int light){$/;"	f	class:Lights	signature:(int light)
+Lights::enable	ms3d.h	/^	void enable(int light);$/;"	p	class:Lights	access:public	signature:(int light)
+Lights::enableLighting	Lights.cpp	/^void Lights::enableLighting(){$/;"	f	class:Lights	signature:()
+Lights::enableLighting	ms3d.h	/^	void enableLighting();$/;"	p	class:Lights	access:public	signature:()
+Lights::setColor	Lights.cpp	/^void Lights::setColor(int light, float red, float green, float blue, float intensity){$/;"	f	class:Lights	signature:(int light, float red, float green, float blue, float intensity)
+Lights::setColor	ms3d.h	/^	void setColor(int light, float red, float green, float blue, float intensity);$/;"	p	class:Lights	access:public	signature:(int light, float red, float green, float blue, float intensity)
+Lights::setCone	Lights.cpp	/^void Lights::setCone(int light, float direction_x, float direction_y, float direction_z, float angle){$/;"	f	class:Lights	signature:(int light, float direction_x, float direction_y, float direction_z, float angle)
+Lights::setCone	ms3d.h	/^	void setCone(int light, float direction_x, float direction_y, float direction_z, float angle);$/;"	p	class:Lights	access:public	signature:(int light, float direction_x, float direction_y, float direction_z, float angle)
+Lights::setPosition	Lights.cpp	/^void Lights::setPosition(int light, float x, float y, float z){$/;"	f	class:Lights	signature:(int light, float x, float y, float z)
+Lights::setPosition	ms3d.h	/^	void setPosition(int light, float x, float y, float z);$/;"	p	class:Lights	access:public	signature:(int light, float x, float y, float z)
+Lights::~Lights	Lights.cpp	/^Lights::~Lights(){$/;"	f	class:Lights	signature:()
+Lights::~Lights	ms3d.h	/^	virtual ~Lights();$/;"	p	class:Lights	access:public	signature:()
+Lights_swigregister	ms3d.py	/^Lights_swigregister = _ms3d.Lights_swigregister$/;"	v
+MATRIX	constants.py	/^class MATRIX:$/;"	c	inherits:
+MATRIX	ms3d.py	/^class MATRIX:$/;"	c	inherits:
+MAX_LIGHTS	ms3d.h	92;"	d
+MAX_LIGHTS	ms3d.py	/^MAX_LIGHTS = _ms3d.MAX_LIGHTS$/;"	v
+MODEL	constants.py	/^    MODEL = 1$/;"	v	class:MATRIX
+MODEL	ms3d.h	51;"	d
+MODEL	ms3d.py	/^    MODEL = 1$/;"	v	class:MATRIX
+MODEL	ms3d.py	/^MODEL = _ms3d.MODEL$/;"	v
+PROJECTION	constants.py	/^    PROJECTION = 3$/;"	v	class:MATRIX
+PROJECTION	ms3d.h	53;"	d
+PROJECTION	ms3d.py	/^    PROJECTION = 3$/;"	v	class:MATRIX
+PROJECTION	ms3d.py	/^PROJECTION = _ms3d.PROJECTION$/;"	v
+PY_SSIZE_T_MAX	ms3d_wrap.cxx	918;"	d	file:
+PY_SSIZE_T_MIN	ms3d_wrap.cxx	919;"	d	file:
+PyBool_FromLong	ms3d_wrap.cxx	/^PyObject *PyBool_FromLong(long ok)$/;"	f	file:	signature:(long ok)
+PyClass_Check	ms3d_wrap.cxx	767;"	d	file:
+PyDescr_NAME	ms3d_wrap.cxx	980;"	d	file:
+PyDescr_TYPE	ms3d_wrap.cxx	979;"	d	file:
+PyExc_StopIteration	ms3d_wrap.cxx	874;"	d	file:
+PyHeapTypeObject	ms3d_wrap.cxx	/^} PyHeapTypeObject;$/;"	t	typeref:struct:__anon1	file:
+PyInt_AsLong	ms3d_wrap.cxx	769;"	d	file:
+PyInt_Check	ms3d_wrap.cxx	768;"	d	file:
+PyInt_FromLong	ms3d_wrap.cxx	770;"	d	file:
+PyInt_FromSize_t	ms3d_wrap.cxx	771;"	d	file:
+PyInt_FromSize_t	ms3d_wrap.cxx	942;"	d	file:
+PyModule_AddObject	ms3d_wrap.cxx	/^PyModule_AddObject(PyObject *m, char *name, PyObject *o)$/;"	f	signature:(PyObject *m, char *name, PyObject *o)
+PyNumber_AsSsize_t	ms3d_wrap.cxx	/^static long PyNumber_AsSsize_t (PyObject *x, void *SWIGUNUSEDPARM(exc))$/;"	f	file:	signature:(PyObject *x, void *SWIGUNUSEDPARM(exc))
+PyOS_snprintf	ms3d_wrap.cxx	838;"	d	file:
+PyOS_snprintf	ms3d_wrap.cxx	840;"	d	file:
+PyObject_DEL	ms3d_wrap.cxx	868;"	d	file:
+PyObject_Del	ms3d_wrap.cxx	865;"	d	file:
+PyObject_GenericGetAttr	ms3d_wrap.cxx	877;"	d	file:
+PySequence_Size	ms3d_wrap.cxx	898;"	d	file:
+PyString_AS_STRING	ms3d_wrap.cxx	779;"	d	file:
+PyString_AsString	ms3d_wrap.cxx	775;"	d	file:
+PyString_AsStringAndSize	ms3d_wrap.cxx	891;"	d	file:
+PyString_Check	ms3d_wrap.cxx	772;"	d	file:
+PyString_Format	ms3d_wrap.cxx	774;"	d	file:
+PyString_FromFormat	ms3d_wrap.cxx	/^PyString_FromFormat(const char *fmt, ...) {$/;"	f	file:	signature:(const char *fmt, ...)
+PyString_FromString	ms3d_wrap.cxx	773;"	d	file:
+PyString_InternFromString	ms3d_wrap.cxx	777;"	d	file:
+PyString_Size	ms3d_wrap.cxx	776;"	d	file:
+Py_None	ms3d_wrap.cxx	1423;"	d	file:
+Py_None	ms3d_wrap.cxx	1424;"	d	file:
+Py_NotImplemented	ms3d_wrap.cxx	884;"	d	file:
+Py_TPFLAGS_HAVE_CLASS	ms3d_wrap.cxx	778;"	d	file:
+Py_TYPE	ms3d_wrap.cxx	785;"	d	file:
+Py_VISIT	ms3d_wrap.cxx	946;"	d	file:
+Py_ssize_t	ms3d_wrap.cxx	/^typedef int Py_ssize_t;$/;"	t	file:
+SHADOW_MAP_SIZE	ms3d.h	115;"	d
+SHADOW_MAP_SIZE	ms3d.py	/^SHADOW_MAP_SIZE = _ms3d.SHADOW_MAP_SIZE$/;"	v
+SWIGEXPORT	ms3d_wrap.cxx	118;"	d	file:
+SWIGEXPORT	ms3d_wrap.cxx	120;"	d	file:
+SWIGEXPORT	ms3d_wrap.cxx	124;"	d	file:
+SWIGEXPORT	ms3d_wrap.cxx	126;"	d	file:
+SWIGINLINE	ms3d_wrap.cxx	63;"	d	file:
+SWIGINLINE	ms3d_wrap.cxx	65;"	d	file:
+SWIGINTERN	ms3d_wrap.cxx	100;"	d	file:
+SWIGINTERNINLINE	ms3d_wrap.cxx	105;"	d	file:
+SWIGPYTHON	ms3d_wrap.cxx	13;"	d	file:
+SWIGPY_CAPSULE_NAME	ms3d_wrap.cxx	975;"	d	file:
+SWIGPY_USE_CAPSULE	ms3d_wrap.cxx	974;"	d	file:
+SWIGRUNTIME	ms3d_wrap.cxx	204;"	d	file:
+SWIGRUNTIMEINLINE	ms3d_wrap.cxx	208;"	d	file:
+SWIGSTDCALL	ms3d_wrap.cxx	134;"	d	file:
+SWIGSTDCALL	ms3d_wrap.cxx	136;"	d	file:
+SWIGTEMPLATEDISAMBIGUATOR	ms3d_wrap.cxx	50;"	d	file:
+SWIGTEMPLATEDISAMBIGUATOR	ms3d_wrap.cxx	54;"	d	file:
+SWIGTEMPLATEDISAMBIGUATOR	ms3d_wrap.cxx	56;"	d	file:
+SWIGTYPE_p_GLM	ms3d_wrap.cxx	3009;"	d	file:
+SWIGTYPE_p_GLuint	ms3d_wrap.cxx	3010;"	d	file:
+SWIGTYPE_p_Lights	ms3d_wrap.cxx	3011;"	d	file:
+SWIGTYPE_p_Shadows	ms3d_wrap.cxx	3012;"	d	file:
+SWIGTYPE_p_Tex	ms3d_wrap.cxx	3013;"	d	file:
+SWIGTYPE_p_char	ms3d_wrap.cxx	3014;"	d	file:
+SWIGTYPE_p_glm__mat4	ms3d_wrap.cxx	3015;"	d	file:
+SWIGTYPE_p_ms3d	ms3d_wrap.cxx	3016;"	d	file:
+SWIGTYPE_p_shader	ms3d_wrap.cxx	3017;"	d	file:
+SWIGUNUSED	ms3d_wrap.cxx	73;"	d	file:
+SWIGUNUSED	ms3d_wrap.cxx	75;"	d	file:
+SWIGUNUSED	ms3d_wrap.cxx	78;"	d	file:
+SWIGUNUSED	ms3d_wrap.cxx	80;"	d	file:
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^  swig_varlink_repr(swig_varlinkobject *SWIGUNUSEDPARM(v)) {$/;"	f	signature:(v)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *GLM_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *Lights_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *MAX_LIGHTS_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *MODEL_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *PROJECTION_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *SHADOW_MAP_SIZE_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *Shadows_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *Tex_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *VIEW_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_changeShader(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_getMVP(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_loadIdentity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_lookAt(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_otho(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_perspective(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_popMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_pushMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_rotate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_scale(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_selectMatrix(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_GLM_translate(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_disable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_disableLighting(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_enable(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_enableLighting(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_setColor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_setCone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Lights_setPosition(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Shadows_changeOrthoBox(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Shadows_getShadowTexture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Shadows_prepareToMapDepth(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Shadows_returnToNormalDrawing(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Shadows_setShadowType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_Tex_getTexture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_delete_GLM(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_delete_Lights(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_delete_Shadows(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_delete_Tex(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_delete_ms3d(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_delete_shader(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_changeRectangleTexture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_changeTexture(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_createRectangle(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_draw(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_drawGL3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_getJointPosition(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_initGlew(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_ms3d_prepare(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_GLM(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_Lights(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_Shadows(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_Tex(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_shader(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_shader_getShader(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_shader_use(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *ms3d_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGINTERN PyObject *shader_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *SWIGUNUSEDPARM(func))$/;"	f	signature:(func)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *SWIGUNUSEDPARM(func))$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	/^SWIGRUNTIME PyObject* SWIG_PyInstanceMethod_New(PyObject *SWIGUNUSEDPARM(self), PyObject *func)$/;"	p	file:	signature:(self)
+SWIGUNUSEDPARM	ms3d_wrap.cxx	92;"	d	file:
+SWIGUNUSEDPARM	ms3d_wrap.cxx	94;"	d	file:
+SWIGVERSION	ms3d_wrap.cxx	3043;"	d	file:
+SWIG_AcquirePtr	ms3d_wrap.cxx	1194;"	d	file:
+SWIG_AddCast	ms3d_wrap.cxx	/^SWIGINTERNINLINE int SWIG_AddCast(int r) {$/;"	f	signature:(int r)
+SWIG_AddCast	ms3d_wrap.cxx	344;"	d	file:
+SWIG_AddNewMask	ms3d_wrap.cxx	320;"	d	file:
+SWIG_AddTmpMask	ms3d_wrap.cxx	323;"	d	file:
+SWIG_ArgError	ms3d_wrap.cxx	306;"	d	file:
+SWIG_AsCharPtrAndSize	ms3d_wrap.cxx	/^SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)$/;"	f	signature:(PyObject *obj, char** cptr, size_t* psize, int *alloc)
+SWIG_AsVal_bool	ms3d_wrap.cxx	/^SWIG_AsVal_bool (PyObject *obj, bool *val)$/;"	f	signature:(PyObject *obj, bool *val)
+SWIG_AsVal_double	ms3d_wrap.cxx	/^SWIG_AsVal_double (PyObject *obj, double *val)$/;"	f	signature:(PyObject *obj, double *val)
+SWIG_AsVal_float	ms3d_wrap.cxx	/^SWIG_AsVal_float (PyObject * obj, float *val)$/;"	f	signature:(PyObject * obj, float *val)
+SWIG_AsVal_int	ms3d_wrap.cxx	/^SWIG_AsVal_int (PyObject * obj, int *val)$/;"	f	signature:(PyObject * obj, int *val)
+SWIG_AsVal_long	ms3d_wrap.cxx	/^SWIG_AsVal_long (PyObject *obj, long* val)$/;"	f	signature:(PyObject *obj, long* val)
+SWIG_AttributeError	ms3d_wrap.cxx	758;"	d	file:
+SWIG_BADOBJ	ms3d_wrap.cxx	315;"	d	file:
+SWIG_BUFFER_SIZE	ms3d_wrap.cxx	213;"	d	file:
+SWIG_BUILTIN_INIT	ms3d_wrap.cxx	1406;"	d	file:
+SWIG_BUILTIN_TP_INIT	ms3d_wrap.cxx	1405;"	d	file:
+SWIG_CASTRANKLIMIT	ms3d_wrap.cxx	309;"	d	file:
+SWIG_CASTRANKMASK	ms3d_wrap.cxx	335;"	d	file:
+SWIG_CAST_NEW_MEMORY	ms3d_wrap.cxx	218;"	d	file:
+SWIG_CanCastAsInteger	ms3d_wrap.cxx	/^SWIG_CanCastAsInteger(double *d, double min, double max) {$/;"	f	signature:(double *d, double min, double max)
+SWIG_CastRank	ms3d_wrap.cxx	336;"	d	file:
+SWIG_CheckImplicit	ms3d_wrap.cxx	1193;"	d	file:
+SWIG_CheckState	ms3d_wrap.cxx	/^SWIGINTERNINLINE int SWIG_CheckState(int r) {$/;"	f	signature:(int r)
+SWIG_CheckState	ms3d_wrap.cxx	345;"	d	file:
+SWIG_ConvertFunctionPtr	ms3d_wrap.cxx	1206;"	d	file:
+SWIG_ConvertInstance	ms3d_wrap.cxx	1202;"	d	file:
+SWIG_ConvertMember	ms3d_wrap.cxx	1210;"	d	file:
+SWIG_ConvertPacked	ms3d_wrap.cxx	1198;"	d	file:
+SWIG_ConvertPtr	ms3d_wrap.cxx	1182;"	d	file:
+SWIG_ConvertPtrAndOwn	ms3d_wrap.cxx	1183;"	d	file:
+SWIG_DelNewMask	ms3d_wrap.cxx	321;"	d	file:
+SWIG_DelTmpMask	ms3d_wrap.cxx	324;"	d	file:
+SWIG_DivisionByZero	ms3d_wrap.cxx	753;"	d	file:
+SWIG_ERROR	ms3d_wrap.cxx	304;"	d	file:
+SWIG_EXPAND_AND_QUOTE_STRING	ms3d_wrap.cxx	188;"	d	file:
+SWIG_Error	ms3d_wrap.cxx	1223;"	d	file:
+SWIG_ErrorType	ms3d_wrap.cxx	1222;"	d	file:
+SWIG_Float_Overflow_Check	ms3d_wrap.cxx	3396;"	d	file:
+SWIG_Float_Overflow_Check	ms3d_wrap.cxx	3398;"	d	file:
+SWIG_From_int	ms3d_wrap.cxx	/^  SWIG_From_int  (int value)$/;"	f	signature:(int value)
+SWIG_GetModule	ms3d_wrap.cxx	1216;"	d	file:
+SWIG_IOError	ms3d_wrap.cxx	749;"	d	file:
+SWIG_IndexError	ms3d_wrap.cxx	751;"	d	file:
+SWIG_InitializeModule	ms3d_wrap.cxx	/^SWIG_InitializeModule(void *clientdata) {$/;"	f	signature:(void *clientdata)
+SWIG_InstallConstants	ms3d_wrap.cxx	5907;"	d	file:
+SWIG_InternalNewPointerObj	ms3d_wrap.cxx	1191;"	d	file:
+SWIG_IsNewObj	ms3d_wrap.cxx	322;"	d	file:
+SWIG_IsOK	ms3d_wrap.cxx	305;"	d	file:
+SWIG_IsTmpObj	ms3d_wrap.cxx	325;"	d	file:
+SWIG_MAXCASTRANK	ms3d_wrap.cxx	333;"	d	file:
+SWIG_MangledTypeQuery	ms3d_wrap.cxx	3021;"	d	file:
+SWIG_MangledTypeQueryModule	ms3d_wrap.cxx	/^SWIG_MangledTypeQueryModule(swig_module_info *start,$/;"	f	signature:(swig_module_info *start, swig_module_info *end, const char *name)
+SWIG_MemoryError	ms3d_wrap.cxx	759;"	d	file:
+SWIG_MustGetPtr	ms3d_wrap.cxx	2837;"	d	file:
+SWIG_NEWOBJ	ms3d_wrap.cxx	317;"	d	file:
+SWIG_NEWOBJMASK	ms3d_wrap.cxx	311;"	d	file:
+SWIG_NewClientData	ms3d_wrap.cxx	1218;"	d	file:
+SWIG_NewFunctionPtrObj	ms3d_wrap.cxx	1207;"	d	file:
+SWIG_NewInstanceObj	ms3d_wrap.cxx	1203;"	d	file:
+SWIG_NewMemberObj	ms3d_wrap.cxx	1211;"	d	file:
+SWIG_NewPackedObj	ms3d_wrap.cxx	1199;"	d	file:
+SWIG_NewPointerObj	ms3d_wrap.cxx	1186;"	d	file:
+SWIG_NewPointerObj	ms3d_wrap.cxx	1188;"	d	file:
+SWIG_NullReferenceError	ms3d_wrap.cxx	760;"	d	file:
+SWIG_OK	ms3d_wrap.cxx	303;"	d	file:
+SWIG_OLDOBJ	ms3d_wrap.cxx	316;"	d	file:
+SWIG_OverflowError	ms3d_wrap.cxx	754;"	d	file:
+SWIG_POINTER_DISOWN	ms3d_wrap.cxx	217;"	d	file:
+SWIG_POINTER_EXCEPTION	ms3d_wrap.cxx	2835;"	d	file:
+SWIG_POINTER_IMPLICIT_CONV	ms3d_wrap.cxx	1403;"	d	file:
+SWIG_POINTER_NEW	ms3d_wrap.cxx	1401;"	d	file:
+SWIG_POINTER_NOSHADOW	ms3d_wrap.cxx	1400;"	d	file:
+SWIG_POINTER_OWN	ms3d_wrap.cxx	221;"	d	file:
+SWIG_PYBUFFER_SIZE	ms3d_wrap.cxx	848;"	d	file:
+SWIG_PYTHON_BUILD_NONE	ms3d_wrap.cxx	1416;"	d	file:
+SWIG_PYTHON_DIRECTOR_NO_VTABLE	ms3d_wrap.cxx	16;"	d	file:
+SWIG_PYTHON_INITIALIZE_THREADS	ms3d_wrap.cxx	1067;"	d	file:
+SWIG_PYTHON_INITIALIZE_THREADS	ms3d_wrap.cxx	1098;"	d	file:
+SWIG_PYTHON_INITIALIZE_THREADS	ms3d_wrap.cxx	1114;"	d	file:
+SWIG_PYTHON_SLOW_GETSET_THIS	ms3d_wrap.cxx	2265;"	d	file:
+SWIG_PYTHON_THREADS	ms3d_wrap.cxx	1056;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	ms3d_wrap.cxx	1088;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	ms3d_wrap.cxx	1093;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	ms3d_wrap.cxx	1107;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_ALLOW	ms3d_wrap.cxx	1117;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	ms3d_wrap.cxx	1086;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	ms3d_wrap.cxx	1091;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	ms3d_wrap.cxx	1101;"	d	file:
+SWIG_PYTHON_THREAD_BEGIN_BLOCK	ms3d_wrap.cxx	1115;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	ms3d_wrap.cxx	1089;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	ms3d_wrap.cxx	1094;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	ms3d_wrap.cxx	1110;"	d	file:
+SWIG_PYTHON_THREAD_END_ALLOW	ms3d_wrap.cxx	1118;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	ms3d_wrap.cxx	1087;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	ms3d_wrap.cxx	1092;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	ms3d_wrap.cxx	1104;"	d	file:
+SWIG_PYTHON_THREAD_END_BLOCK	ms3d_wrap.cxx	1116;"	d	file:
+SWIG_PYTHON_USE_GIL	ms3d_wrap.cxx	1062;"	d	file:
+SWIG_PY_BINARY	ms3d_wrap.cxx	1135;"	d	file:
+SWIG_PY_POINTER	ms3d_wrap.cxx	1134;"	d	file:
+SWIG_PackData	ms3d_wrap.cxx	/^SWIG_PackData(char *c, void *ptr, size_t sz) {$/;"	f	signature:(char *c, void *ptr, size_t sz)
+SWIG_PackDataName	ms3d_wrap.cxx	/^SWIG_PackDataName(char *buff, void *ptr, size_t sz, const char *name, size_t bsz) {$/;"	f	signature:(char *buff, void *ptr, size_t sz, const char *name, size_t bsz)
+SWIG_PackVoidPtr	ms3d_wrap.cxx	/^SWIG_PackVoidPtr(char *buff, void *ptr, const char *name, size_t bsz) {$/;"	f	signature:(char *buff, void *ptr, const char *name, size_t bsz)
+SWIG_PropagateClientData	ms3d_wrap.cxx	/^SWIG_PropagateClientData(void) {$/;"	f	signature:(void)
+SWIG_Py_None	ms3d_wrap.cxx	/^SWIG_Py_None(void)$/;"	f	signature:(void)
+SWIG_Py_Void	ms3d_wrap.cxx	/^SWIG_Py_Void(void)$/;"	f	signature:(void)
+SWIG_Python_AcquirePtr	ms3d_wrap.cxx	/^SWIG_Python_AcquirePtr(PyObject *obj, int own) {$/;"	f	signature:(PyObject *obj, int own)
+SWIG_Python_AddErrMesg	ms3d_wrap.cxx	/^SWIG_Python_AddErrMesg(const char* mesg, int infront)$/;"	f	signature:(const char* mesg, int infront)
+SWIG_Python_AddErrorMsg	ms3d_wrap.cxx	/^SWIG_Python_AddErrorMsg(const char* mesg)$/;"	f	signature:(const char* mesg)
+SWIG_Python_AppendOutput	ms3d_wrap.cxx	/^SWIG_Python_AppendOutput(PyObject* result, PyObject* obj) {$/;"	f	signature:(PyObject* result, PyObject* obj)
+SWIG_Python_ArgFail	ms3d_wrap.cxx	/^SWIG_Python_ArgFail(int argnum)$/;"	f	signature:(int argnum)
+SWIG_Python_CallFunctor	ms3d_wrap.cxx	1380;"	d	file:
+SWIG_Python_CallFunctor	ms3d_wrap.cxx	1382;"	d	file:
+SWIG_Python_CheckImplicit	ms3d_wrap.cxx	/^SWIG_Python_CheckImplicit(swig_type_info *ty)$/;"	f	signature:(swig_type_info *ty)
+SWIG_Python_ConvertFunctionPtr	ms3d_wrap.cxx	/^SWIG_Python_ConvertFunctionPtr(PyObject *obj, void **ptr, swig_type_info *ty) {$/;"	f	signature:(PyObject *obj, void **ptr, swig_type_info *ty)
+SWIG_Python_ConvertPacked	ms3d_wrap.cxx	/^SWIG_Python_ConvertPacked(PyObject *obj, void *ptr, size_t sz, swig_type_info *ty) {$/;"	f	signature:(PyObject *obj, void *ptr, size_t sz, swig_type_info *ty)
+SWIG_Python_ConvertPtr	ms3d_wrap.cxx	1181;"	d	file:
+SWIG_Python_ConvertPtrAndOwn	ms3d_wrap.cxx	/^SWIG_Python_ConvertPtrAndOwn(PyObject *obj, void **ptr, swig_type_info *ty, int flags, int *own) {$/;"	f	signature:(PyObject *obj, void **ptr, swig_type_info *ty, int flags, int *own)
+SWIG_Python_DestroyModule	ms3d_wrap.cxx	/^SWIG_Python_DestroyModule(PyObject *obj)$/;"	f	signature:(PyObject *obj)
+SWIG_Python_ErrorType	ms3d_wrap.cxx	/^SWIG_Python_ErrorType(int code) {$/;"	f	signature:(int code)
+SWIG_Python_ExceptionType	ms3d_wrap.cxx	/^SWIG_Python_ExceptionType(swig_type_info *desc) {$/;"	f	signature:(swig_type_info *desc)
+SWIG_Python_FixMethods	ms3d_wrap.cxx	/^  SWIG_Python_FixMethods(PyMethodDef *methods,$/;"	f	signature:(PyMethodDef *methods, swig_const_info *const_table, swig_type_info **types, swig_type_info **types_initial)
+SWIG_Python_GetModule	ms3d_wrap.cxx	/^SWIG_Python_GetModule(void *SWIGUNUSEDPARM(clientdata)) {$/;"	f	signature:(void *SWIGUNUSEDPARM(clientdata))
+SWIG_Python_GetSwigThis	ms3d_wrap.cxx	/^SWIG_Python_GetSwigThis(PyObject *pyobj) $/;"	f	signature:(PyObject *pyobj)
+SWIG_Python_InitShadowInstance	ms3d_wrap.cxx	/^SWIG_Python_InitShadowInstance(PyObject *args) {$/;"	f	signature:(PyObject *args)
+SWIG_Python_InstallConstants	ms3d_wrap.cxx	/^  SWIG_Python_InstallConstants(PyObject *d, swig_const_info constants[]) {$/;"	f	signature:(PyObject *d, swig_const_info constants[])
+SWIG_Python_MustGetPtr	ms3d_wrap.cxx	/^SWIG_Python_MustGetPtr(PyObject *obj, swig_type_info *ty, int SWIGUNUSEDPARM(argnum), int flags) {$/;"	f	signature:(PyObject *obj, swig_type_info *ty, int SWIGUNUSEDPARM(argnum), int flags)
+SWIG_Python_NewPackedObj	ms3d_wrap.cxx	/^SWIG_Python_NewPackedObj(void *ptr, size_t sz, swig_type_info *type) {$/;"	f	signature:(void *ptr, size_t sz, swig_type_info *type)
+SWIG_Python_NewPointerObj	ms3d_wrap.cxx	/^SWIG_Python_NewPointerObj(PyObject *self, void *ptr, swig_type_info *type, int flags) {$/;"	f	signature:(PyObject *self, void *ptr, swig_type_info *type, int flags)
+SWIG_Python_NewShadowInstance	ms3d_wrap.cxx	/^SWIG_Python_NewShadowInstance(SwigPyClientData *data, PyObject *swig_this)$/;"	f	signature:(SwigPyClientData *data, PyObject *swig_this)
+SWIG_Python_NonDynamicSetAttr	ms3d_wrap.cxx	/^SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {$/;"	f	signature:(PyObject *obj, PyObject *name, PyObject *value)
+SWIG_Python_Raise	ms3d_wrap.cxx	1246;"	d	file:
+SWIG_Python_SetConstant	ms3d_wrap.cxx	/^SWIG_Python_SetConstant(PyObject *d, PyObject *public_interface, const char *name, PyObject *obj) {   $/;"	f	signature:(PyObject *d, PyObject *public_interface, const char *name, PyObject *obj)
+SWIG_Python_SetConstant	ms3d_wrap.cxx	/^SWIG_Python_SetConstant(PyObject *d, const char *name, PyObject *obj) {   $/;"	f	signature:(PyObject *d, const char *name, PyObject *obj)
+SWIG_Python_SetErrorMsg	ms3d_wrap.cxx	/^SWIG_Python_SetErrorMsg(PyObject *errtype, const char *msg) {$/;"	f	signature:(PyObject *errtype, const char *msg)
+SWIG_Python_SetErrorObj	ms3d_wrap.cxx	/^SWIG_Python_SetErrorObj(PyObject *errtype, PyObject *obj) {$/;"	f	signature:(PyObject *errtype, PyObject *obj)
+SWIG_Python_SetModule	ms3d_wrap.cxx	/^SWIG_Python_SetModule(swig_module_info *swig_module) {$/;"	f	signature:(swig_module_info *swig_module)
+SWIG_Python_SetSwigThis	ms3d_wrap.cxx	/^SWIG_Python_SetSwigThis(PyObject *inst, PyObject *swig_this)$/;"	f	signature:(PyObject *inst, PyObject *swig_this)
+SWIG_Python_Thread_Allow	ms3d_wrap.cxx	/^         SWIG_Python_Thread_Allow() : status(true), save(PyEval_SaveThread()) {}$/;"	f	class:SWIG_Python_Thread_Allow	access:public	signature:()
+SWIG_Python_Thread_Allow	ms3d_wrap.cxx	/^       class SWIG_Python_Thread_Allow {$/;"	c	file:
+SWIG_Python_Thread_Allow::SWIG_Python_Thread_Allow	ms3d_wrap.cxx	/^         SWIG_Python_Thread_Allow() : status(true), save(PyEval_SaveThread()) {}$/;"	f	class:SWIG_Python_Thread_Allow	access:public	signature:()
+SWIG_Python_Thread_Allow::end	ms3d_wrap.cxx	/^         void end() { if (status) { PyEval_RestoreThread(save); status = false; }}$/;"	f	class:SWIG_Python_Thread_Allow	access:public	signature:()
+SWIG_Python_Thread_Allow::save	ms3d_wrap.cxx	/^         PyThreadState *save;$/;"	m	class:SWIG_Python_Thread_Allow	file:	access:private
+SWIG_Python_Thread_Allow::status	ms3d_wrap.cxx	/^         bool status;$/;"	m	class:SWIG_Python_Thread_Allow	file:	access:private
+SWIG_Python_Thread_Allow::~SWIG_Python_Thread_Allow	ms3d_wrap.cxx	/^         ~SWIG_Python_Thread_Allow() { end(); }$/;"	f	class:SWIG_Python_Thread_Allow	access:public	signature:()
+SWIG_Python_Thread_Block	ms3d_wrap.cxx	/^         SWIG_Python_Thread_Block() : status(true), state(PyGILState_Ensure()) {}$/;"	f	class:SWIG_Python_Thread_Block	access:public	signature:()
+SWIG_Python_Thread_Block	ms3d_wrap.cxx	/^       class SWIG_Python_Thread_Block {$/;"	c	file:
+SWIG_Python_Thread_Block::SWIG_Python_Thread_Block	ms3d_wrap.cxx	/^         SWIG_Python_Thread_Block() : status(true), state(PyGILState_Ensure()) {}$/;"	f	class:SWIG_Python_Thread_Block	access:public	signature:()
+SWIG_Python_Thread_Block::end	ms3d_wrap.cxx	/^         void end() { if (status) { PyGILState_Release(state); status = false;} }$/;"	f	class:SWIG_Python_Thread_Block	access:public	signature:()
+SWIG_Python_Thread_Block::state	ms3d_wrap.cxx	/^         PyGILState_STATE state;$/;"	m	class:SWIG_Python_Thread_Block	file:	access:private
+SWIG_Python_Thread_Block::status	ms3d_wrap.cxx	/^         bool status;$/;"	m	class:SWIG_Python_Thread_Block	file:	access:private
+SWIG_Python_Thread_Block::~SWIG_Python_Thread_Block	ms3d_wrap.cxx	/^         ~SWIG_Python_Thread_Block() { end(); }$/;"	f	class:SWIG_Python_Thread_Block	access:public	signature:()
+SWIG_Python_TypeCache	ms3d_wrap.cxx	/^SWIG_Python_TypeCache(void) {$/;"	f	signature:(void)
+SWIG_Python_TypeError	ms3d_wrap.cxx	/^SWIG_Python_TypeError(const char *type, PyObject *obj)$/;"	f	signature:(const char *type, PyObject *obj)
+SWIG_Python_TypeQuery	ms3d_wrap.cxx	/^SWIG_Python_TypeQuery(const char *type)$/;"	f	signature:(const char *type)
+SWIG_Python_UnpackTuple	ms3d_wrap.cxx	/^SWIG_Python_UnpackTuple(PyObject *args, const char *name, Py_ssize_t min, Py_ssize_t max, PyObject **objs)$/;"	f	signature:(PyObject *args, const char *name, Py_ssize_t min, Py_ssize_t max, PyObject **objs)
+SWIG_Python_addvarlink	ms3d_wrap.cxx	/^  SWIG_Python_addvarlink(PyObject *p, char *name, PyObject *(*get_attr)(void), int (*set_attr)(PyObject *p)) {$/;"	f	signature:(PyObject *p, char *name, PyObject *(*get_attr)(void), int (*set_attr)(PyObject *p))
+SWIG_Python_newvarlink	ms3d_wrap.cxx	/^  SWIG_Python_newvarlink(void) {$/;"	f	signature:(void)
+SWIG_Python_str_AsChar	ms3d_wrap.cxx	/^SWIG_Python_str_AsChar(PyObject *str)$/;"	f	signature:(PyObject *str)
+SWIG_Python_str_DelForPy3	ms3d_wrap.cxx	819;"	d	file:
+SWIG_Python_str_DelForPy3	ms3d_wrap.cxx	821;"	d	file:
+SWIG_Python_str_FromChar	ms3d_wrap.cxx	/^SWIG_Python_str_FromChar(const char *c)$/;"	f	signature:(const char *c)
+SWIG_Python_str_FromFormat	ms3d_wrap.cxx	791;"	d	file:
+SWIG_Python_str_FromFormat	ms3d_wrap.cxx	793;"	d	file:
+SWIG_QUOTE_STRING	ms3d_wrap.cxx	187;"	d	file:
+SWIG_RUNTIME_VERSION	ms3d_wrap.cxx	183;"	d	file:
+SWIG_ReturnGlobalTypeList	ms3d_wrap.cxx	/^void *SWIG_ReturnGlobalTypeList(void *);$/;"	p	file:	signature:(void *)
+SWIG_RuntimeError	ms3d_wrap.cxx	750;"	d	file:
+SWIG_STATIC_POINTER	ms3d_wrap.cxx	1390;"	d	file:
+SWIG_STATIC_POINTER	ms3d_wrap.cxx	1392;"	d	file:
+SWIG_SetErrorMsg	ms3d_wrap.cxx	1221;"	d	file:
+SWIG_SetErrorObj	ms3d_wrap.cxx	1220;"	d	file:
+SWIG_SetModule	ms3d_wrap.cxx	1217;"	d	file:
+SWIG_SyntaxError	ms3d_wrap.cxx	755;"	d	file:
+SWIG_SystemError	ms3d_wrap.cxx	757;"	d	file:
+SWIG_TMPOBJ	ms3d_wrap.cxx	318;"	d	file:
+SWIG_TMPOBJMASK	ms3d_wrap.cxx	313;"	d	file:
+SWIG_TYPE_TABLE_NAME	ms3d_wrap.cxx	189;"	d	file:
+SWIG_TYPE_TABLE_NAME	ms3d_wrap.cxx	191;"	d	file:
+SWIG_This	ms3d_wrap.cxx	/^SWIG_This(void)$/;"	f	signature:(void)
+SWIG_TypeCast	ms3d_wrap.cxx	/^SWIG_TypeCast(swig_cast_info *ty, void *ptr, int *newmemory) {$/;"	f	signature:(swig_cast_info *ty, void *ptr, int *newmemory)
+SWIG_TypeCheck	ms3d_wrap.cxx	/^SWIG_TypeCheck(const char *c, swig_type_info *ty) {$/;"	f	signature:(const char *c, swig_type_info *ty)
+SWIG_TypeCheckStruct	ms3d_wrap.cxx	/^SWIG_TypeCheckStruct(swig_type_info *from, swig_type_info *ty) {$/;"	f	signature:(swig_type_info *from, swig_type_info *ty)
+SWIG_TypeClientData	ms3d_wrap.cxx	/^SWIG_TypeClientData(swig_type_info *ti, void *clientdata) {$/;"	f	signature:(swig_type_info *ti, void *clientdata)
+SWIG_TypeCmp	ms3d_wrap.cxx	/^SWIG_TypeCmp(const char *nb, const char *tb) {$/;"	f	signature:(const char *nb, const char *tb)
+SWIG_TypeDynamicCast	ms3d_wrap.cxx	/^SWIG_TypeDynamicCast(swig_type_info *ty, void **ptr) {$/;"	f	signature:(swig_type_info *ty, void **ptr)
+SWIG_TypeEquiv	ms3d_wrap.cxx	/^SWIG_TypeEquiv(const char *nb, const char *tb) {$/;"	f	signature:(const char *nb, const char *tb)
+SWIG_TypeError	ms3d_wrap.cxx	752;"	d	file:
+SWIG_TypeName	ms3d_wrap.cxx	/^SWIG_TypeName(const swig_type_info *ty) {$/;"	f	signature:(const swig_type_info *ty)
+SWIG_TypeNameComp	ms3d_wrap.cxx	/^SWIG_TypeNameComp(const char *f1, const char *l1,$/;"	f	signature:(const char *f1, const char *l1, const char *f2, const char *l2)
+SWIG_TypeNewClientData	ms3d_wrap.cxx	/^SWIG_TypeNewClientData(swig_type_info *ti, void *clientdata) {$/;"	f	signature:(swig_type_info *ti, void *clientdata)
+SWIG_TypePrettyName	ms3d_wrap.cxx	/^SWIG_TypePrettyName(const swig_type_info *type) {$/;"	f	signature:(const swig_type_info *type)
+SWIG_TypeQuery	ms3d_wrap.cxx	3020;"	d	file:
+SWIG_TypeQueryModule	ms3d_wrap.cxx	/^SWIG_TypeQueryModule(swig_module_info *start,$/;"	f	signature:(swig_module_info *start, swig_module_info *end, const char *name)
+SWIG_TypeRank	ms3d_wrap.cxx	330;"	d	file:
+SWIG_UnknownError	ms3d_wrap.cxx	748;"	d	file:
+SWIG_UnpackData	ms3d_wrap.cxx	/^SWIG_UnpackData(const char *c, void *ptr, size_t sz) {$/;"	f	signature:(const char *c, void *ptr, size_t sz)
+SWIG_UnpackDataName	ms3d_wrap.cxx	/^SWIG_UnpackDataName(const char *c, void *ptr, size_t sz, const char *name) {$/;"	f	signature:(const char *c, void *ptr, size_t sz, const char *name)
+SWIG_UnpackVoidPtr	ms3d_wrap.cxx	/^SWIG_UnpackVoidPtr(const char *c, void **ptr, const char *name) {$/;"	f	signature:(const char *c, void **ptr, const char *name)
+SWIG_VERSION	ms3d_wrap.cxx	3044;"	d	file:
+SWIG_ValueError	ms3d_wrap.cxx	756;"	d	file:
+SWIG_addvarlink	ms3d_wrap.cxx	5906;"	d	file:
+SWIG_arg_fail	ms3d_wrap.cxx	2836;"	d	file:
+SWIG_as_voidptr	ms3d_wrap.cxx	3047;"	d	file:
+SWIG_as_voidptrptr	ms3d_wrap.cxx	3048;"	d	file:
+SWIG_contract_assert	ms3d_wrap.cxx	3003;"	d	file:
+SWIG_exception_fail	ms3d_wrap.cxx	3001;"	d	file:
+SWIG_fail	ms3d_wrap.cxx	1224;"	d	file:
+SWIG_globals	ms3d_wrap.cxx	/^  SWIG_globals(void) {$/;"	f	signature:(void)
+SWIG_init	ms3d_wrap.cxx	/^SWIG_init(void) {$/;"	f	signature:(void)
+SWIG_init	ms3d_wrap.cxx	3035;"	d	file:
+SWIG_init	ms3d_wrap.cxx	3038;"	d	file:
+SWIG_isfinite	ms3d_wrap.cxx	3384;"	d	file:
+SWIG_isfinite	ms3d_wrap.cxx	3386;"	d	file:
+SWIG_isfinite	ms3d_wrap.cxx	3389;"	d	file:
+SWIG_name	ms3d_wrap.cxx	3041;"	d	file:
+SWIG_newvarlink	ms3d_wrap.cxx	5905;"	d	file:
+SWIG_pchar_descriptor	ms3d_wrap.cxx	/^SWIG_pchar_descriptor(void)$/;"	f	signature:(void)
+Shadows	Shadows.cpp	/^Shadows::Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height){$/;"	f	class:Shadows	signature:(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height)
+Shadows	ms3d.h	/^	Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height);$/;"	p	class:Shadows	access:public	signature:(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height)
+Shadows	ms3d.h	/^class Shadows{$/;"	c
+Shadows	ms3d.py	/^class Shadows(_object):$/;"	c	inherits:_object
+Shadows::Shadows	Shadows.cpp	/^Shadows::Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height){$/;"	f	class:Shadows	signature:(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height)
+Shadows::Shadows	ms3d.h	/^	Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height);$/;"	p	class:Shadows	access:public	signature:(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height)
+Shadows::_depthBiasMVP	ms3d.h	/^	glm::mat4 _depthBiasMVP;$/;"	m	class:Shadows	access:private
+Shadows::_depthBiasMVPID	ms3d.h	/^	GLuint _depthBiasMVPID;$/;"	m	class:Shadows	access:private
+Shadows::_depthTexture	ms3d.h	/^	GLuint _depthTexture;$/;"	m	class:Shadows	access:private
+Shadows::_framebuffer	ms3d.h	/^	GLuint _framebuffer;$/;"	m	class:Shadows	access:private
+Shadows::_glm	ms3d.h	/^	GLM* _glm;$/;"	m	class:Shadows	access:private
+Shadows::_normalShader	ms3d.h	/^	shader* _normalShader;$/;"	m	class:Shadows	access:private
+Shadows::_orthoBox	ms3d.h	/^	float _orthoBox[6];$/;"	m	class:Shadows	access:private
+Shadows::_shadowMapID	ms3d.h	/^	GLuint _shadowMapID;$/;"	m	class:Shadows	access:private
+Shadows::_shadowMapShader	ms3d.h	/^	shader* _shadowMapShader;$/;"	m	class:Shadows	access:private
+Shadows::_shadowTypeID	ms3d.h	/^	GLuint _shadowTypeID;$/;"	m	class:Shadows	access:private
+Shadows::_textureHeight	ms3d.h	/^	int _textureHeight;$/;"	m	class:Shadows	access:private
+Shadows::_textureWidth	ms3d.h	/^	int _textureWidth;$/;"	m	class:Shadows	access:private
+Shadows::_windowSize	ms3d.h	/^	int _windowSize[2];$/;"	m	class:Shadows	access:private
+Shadows::changeOrthoBox	Shadows.cpp	/^void Shadows::changeOrthoBox(float left, float right, float bottom, float top, float near, float far){$/;"	f	class:Shadows	signature:(float left, float right, float bottom, float top, float near, float far)
+Shadows::changeOrthoBox	ms3d.h	/^	void changeOrthoBox(float left, float right, float bottom, float top, float near, float far);$/;"	p	class:Shadows	access:public	signature:(float left, float right, float bottom, float top, float near, float far)
+Shadows::getShadowTexture	Shadows.cpp	/^int Shadows::getShadowTexture(){$/;"	f	class:Shadows	signature:()
+Shadows::getShadowTexture	ms3d.h	/^	int getShadowTexture();$/;"	p	class:Shadows	access:public	signature:()
+Shadows::prepareToMapDepth	Shadows.cpp	/^void Shadows::prepareToMapDepth(float lightPosX, float lightPosY, float lightPosZ){$/;"	f	class:Shadows	signature:(float lightPosX, float lightPosY, float lightPosZ)
+Shadows::prepareToMapDepth	ms3d.h	/^	void prepareToMapDepth(float lightPosX, float lightPosY, float lightPosZ);$/;"	p	class:Shadows	access:public	signature:(float lightPosX, float lightPosY, float lightPosZ)
+Shadows::returnToNormalDrawing	Shadows.cpp	/^void Shadows::returnToNormalDrawing(){$/;"	f	class:Shadows	signature:()
+Shadows::returnToNormalDrawing	ms3d.h	/^	void returnToNormalDrawing();$/;"	p	class:Shadows	access:public	signature:()
+Shadows::setShadowType	Shadows.cpp	/^void Shadows::setShadowType(int type){$/;"	f	class:Shadows	signature:(int type)
+Shadows::setShadowType	ms3d.h	/^	void setShadowType(int type);$/;"	p	class:Shadows	access:public	signature:(int type)
+Shadows::~Shadows	Shadows.cpp	/^Shadows::~Shadows(){$/;"	f	class:Shadows	signature:()
+Shadows::~Shadows	ms3d.h	/^	virtual ~Shadows();$/;"	p	class:Shadows	access:public	signature:()
+Shadows_swigregister	ms3d.py	/^Shadows_swigregister = _ms3d.Shadows_swigregister$/;"	v
+SwigMethods	ms3d_wrap.cxx	/^static PyMethodDef SwigMethods[] = {$/;"	v	file:
+SwigMovePointer	ms3d_wrap.cxx	/^    SwigMovePointer(T *p) : ptr(p) { }$/;"	f	struct:SwigValueWrapper::SwigMovePointer	access:public	signature:(T *p)
+SwigMovePointer	ms3d_wrap.cxx	/^  struct SwigMovePointer {$/;"	s	class:SwigValueWrapper	file:	access:private
+SwigPtr_PyObject	ms3d_wrap.cxx	/^    SwigPtr_PyObject() :_obj(0)$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:()
+SwigPtr_PyObject	ms3d_wrap.cxx	/^    SwigPtr_PyObject(PyObject *obj, bool initial_ref = true) :_obj(obj)$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:(PyObject *obj, bool initial_ref = true)
+SwigPtr_PyObject	ms3d_wrap.cxx	/^    SwigPtr_PyObject(const SwigPtr_PyObject& item) : _obj(item._obj)$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:(const SwigPtr_PyObject& item)
+SwigPtr_PyObject	ms3d_wrap.cxx	/^  class SwigPtr_PyObject {$/;"	c	namespace:swig	file:
+SwigPyBuiltin_AddPublicSymbol	ms3d_wrap.cxx	/^SwigPyBuiltin_AddPublicSymbol(PyObject *seq, const char *key) {$/;"	f	signature:(PyObject *seq, const char *key)
+SwigPyClientData	ms3d_wrap.cxx	/^} SwigPyClientData;$/;"	t	typeref:struct:__anon2	file:
+SwigPyClientData_Del	ms3d_wrap.cxx	/^SwigPyClientData_Del(SwigPyClientData *data) {$/;"	f	signature:(SwigPyClientData *data)
+SwigPyClientData_New	ms3d_wrap.cxx	/^SwigPyClientData_New(PyObject* obj)$/;"	f	signature:(PyObject* obj)
+SwigPyObject	ms3d_wrap.cxx	/^} SwigPyObject;$/;"	t	typeref:struct:__anon3	file:
+SwigPyObject_Check	ms3d_wrap.cxx	/^SwigPyObject_Check(PyObject *op) {$/;"	f	signature:(PyObject *op)
+SwigPyObject_GetDesc	ms3d_wrap.cxx	/^SwigPyObject_GetDesc(PyObject *self)$/;"	f	signature:(PyObject *self)
+SwigPyObject_New	ms3d_wrap.cxx	/^SwigPyObject_New(void *ptr, swig_type_info *ty, int own)$/;"	f	signature:(void *ptr, swig_type_info *ty, int own)
+SwigPyObject_New	ms3d_wrap.cxx	/^SwigPyObject_New(void *ptr, swig_type_info *ty, int own);$/;"	p	file:	signature:(void *ptr, swig_type_info *ty, int own)
+SwigPyObject_TypeOnce	ms3d_wrap.cxx	/^SWIGRUNTIME PyTypeObject* SwigPyObject_TypeOnce(void);$/;"	p	file:	signature:(void)
+SwigPyObject_TypeOnce	ms3d_wrap.cxx	/^SwigPyObject_TypeOnce(void) {$/;"	f	signature:(void)
+SwigPyObject_acquire	ms3d_wrap.cxx	/^SwigPyObject_acquire(PyObject *v)$/;"	f	signature:(PyObject *v)
+SwigPyObject_append	ms3d_wrap.cxx	/^SwigPyObject_append(PyObject* v, PyObject* next)$/;"	f	signature:(PyObject* v, PyObject* next)
+SwigPyObject_compare	ms3d_wrap.cxx	/^SwigPyObject_compare(SwigPyObject *v, SwigPyObject *w)$/;"	f	signature:(SwigPyObject *v, SwigPyObject *w)
+SwigPyObject_dealloc	ms3d_wrap.cxx	/^SwigPyObject_dealloc(PyObject *v)$/;"	f	signature:(PyObject *v)
+SwigPyObject_disown	ms3d_wrap.cxx	/^SwigPyObject_disown(PyObject *v)$/;"	f	signature:(PyObject *v)
+SwigPyObject_format	ms3d_wrap.cxx	/^SwigPyObject_format(const char* fmt, SwigPyObject *v)$/;"	f	signature:(const char* fmt, SwigPyObject *v)
+SwigPyObject_get___dict__	ms3d_wrap.cxx	/^SwigPyObject_get___dict__(PyObject *v, PyObject *SWIGUNUSEDPARM(args))$/;"	f	signature:(PyObject *v, PyObject *SWIGUNUSEDPARM(args))
+SwigPyObject_getattr	ms3d_wrap.cxx	/^SwigPyObject_getattr(SwigPyObject *sobj,char *name)$/;"	f	signature:(SwigPyObject *sobj,char *name)
+SwigPyObject_hex	ms3d_wrap.cxx	/^SwigPyObject_hex(SwigPyObject *v)$/;"	f	signature:(SwigPyObject *v)
+SwigPyObject_long	ms3d_wrap.cxx	/^SwigPyObject_long(SwigPyObject *v)$/;"	f	signature:(SwigPyObject *v)
+SwigPyObject_next	ms3d_wrap.cxx	/^SwigPyObject_next(PyObject* v)$/;"	f	signature:(PyObject* v)
+SwigPyObject_oct	ms3d_wrap.cxx	/^SwigPyObject_oct(SwigPyObject *v)$/;"	f	signature:(SwigPyObject *v)
+SwigPyObject_own	ms3d_wrap.cxx	/^SwigPyObject_own(PyObject *v, PyObject *args)$/;"	f	signature:(PyObject *v, PyObject *args)
+SwigPyObject_repr	ms3d_wrap.cxx	/^SwigPyObject_repr(SwigPyObject *v)$/;"	f	signature:(SwigPyObject *v)
+SwigPyObject_richcompare	ms3d_wrap.cxx	/^SwigPyObject_richcompare(SwigPyObject *v, SwigPyObject *w, int op)$/;"	f	signature:(SwigPyObject *v, SwigPyObject *w, int op)
+SwigPyObject_stype	ms3d_wrap.cxx	/^static swig_type_info *SwigPyObject_stype = 0;$/;"	v	file:
+SwigPyObject_type	ms3d_wrap.cxx	/^SwigPyObject_type(void) {$/;"	f	signature:(void)
+SwigPyPacked	ms3d_wrap.cxx	/^} SwigPyPacked;$/;"	t	typeref:struct:__anon4	file:
+SwigPyPacked_Check	ms3d_wrap.cxx	/^SwigPyPacked_Check(PyObject *op) {$/;"	f	signature:(PyObject *op)
+SwigPyPacked_New	ms3d_wrap.cxx	/^SwigPyPacked_New(void *ptr, size_t size, swig_type_info *ty)$/;"	f	signature:(void *ptr, size_t size, swig_type_info *ty)
+SwigPyPacked_TypeOnce	ms3d_wrap.cxx	/^SWIGRUNTIME PyTypeObject* SwigPyPacked_TypeOnce(void);$/;"	p	file:	signature:(void)
+SwigPyPacked_TypeOnce	ms3d_wrap.cxx	/^SwigPyPacked_TypeOnce(void) {$/;"	f	signature:(void)
+SwigPyPacked_UnpackData	ms3d_wrap.cxx	/^SwigPyPacked_UnpackData(PyObject *obj, void *ptr, size_t size)$/;"	f	signature:(PyObject *obj, void *ptr, size_t size)
+SwigPyPacked_compare	ms3d_wrap.cxx	/^SwigPyPacked_compare(SwigPyPacked *v, SwigPyPacked *w)$/;"	f	signature:(SwigPyPacked *v, SwigPyPacked *w)
+SwigPyPacked_dealloc	ms3d_wrap.cxx	/^SwigPyPacked_dealloc(PyObject *v)$/;"	f	signature:(PyObject *v)
+SwigPyPacked_print	ms3d_wrap.cxx	/^SwigPyPacked_print(SwigPyPacked *v, FILE *fp, int SWIGUNUSEDPARM(flags))$/;"	f	signature:(SwigPyPacked *v, FILE *fp, int SWIGUNUSEDPARM(flags))
+SwigPyPacked_repr	ms3d_wrap.cxx	/^SwigPyPacked_repr(SwigPyPacked *v)$/;"	f	signature:(SwigPyPacked *v)
+SwigPyPacked_str	ms3d_wrap.cxx	/^SwigPyPacked_str(SwigPyPacked *v)$/;"	f	signature:(SwigPyPacked *v)
+SwigPyPacked_type	ms3d_wrap.cxx	/^SwigPyPacked_type(void) {$/;"	f	signature:(void)
+SwigValueInit	ms3d_wrap.cxx	/^template <typename T> T SwigValueInit() {$/;"	f	signature:()
+SwigValueWrapper	ms3d_wrap.cxx	/^  SwigValueWrapper() : pointer(0) { }$/;"	f	class:SwigValueWrapper	access:public	signature:()
+SwigValueWrapper	ms3d_wrap.cxx	/^  SwigValueWrapper(const SwigValueWrapper<T>& rhs);$/;"	p	class:SwigValueWrapper	file:	access:private	signature:(const SwigValueWrapper<T>& rhs)
+SwigValueWrapper	ms3d_wrap.cxx	/^template<typename T> class SwigValueWrapper {$/;"	c	file:
+SwigValueWrapper::SwigMovePointer	ms3d_wrap.cxx	/^  struct SwigMovePointer {$/;"	s	class:SwigValueWrapper	file:	access:private
+SwigValueWrapper::SwigMovePointer::SwigMovePointer	ms3d_wrap.cxx	/^    SwigMovePointer(T *p) : ptr(p) { }$/;"	f	struct:SwigValueWrapper::SwigMovePointer	access:public	signature:(T *p)
+SwigValueWrapper::SwigMovePointer::operator =	ms3d_wrap.cxx	/^    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }$/;"	f	struct:SwigValueWrapper::SwigMovePointer	access:public	signature:(SwigMovePointer& rhs)
+SwigValueWrapper::SwigMovePointer::ptr	ms3d_wrap.cxx	/^    T *ptr;$/;"	m	struct:SwigValueWrapper::SwigMovePointer	file:	access:public
+SwigValueWrapper::SwigMovePointer::~SwigMovePointer	ms3d_wrap.cxx	/^    ~SwigMovePointer() { delete ptr; }$/;"	f	struct:SwigValueWrapper::SwigMovePointer	access:public	signature:()
+SwigValueWrapper::SwigValueWrapper	ms3d_wrap.cxx	/^  SwigValueWrapper() : pointer(0) { }$/;"	f	class:SwigValueWrapper	access:public	signature:()
+SwigValueWrapper::SwigValueWrapper	ms3d_wrap.cxx	/^  SwigValueWrapper(const SwigValueWrapper<T>& rhs);$/;"	p	class:SwigValueWrapper	file:	access:private	signature:(const SwigValueWrapper<T>& rhs)
+SwigValueWrapper::operator &	ms3d_wrap.cxx	/^  T *operator&() { return pointer.ptr; }$/;"	f	class:SwigValueWrapper	access:public	signature:()
+SwigValueWrapper::operator =	ms3d_wrap.cxx	/^  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);$/;"	p	class:SwigValueWrapper	file:	access:private	signature:(const SwigValueWrapper<T>& rhs)
+SwigValueWrapper::operator =	ms3d_wrap.cxx	/^  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }$/;"	f	class:SwigValueWrapper	access:public	signature:(const T& t)
+SwigValueWrapper::operator T&	ms3d_wrap.cxx	/^  operator T&() const { return *pointer.ptr; }$/;"	f	class:SwigValueWrapper	access:public	signature:() const
+SwigValueWrapper::pointer	ms3d_wrap.cxx	/^  } pointer;$/;"	m	class:SwigValueWrapper	typeref:struct:SwigValueWrapper::SwigMovePointer	file:	access:private
+SwigVar_PyObject	ms3d_wrap.cxx	/^    SwigVar_PyObject(PyObject* obj = 0) : SwigPtr_PyObject(obj, false) { }$/;"	f	struct:swig::SwigVar_PyObject	access:public	signature:(PyObject* obj = 0)
+SwigVar_PyObject	ms3d_wrap.cxx	/^  struct SwigVar_PyObject : SwigPtr_PyObject {$/;"	s	namespace:swig	file:	inherits:SwigPtr_PyObject
+Tex	Tex.cpp	/^Tex::Tex(char* filename){$/;"	f	class:Tex	signature:(char* filename)
+Tex	ms3d.h	/^	Tex(char* filename);$/;"	p	class:Tex	access:public	signature:(char* filename)
+Tex	ms3d.h	/^class Tex{$/;"	c
+Tex	ms3d.py	/^class Tex(_object):$/;"	c	inherits:_object
+Tex::Tex	Tex.cpp	/^Tex::Tex(char* filename){$/;"	f	class:Tex	signature:(char* filename)
+Tex::Tex	ms3d.h	/^	Tex(char* filename);$/;"	p	class:Tex	access:public	signature:(char* filename)
+Tex::_tex	ms3d.h	/^	int _tex;$/;"	m	class:Tex	access:private
+Tex::getTexture	Tex.cpp	/^int Tex::getTexture(){$/;"	f	class:Tex	signature:()
+Tex::getTexture	ms3d.h	/^	int getTexture();$/;"	p	class:Tex	access:public	signature:()
+Tex_swigregister	ms3d.py	/^Tex_swigregister = _ms3d.Tex_swigregister$/;"	v
+ULLONG_MAX	ms3d_wrap.cxx	3423;"	d	file:
+VIEW	constants.py	/^    VIEW = 2$/;"	v	class:MATRIX
+VIEW	ms3d.h	52;"	d
+VIEW	ms3d.py	/^    VIEW = 2$/;"	v	class:MATRIX
+VIEW	ms3d.py	/^VIEW = _ms3d.VIEW$/;"	v
+_CRT_SECURE_NO_DEPRECATE	ms3d_wrap.cxx	142;"	d	file:
+_DEBUG	ms3d_wrap.cxx	167;"	d	file:
+_DEBUG	ms3d_wrap.cxx	169;"	d	file:
+_Model	ms3d.h	/^	glm::mat4 _Model;$/;"	m	class:GLM	access:private
+_Projection	ms3d.h	/^	glm::mat4 _Projection;$/;"	m	class:GLM	access:private
+_PyLong_FromSsize_t	ms3d_wrap.cxx	780;"	d	file:
+_SCL_SECURE_NO_DEPRECATE	ms3d_wrap.cxx	147;"	d	file:
+_SWIG_Py_None	ms3d_wrap.cxx	/^_SWIG_Py_None(void)$/;"	f	signature:(void)
+_SWIG_This	ms3d_wrap.cxx	/^_SWIG_This(void)$/;"	f	signature:(void)
+_View	ms3d.h	/^	glm::mat4 _View;$/;"	m	class:GLM	access:private
+__ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES	ms3d_wrap.cxx	152;"	d	file:
+__anon1::as_buffer	ms3d_wrap.cxx	/^  PyBufferProcs as_buffer;$/;"	m	struct:__anon1	file:	access:public
+__anon1::as_mapping	ms3d_wrap.cxx	/^  PyMappingMethods as_mapping;$/;"	m	struct:__anon1	file:	access:public
+__anon1::as_number	ms3d_wrap.cxx	/^  PyNumberMethods as_number;$/;"	m	struct:__anon1	file:	access:public
+__anon1::as_sequence	ms3d_wrap.cxx	/^  PySequenceMethods as_sequence;$/;"	m	struct:__anon1	file:	access:public
+__anon1::name	ms3d_wrap.cxx	/^  PyObject *name, *slots;$/;"	m	struct:__anon1	file:	access:public
+__anon1::slots	ms3d_wrap.cxx	/^  PyObject *name, *slots;$/;"	m	struct:__anon1	file:	access:public
+__anon1::type	ms3d_wrap.cxx	/^  PyTypeObject type;$/;"	m	struct:__anon1	file:	access:public
+__anon2::delargs	ms3d_wrap.cxx	/^  int delargs;$/;"	m	struct:__anon2	file:	access:public
+__anon2::destroy	ms3d_wrap.cxx	/^  PyObject *destroy;$/;"	m	struct:__anon2	file:	access:public
+__anon2::implicitconv	ms3d_wrap.cxx	/^  int implicitconv;$/;"	m	struct:__anon2	file:	access:public
+__anon2::klass	ms3d_wrap.cxx	/^  PyObject *klass;$/;"	m	struct:__anon2	file:	access:public
+__anon2::newargs	ms3d_wrap.cxx	/^  PyObject *newargs;$/;"	m	struct:__anon2	file:	access:public
+__anon2::newraw	ms3d_wrap.cxx	/^  PyObject *newraw;$/;"	m	struct:__anon2	file:	access:public
+__anon2::pytype	ms3d_wrap.cxx	/^  PyTypeObject *pytype;$/;"	m	struct:__anon2	file:	access:public
+__anon3::dict	ms3d_wrap.cxx	/^  PyObject *dict;$/;"	m	struct:__anon3	file:	access:public
+__anon3::next	ms3d_wrap.cxx	/^  PyObject *next;$/;"	m	struct:__anon3	file:	access:public
+__anon3::own	ms3d_wrap.cxx	/^  int own;$/;"	m	struct:__anon3	file:	access:public
+__anon3::ptr	ms3d_wrap.cxx	/^  void *ptr;$/;"	m	struct:__anon3	file:	access:public
+__anon3::ty	ms3d_wrap.cxx	/^  swig_type_info *ty;$/;"	m	struct:__anon3	file:	access:public
+__anon4::pack	ms3d_wrap.cxx	/^  void *pack;$/;"	m	struct:__anon4	file:	access:public
+__anon4::size	ms3d_wrap.cxx	/^  size_t size;$/;"	m	struct:__anon4	file:	access:public
+__anon4::ty	ms3d_wrap.cxx	/^  swig_type_info *ty;$/;"	m	struct:__anon4	file:	access:public
+__del__	ms3d.py	/^    __del__ = lambda self: None$/;"	v	class:GLM
+__del__	ms3d.py	/^    __del__ = lambda self: None$/;"	v	class:Lights
+__del__	ms3d.py	/^    __del__ = lambda self: None$/;"	v	class:Shadows
+__del__	ms3d.py	/^    __del__ = lambda self: None$/;"	v	class:Tex
+__del__	ms3d.py	/^    __del__ = lambda self: None$/;"	v	class:ms3d
+__del__	ms3d.py	/^    __del__ = lambda self: None$/;"	v	class:shader
+__getattr__	ms3d.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, GLM, name)$/;"	v	class:GLM
+__getattr__	ms3d.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, Lights, name)$/;"	v	class:Lights
+__getattr__	ms3d.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, Shadows, name)$/;"	v	class:Shadows
+__getattr__	ms3d.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, Tex, name)$/;"	v	class:Tex
+__getattr__	ms3d.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, ms3d, name)$/;"	v	class:ms3d
+__getattr__	ms3d.py	/^    __getattr__ = lambda self, name: _swig_getattr(self, shader, name)$/;"	v	class:shader
+__init__	ms3d.py	/^    def __init__(self, *args):$/;"	m	class:ms3d	access:public
+__init__	ms3d.py	/^    def __init__(self, filename):$/;"	m	class:Tex	access:public
+__init__	ms3d.py	/^    def __init__(self, glm, normalShader, shadowMapShader, window_width, window_height, shadow_map_width, shadow_map_height):$/;"	m	class:Shadows	access:public
+__init__	ms3d.py	/^    def __init__(self, shader):$/;"	m	class:GLM	access:public
+__init__	ms3d.py	/^    def __init__(self, shader):$/;"	m	class:Lights	access:public
+__init__	ms3d.py	/^    def __init__(self, vertShader, fragShader):$/;"	m	class:shader	access:public
+__repr__	ms3d.py	/^    __repr__ = _swig_repr$/;"	v	class:GLM
+__repr__	ms3d.py	/^    __repr__ = _swig_repr$/;"	v	class:Lights
+__repr__	ms3d.py	/^    __repr__ = _swig_repr$/;"	v	class:Shadows
+__repr__	ms3d.py	/^    __repr__ = _swig_repr$/;"	v	class:Tex
+__repr__	ms3d.py	/^    __repr__ = _swig_repr$/;"	v	class:ms3d
+__repr__	ms3d.py	/^    __repr__ = _swig_repr$/;"	v	class:shader
+__setattr__	ms3d.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, GLM, name, value)$/;"	v	class:GLM
+__setattr__	ms3d.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, Lights, name, value)$/;"	v	class:Lights
+__setattr__	ms3d.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, Shadows, name, value)$/;"	v	class:Shadows
+__setattr__	ms3d.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, Tex, name, value)$/;"	v	class:Tex
+__setattr__	ms3d.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, ms3d, name, value)$/;"	v	class:ms3d
+__setattr__	ms3d.py	/^    __setattr__ = lambda self, name, value: _swig_setattr(self, shader, name, value)$/;"	v	class:shader
+__swig_destroy__	ms3d.py	/^    __swig_destroy__ = _ms3d.delete_GLM$/;"	v	class:GLM
+__swig_destroy__	ms3d.py	/^    __swig_destroy__ = _ms3d.delete_Lights$/;"	v	class:Lights
+__swig_destroy__	ms3d.py	/^    __swig_destroy__ = _ms3d.delete_Shadows$/;"	v	class:Shadows
+__swig_destroy__	ms3d.py	/^    __swig_destroy__ = _ms3d.delete_Tex$/;"	v	class:Tex
+__swig_destroy__	ms3d.py	/^    __swig_destroy__ = _ms3d.delete_ms3d$/;"	v	class:ms3d
+__swig_destroy__	ms3d.py	/^    __swig_destroy__ = _ms3d.delete_shader$/;"	v	class:shader
+__swig_getmethods__	ms3d.py	/^    __swig_getmethods__ = {}$/;"	v	class:GLM
+__swig_getmethods__	ms3d.py	/^    __swig_getmethods__ = {}$/;"	v	class:Lights
+__swig_getmethods__	ms3d.py	/^    __swig_getmethods__ = {}$/;"	v	class:Shadows
+__swig_getmethods__	ms3d.py	/^    __swig_getmethods__ = {}$/;"	v	class:Tex
+__swig_getmethods__	ms3d.py	/^    __swig_getmethods__ = {}$/;"	v	class:ms3d
+__swig_getmethods__	ms3d.py	/^    __swig_getmethods__ = {}$/;"	v	class:shader
+__swig_setmethods__	ms3d.py	/^    __swig_setmethods__ = {}$/;"	v	class:GLM
+__swig_setmethods__	ms3d.py	/^    __swig_setmethods__ = {}$/;"	v	class:Lights
+__swig_setmethods__	ms3d.py	/^    __swig_setmethods__ = {}$/;"	v	class:Shadows
+__swig_setmethods__	ms3d.py	/^    __swig_setmethods__ = {}$/;"	v	class:Tex
+__swig_setmethods__	ms3d.py	/^    __swig_setmethods__ = {}$/;"	v	class:ms3d
+__swig_setmethods__	ms3d.py	/^    __swig_setmethods__ = {}$/;"	v	class:shader
+_activeMatrix	ms3d.h	/^	glm::mat4* _activeMatrix;$/;"	m	class:GLM	access:private
+_activeMatrixID	ms3d.h	/^	int _activeMatrixID;$/;"	m	class:GLM	access:private
+_colorsID	ms3d.h	/^	GLint _colorsID[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+_conesID	ms3d.h	/^	GLint _conesID[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+_depthBiasMVP	ms3d.h	/^	glm::mat4 _depthBiasMVP;$/;"	m	class:Shadows	access:private
+_depthBiasMVPID	ms3d.h	/^	GLuint _depthBiasMVPID;$/;"	m	class:Shadows	access:private
+_depthTexture	ms3d.h	/^	GLuint _depthTexture;$/;"	m	class:Shadows	access:private
+_enabled	ms3d.h	/^	GLint _enabled[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+_enabledID	ms3d.h	/^	GLint _enabledID;$/;"	m	class:Lights	access:private
+_framebuffer	ms3d.h	/^	GLuint _framebuffer;$/;"	m	class:Shadows	access:private
+_glm	ms3d.h	/^	GLM* _glm;$/;"	m	class:Shadows	access:private
+_lightingDisabledID	ms3d.h	/^	GLint _lightingDisabledID;$/;"	m	class:Lights	access:private
+_model	ms3d.h	/^	CMS3DFile* _model;$/;"	m	class:ms3d	access:private
+_modelID	ms3d.h	/^	GLuint _modelID;$/;"	m	class:GLM	access:private
+_ms3d	ms3d.py	/^            import _ms3d$/;"	i
+_ms3d	ms3d.py	/^    _ms3d = swig_import_helper()$/;"	v
+_ms3d	ms3d.py	/^    import _ms3d$/;"	i
+_ms3d_H_	ms3d.h	2;"	d
+_newclass	ms3d.py	/^    _newclass = 0$/;"	v
+_newclass	ms3d.py	/^    _newclass = 1$/;"	v
+_normalShader	ms3d.h	/^	shader* _normalShader;$/;"	m	class:Shadows	access:private
+_obj	ms3d_wrap.cxx	/^    PyObject *_obj;$/;"	m	class:swig::SwigPtr_PyObject	file:	access:protected
+_object	ms3d.py	/^    _object = object$/;"	v
+_object	ms3d.py	/^    class _object:$/;"	c	inherits:
+_orthoBox	ms3d.h	/^	float _orthoBox[6];$/;"	m	class:Shadows	access:private
+_positionID	ms3d.h	/^	GLint _positionID[MAX_LIGHTS];$/;"	m	class:Lights	access:private
+_projectionID	ms3d.h	/^	GLuint _projectionID;$/;"	m	class:GLM	access:private
+_shader	ms3d.h	/^	Shader* _shader;$/;"	m	class:shader	access:private
+_shader	ms3d.h	/^	shader* _shader;$/;"	m	class:GLM	access:private
+_shadowMapID	ms3d.h	/^	GLuint _shadowMapID;$/;"	m	class:Shadows	access:private
+_shadowMapShader	ms3d.h	/^	shader* _shadowMapShader;$/;"	m	class:Shadows	access:private
+_shadowTypeID	ms3d.h	/^	GLuint _shadowTypeID;$/;"	m	class:Shadows	access:private
+_stack	ms3d.h	/^	std::stack<glm::mat4> _stack;$/;"	m	class:GLM	access:private
+_swig_getattr	ms3d.py	/^def _swig_getattr(self, class_type, name):$/;"	f	access:public
+_swig_getattr_nondynamic	ms3d.py	/^def _swig_getattr_nondynamic(self, class_type, name, static=1):$/;"	f	access:public
+_swig_property	ms3d.py	/^    _swig_property = property$/;"	v
+_swig_repr	ms3d.py	/^def _swig_repr(self):$/;"	f	access:public
+_swig_setattr	ms3d.py	/^def _swig_setattr(self, class_type, name, value):$/;"	f	access:public
+_swig_setattr_nondynamic	ms3d.py	/^def _swig_setattr_nondynamic(self, class_type, name, value, static=1):$/;"	f	access:public
+_swigc__p_GLM	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_GLM[] = {  {&_swigt__p_GLM, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_GLuint	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_GLuint[] = {  {&_swigt__p_GLuint, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_Lights	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_Lights[] = {  {&_swigt__p_Lights, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_Shadows	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_Shadows[] = {  {&_swigt__p_Shadows, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_Tex	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_Tex[] = {  {&_swigt__p_Tex, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_char	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_glm__mat4	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_glm__mat4[] = {  {&_swigt__p_glm__mat4, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_ms3d	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_ms3d[] = {  {&_swigt__p_ms3d, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigc__p_shader	ms3d_wrap.cxx	/^static swig_cast_info _swigc__p_shader[] = {  {&_swigt__p_shader, 0, 0, 0},{0, 0, 0, 0}};$/;"	v	file:
+_swigt__p_GLM	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_GLM = {"_p_GLM", "GLM *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_GLuint	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_GLuint = {"_p_GLuint", "GLuint *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_Lights	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_Lights = {"_p_Lights", "Lights *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_Shadows	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_Shadows = {"_p_Shadows", "Shadows *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_Tex	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_Tex = {"_p_Tex", "Tex *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_char	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_glm__mat4	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_glm__mat4 = {"_p_glm__mat4", "glm::mat4 *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_ms3d	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_ms3d = {"_p_ms3d", "ms3d *", 0, 0, (void*)0, 0};$/;"	v	file:
+_swigt__p_shader	ms3d_wrap.cxx	/^static swig_type_info _swigt__p_shader = {"_p_shader", "shader *", 0, 0, (void*)0, 0};$/;"	v	file:
+_tex	ms3d.h	/^	int _tex;$/;"	m	class:Tex	access:private
+_textureHeight	ms3d.h	/^	int _textureHeight;$/;"	m	class:Shadows	access:private
+_textureWidth	ms3d.h	/^	int _textureWidth;$/;"	m	class:Shadows	access:private
+_viewID	ms3d.h	/^	GLuint _viewID;$/;"	m	class:GLM	access:private
+_windowSize	ms3d.h	/^	int _windowSize[2];$/;"	m	class:Shadows	access:private
+_wrap_new_ms3d	ms3d_wrap.cxx	/^SWIGINTERN PyObject *_wrap_new_ms3d(PyObject *self, PyObject *args) {$/;"	f	signature:(PyObject *self, PyObject *args)
+as_buffer	ms3d_wrap.cxx	/^  PyBufferProcs as_buffer;$/;"	m	struct:__anon1	file:	access:public
+as_mapping	ms3d_wrap.cxx	/^  PyMappingMethods as_mapping;$/;"	m	struct:__anon1	file:	access:public
+as_number	ms3d_wrap.cxx	/^  PyNumberMethods as_number;$/;"	m	struct:__anon1	file:	access:public
+as_sequence	ms3d_wrap.cxx	/^  PySequenceMethods as_sequence;$/;"	m	struct:__anon1	file:	access:public
+cast	ms3d_wrap.cxx	/^  struct swig_cast_info  *cast;			\/* linked list of types that can cast into this type *\/$/;"	m	struct:swig_type_info	typeref:struct:swig_type_info::swig_cast_info	file:	access:public
+cast_initial	ms3d_wrap.cxx	/^  swig_cast_info         **cast_initial;	\/* Array of initially generated casting structures *\/$/;"	m	struct:swig_module_info	file:	access:public
+changeMaterialEmissive	ms3d.cpp	/^void ms3d::changeMaterialEmissive(char* name, float red, float green, float blue){$/;"	f	class:ms3d	signature:(char* name, float red, float green, float blue)
+changeMaterialEmissive	ms3d.h	/^	void changeMaterialEmissive(char* name, float red, float green, float blue);$/;"	p	class:ms3d	access:public	signature:(char* name, float red, float green, float blue)
+changeMaterialTransparency	ms3d.cpp	/^void ms3d::changeMaterialTransparency(char* name, float alpha);$/;"	p	class:ms3d	file:	signature:(char* name, float alpha)
+changeMaterialTransparency	ms3d.h	/^	void changeMaterialTransparency(char* name, float alpha);$/;"	p	class:ms3d	access:public	signature:(char* name, float alpha)
+changeOrthoBox	Shadows.cpp	/^void Shadows::changeOrthoBox(float left, float right, float bottom, float top, float near, float far){$/;"	f	class:Shadows	signature:(float left, float right, float bottom, float top, float near, float far)
+changeOrthoBox	ms3d.h	/^	void changeOrthoBox(float left, float right, float bottom, float top, float near, float far);$/;"	p	class:Shadows	access:public	signature:(float left, float right, float bottom, float top, float near, float far)
+changeOrthoBox	ms3d.py	/^    def changeOrthoBox(self, left, right, bottom, top, near, far):$/;"	m	class:Shadows	access:public
+changeRectangleTexture	ms3d.cpp	/^void ms3d::changeRectangleTexture(int texture){$/;"	f	class:ms3d	signature:(int texture)
+changeRectangleTexture	ms3d.h	/^	void changeRectangleTexture(int texture);$/;"	p	class:ms3d	access:public	signature:(int texture)
+changeRectangleTexture	ms3d.py	/^    def changeRectangleTexture(self, texture):$/;"	m	class:ms3d	access:public
+changeShader	GLM.cpp	/^void GLM::changeShader(shader* newShader){$/;"	f	class:GLM	signature:(shader* newShader)
+changeShader	ms3d.h	/^	void changeShader(shader* newShader);$/;"	p	class:GLM	access:public	signature:(shader* newShader)
+changeShader	ms3d.py	/^    def changeShader(self, newShader):$/;"	m	class:GLM	access:public
+changeTexture	ms3d.cpp	/^void ms3d::changeTexture(char* groupName, char* textureFile){$/;"	f	class:ms3d	signature:(char* groupName, char* textureFile)
+changeTexture	ms3d.h	/^	void changeTexture(char* groupName, char* textureFile);$/;"	p	class:ms3d	access:public	signature:(char* groupName, char* textureFile)
+changeTexture	ms3d.py	/^    def changeTexture(self, groupName, textureFile):$/;"	m	class:ms3d	access:public
+charbufferproc	ms3d_wrap.cxx	/^typedef getcharbufferproc charbufferproc;$/;"	t	file:
+clientdata	ms3d_wrap.cxx	/^  void                    *clientdata;		\/* Language specific module data *\/$/;"	m	struct:swig_module_info	file:	access:public
+clientdata	ms3d_wrap.cxx	/^  void                   *clientdata;		\/* language specific type data *\/$/;"	m	struct:swig_type_info	file:	access:public
+converter	ms3d_wrap.cxx	/^  swig_converter_func     converter;		\/* function to cast the void pointers *\/$/;"	m	struct:swig_cast_info	file:	access:public
+createRectangle	ms3d.cpp	/^void ms3d::createRectangle(float width, float height, int texture){$/;"	f	class:ms3d	signature:(float width, float height, int texture)
+createRectangle	ms3d.h	/^	void createRectangle(float width, float height, int texture);$/;"	p	class:ms3d	access:public	signature:(float width, float height, int texture)
+createRectangle	ms3d.py	/^    def createRectangle(self, width, height, texture):$/;"	m	class:ms3d	access:public
+dcast	ms3d_wrap.cxx	/^  swig_dycast_func        dcast;		\/* dynamic cast function down a hierarchy *\/$/;"	m	struct:swig_type_info	file:	access:public
+delargs	ms3d_wrap.cxx	/^  int delargs;$/;"	m	struct:__anon2	file:	access:public
+destroy	ms3d_wrap.cxx	/^  PyObject *destroy;$/;"	m	struct:__anon2	file:	access:public
+dict	ms3d_wrap.cxx	/^  PyObject *dict;$/;"	m	struct:__anon3	file:	access:public
+dirname	ms3d.py	/^        from os.path import dirname$/;"	i
+disable	Lights.cpp	/^void Lights::disable(int light){$/;"	f	class:Lights	signature:(int light)
+disable	ms3d.h	/^	void disable(int light);$/;"	p	class:Lights	access:public	signature:(int light)
+disable	ms3d.py	/^    def disable(self, light):$/;"	m	class:Lights	access:public
+disableLighting	Lights.cpp	/^void Lights::disableLighting(){$/;"	f	class:Lights	signature:()
+disableLighting	ms3d.h	/^	void disableLighting();$/;"	p	class:Lights	access:public	signature:()
+disableLighting	ms3d.py	/^    def disableLighting(self):$/;"	m	class:Lights	access:public
+draw	ms3d.cpp	/^void ms3d::draw(){$/;"	f	class:ms3d	signature:()
+draw	ms3d.h	/^	void draw();$/;"	p	class:ms3d	access:public	signature:()
+draw	ms3d.py	/^    def draw(self):$/;"	m	class:ms3d	access:public
+drawGL3	ms3d.cpp	/^void ms3d::drawGL3(){$/;"	f	class:ms3d	signature:()
+drawGL3	ms3d.h	/^	void drawGL3();$/;"	p	class:ms3d	access:public	signature:()
+drawGL3	ms3d.py	/^    def drawGL3(self):$/;"	m	class:ms3d	access:public
+dvalue	ms3d_wrap.cxx	/^  double dvalue;$/;"	m	struct:swig_const_info	file:	access:public
+enable	Lights.cpp	/^void Lights::enable(int light){$/;"	f	class:Lights	signature:(int light)
+enable	ms3d.h	/^	void enable(int light);$/;"	p	class:Lights	access:public	signature:(int light)
+enable	ms3d.py	/^    def enable(self, light):$/;"	m	class:Lights	access:public
+enableLighting	Lights.cpp	/^void Lights::enableLighting(){$/;"	f	class:Lights	signature:()
+enableLighting	ms3d.h	/^	void enableLighting();$/;"	p	class:Lights	access:public	signature:()
+enableLighting	ms3d.py	/^    def enableLighting(self):$/;"	m	class:Lights	access:public
+end	ms3d_wrap.cxx	/^         void end() { if (status) { PyEval_RestoreThread(save); status = false; }}$/;"	f	class:SWIG_Python_Thread_Allow	access:public	signature:()
+end	ms3d_wrap.cxx	/^         void end() { if (status) { PyGILState_Release(state); status = false;} }$/;"	f	class:SWIG_Python_Thread_Block	access:public	signature:()
+freefunc	ms3d_wrap.cxx	/^typedef destructor freefunc;$/;"	t	file:
+getJointPosition	ms3d.cpp	/^float* ms3d::getJointPosition(char* jointName){$/;"	f	class:ms3d	signature:(char* jointName)
+getJointPosition	ms3d.h	/^	float* getJointPosition(char* jointName);$/;"	p	class:ms3d	access:public	signature:(char* jointName)
+getJointPosition	ms3d.py	/^    def getJointPosition(self, jointName):$/;"	m	class:ms3d	access:public
+getMVP	GLM.cpp	/^glm::mat4 GLM::getMVP(){$/;"	f	class:GLM	signature:()
+getMVP	ms3d.h	/^	glm::mat4 getMVP();$/;"	p	class:GLM	access:public	signature:()
+getMVP	ms3d.py	/^    def getMVP(self):$/;"	m	class:GLM	access:public
+getShader	ms3d.h	/^	GLuint getShader();$/;"	p	class:shader	access:public	signature:()
+getShader	ms3d.py	/^    def getShader(self):$/;"	m	class:shader	access:public
+getShader	shader.cpp	/^GLuint shader::getShader(){$/;"	f	class:shader	signature:()
+getShadowTexture	Shadows.cpp	/^int Shadows::getShadowTexture(){$/;"	f	class:Shadows	signature:()
+getShadowTexture	ms3d.h	/^	int getShadowTexture();$/;"	p	class:Shadows	access:public	signature:()
+getShadowTexture	ms3d.py	/^    def getShadowTexture(self):$/;"	m	class:Shadows	access:public
+getTexture	Tex.cpp	/^int Tex::getTexture(){$/;"	f	class:Tex	signature:()
+getTexture	ms3d.h	/^	int getTexture();$/;"	p	class:Tex	access:public	signature:()
+getTexture	ms3d.py	/^    def getTexture(self):$/;"	m	class:Tex	access:public
+get_attr	ms3d_wrap.cxx	/^    PyObject *(*get_attr)(void);       \/* Return the current value *\/$/;"	m	struct:swig_globalvar	file:	access:public
+imp	ms3d.py	/^        import imp$/;"	i
+implicitconv	ms3d_wrap.cxx	/^  int implicitconv;$/;"	m	struct:__anon2	file:	access:public
+initGlew	ms3d.cpp	/^void ms3d::initGlew(){$/;"	f	class:ms3d	signature:()
+initGlew	ms3d.h	/^	static void initGlew();$/;"	p	class:ms3d	access:public	signature:()
+klass	ms3d_wrap.cxx	/^  PyObject *klass;$/;"	m	struct:__anon2	file:	access:public
+lenfunc	ms3d_wrap.cxx	/^typedef inquiry lenfunc;$/;"	t	file:
+loadIdentity	GLM.cpp	/^void GLM::loadIdentity(){$/;"	f	class:GLM	signature:()
+loadIdentity	ms3d.h	/^	void loadIdentity();$/;"	p	class:GLM	access:public	signature:()
+loadIdentity	ms3d.py	/^    def loadIdentity(self):$/;"	m	class:GLM	access:public
+lookAt	GLM.cpp	/^void GLM::lookAt(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ){$/;"	f	class:GLM	signature:(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ)
+lookAt	ms3d.h	/^	void lookAt(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ);$/;"	p	class:GLM	access:public	signature:(double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ)
+lookAt	ms3d.py	/^    def lookAt(self, eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ):$/;"	m	class:GLM	access:public
+lvalue	ms3d_wrap.cxx	/^  long lvalue;$/;"	m	struct:swig_const_info	file:	access:public
+ms3d	ms3d.cpp	/^ms3d::ms3d(){$/;"	f	class:ms3d	signature:()
+ms3d	ms3d.cpp	/^ms3d::ms3d(char* filename, bool overrideAmbient, bool overrideSpecular, bool overrideDiffuse, bool overrideEmissive){$/;"	f	class:ms3d	signature:(char* filename, bool overrideAmbient, bool overrideSpecular, bool overrideDiffuse, bool overrideEmissive)
+ms3d	ms3d.h	/^	ms3d();$/;"	p	class:ms3d	access:public	signature:()
+ms3d	ms3d.h	/^	ms3d(char* filename, bool overrideAmbient=false, bool overrideSpecular=false, bool overrideDiffuse=false, bool overrideEmissive=false);$/;"	p	class:ms3d	access:public	signature:(char* filename, bool overrideAmbient=false, bool overrideSpecular=false, bool overrideDiffuse=false, bool overrideEmissive=false)
+ms3d	ms3d.h	/^class ms3d{$/;"	c
+ms3d	ms3d.py	/^class ms3d(_object):$/;"	c	inherits:_object
+ms3d::_model	ms3d.h	/^	CMS3DFile* _model;$/;"	m	class:ms3d	access:private
+ms3d::changeMaterialEmissive	ms3d.cpp	/^void ms3d::changeMaterialEmissive(char* name, float red, float green, float blue){$/;"	f	class:ms3d	signature:(char* name, float red, float green, float blue)
+ms3d::changeMaterialEmissive	ms3d.h	/^	void changeMaterialEmissive(char* name, float red, float green, float blue);$/;"	p	class:ms3d	access:public	signature:(char* name, float red, float green, float blue)
+ms3d::changeMaterialTransparency	ms3d.cpp	/^void ms3d::changeMaterialTransparency(char* name, float alpha);$/;"	p	class:ms3d	file:	signature:(char* name, float alpha)
+ms3d::changeMaterialTransparency	ms3d.h	/^	void changeMaterialTransparency(char* name, float alpha);$/;"	p	class:ms3d	access:public	signature:(char* name, float alpha)
+ms3d::changeRectangleTexture	ms3d.cpp	/^void ms3d::changeRectangleTexture(int texture){$/;"	f	class:ms3d	signature:(int texture)
+ms3d::changeRectangleTexture	ms3d.h	/^	void changeRectangleTexture(int texture);$/;"	p	class:ms3d	access:public	signature:(int texture)
+ms3d::changeTexture	ms3d.cpp	/^void ms3d::changeTexture(char* groupName, char* textureFile){$/;"	f	class:ms3d	signature:(char* groupName, char* textureFile)
+ms3d::changeTexture	ms3d.h	/^	void changeTexture(char* groupName, char* textureFile);$/;"	p	class:ms3d	access:public	signature:(char* groupName, char* textureFile)
+ms3d::createRectangle	ms3d.cpp	/^void ms3d::createRectangle(float width, float height, int texture){$/;"	f	class:ms3d	signature:(float width, float height, int texture)
+ms3d::createRectangle	ms3d.h	/^	void createRectangle(float width, float height, int texture);$/;"	p	class:ms3d	access:public	signature:(float width, float height, int texture)
+ms3d::draw	ms3d.cpp	/^void ms3d::draw(){$/;"	f	class:ms3d	signature:()
+ms3d::draw	ms3d.h	/^	void draw();$/;"	p	class:ms3d	access:public	signature:()
+ms3d::drawGL3	ms3d.cpp	/^void ms3d::drawGL3(){$/;"	f	class:ms3d	signature:()
+ms3d::drawGL3	ms3d.h	/^	void drawGL3();$/;"	p	class:ms3d	access:public	signature:()
+ms3d::getJointPosition	ms3d.cpp	/^float* ms3d::getJointPosition(char* jointName){$/;"	f	class:ms3d	signature:(char* jointName)
+ms3d::getJointPosition	ms3d.h	/^	float* getJointPosition(char* jointName);$/;"	p	class:ms3d	access:public	signature:(char* jointName)
+ms3d::initGlew	ms3d.cpp	/^void ms3d::initGlew(){$/;"	f	class:ms3d	signature:()
+ms3d::initGlew	ms3d.h	/^	static void initGlew();$/;"	p	class:ms3d	access:public	signature:()
+ms3d::ms3d	ms3d.cpp	/^ms3d::ms3d(){$/;"	f	class:ms3d	signature:()
+ms3d::ms3d	ms3d.cpp	/^ms3d::ms3d(char* filename, bool overrideAmbient, bool overrideSpecular, bool overrideDiffuse, bool overrideEmissive){$/;"	f	class:ms3d	signature:(char* filename, bool overrideAmbient, bool overrideSpecular, bool overrideDiffuse, bool overrideEmissive)
+ms3d::ms3d	ms3d.h	/^	ms3d();$/;"	p	class:ms3d	access:public	signature:()
+ms3d::ms3d	ms3d.h	/^	ms3d(char* filename, bool overrideAmbient=false, bool overrideSpecular=false, bool overrideDiffuse=false, bool overrideEmissive=false);$/;"	p	class:ms3d	access:public	signature:(char* filename, bool overrideAmbient=false, bool overrideSpecular=false, bool overrideDiffuse=false, bool overrideEmissive=false)
+ms3d::prepare	ms3d.cpp	/^void ms3d::prepare(shader* shader){$/;"	f	class:ms3d	signature:(shader* shader)
+ms3d::prepare	ms3d.h	/^	void prepare(shader* shader);$/;"	p	class:ms3d	access:public	signature:(shader* shader)
+ms3d::~ms3d	ms3d.cpp	/^ms3d::~ms3d(){$/;"	f	class:ms3d	signature:()
+ms3d::~ms3d	ms3d.h	/^	virtual ~ms3d();$/;"	p	class:ms3d	access:public	signature:()
+ms3d_initGlew	ms3d.py	/^def ms3d_initGlew():$/;"	f	access:public
+ms3d_initGlew	ms3d.py	/^ms3d_initGlew = _ms3d.ms3d_initGlew$/;"	v
+ms3d_swigregister	ms3d.py	/^ms3d_swigregister = _ms3d.ms3d_swigregister$/;"	v
+name	ms3d_wrap.cxx	/^    char       *name;                  \/* Name of global variable *\/$/;"	m	struct:swig_globalvar	file:	access:public
+name	ms3d_wrap.cxx	/^  PyObject *name, *slots;$/;"	m	struct:__anon1	file:	access:public
+name	ms3d_wrap.cxx	/^  char *name;$/;"	m	struct:swig_const_info	file:	access:public
+name	ms3d_wrap.cxx	/^  const char             *name;			\/* mangled name of this type *\/$/;"	m	struct:swig_type_info	file:	access:public
+newargs	ms3d_wrap.cxx	/^  PyObject *newargs;$/;"	m	struct:__anon2	file:	access:public
+newraw	ms3d_wrap.cxx	/^  PyObject *newraw;$/;"	m	struct:__anon2	file:	access:public
+next	ms3d_wrap.cxx	/^    struct swig_globalvar *next;$/;"	m	struct:swig_globalvar	typeref:struct:swig_globalvar::swig_globalvar	file:	access:public
+next	ms3d_wrap.cxx	/^  PyObject *next;$/;"	m	struct:__anon3	file:	access:public
+next	ms3d_wrap.cxx	/^  struct swig_cast_info  *next;			\/* pointer to next cast in linked list *\/$/;"	m	struct:swig_cast_info	typeref:struct:swig_cast_info::swig_cast_info	file:	access:public
+next	ms3d_wrap.cxx	/^  struct swig_module_info *next;		\/* Pointer to next element in circularly linked list *\/$/;"	m	struct:swig_module_info	typeref:struct:swig_module_info::swig_module_info	file:	access:public
+operator &	ms3d_wrap.cxx	/^  T *operator&() { return pointer.ptr; }$/;"	f	class:SwigValueWrapper	access:public	signature:()
+operator ->	ms3d_wrap.cxx	/^    PyObject *operator->() const$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:() const
+operator =	ms3d_wrap.cxx	/^    SwigMovePointer& operator=(SwigMovePointer& rhs) { T* oldptr = ptr; ptr = 0; delete oldptr; ptr = rhs.ptr; rhs.ptr = 0; return *this; }$/;"	f	struct:SwigValueWrapper::SwigMovePointer	access:public	signature:(SwigMovePointer& rhs)
+operator =	ms3d_wrap.cxx	/^    SwigPtr_PyObject & operator=(const SwigPtr_PyObject& item) $/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:(const SwigPtr_PyObject& item)
+operator =	ms3d_wrap.cxx	/^    SwigVar_PyObject & operator = (PyObject* obj)$/;"	f	struct:swig::SwigVar_PyObject	access:public	signature:(PyObject* obj)
+operator =	ms3d_wrap.cxx	/^  SwigValueWrapper& operator=(const SwigValueWrapper<T>& rhs);$/;"	p	class:SwigValueWrapper	file:	access:private	signature:(const SwigValueWrapper<T>& rhs)
+operator =	ms3d_wrap.cxx	/^  SwigValueWrapper& operator=(const T& t) { SwigMovePointer tmp(new T(t)); pointer = tmp; return *this; }$/;"	f	class:SwigValueWrapper	access:public	signature:(const T& t)
+operator PyObject *	ms3d_wrap.cxx	/^    operator PyObject *() const$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:() const
+operator T&	ms3d_wrap.cxx	/^  operator T&() const { return *pointer.ptr; }$/;"	f	class:SwigValueWrapper	access:public	signature:() const
+otho	GLM.cpp	/^void GLM::otho(double left, double right, double bottom, double top, double near, double far){$/;"	f	class:GLM	signature:(double left, double right, double bottom, double top, double near, double far)
+otho	ms3d.h	/^	void otho(double left, double right, double bottom, double top, double near, double far);$/;"	p	class:GLM	access:public	signature:(double left, double right, double bottom, double top, double near, double far)
+otho	ms3d.py	/^    def otho(self, left, right, bottom, top, near, far):$/;"	m	class:GLM	access:public
+own	ms3d_wrap.cxx	/^  int own;$/;"	m	struct:__anon3	file:	access:public
+owndata	ms3d_wrap.cxx	/^  int                    owndata;		\/* flag if the structure owns the clientdata *\/$/;"	m	struct:swig_type_info	file:	access:public
+pack	ms3d_wrap.cxx	/^  void *pack;$/;"	m	struct:__anon4	file:	access:public
+perspective	GLM.cpp	/^void GLM::perspective(double fov_degrees, double aspect_ratio, double near, double far){$/;"	f	class:GLM	signature:(double fov_degrees, double aspect_ratio, double near, double far)
+perspective	ms3d.h	/^	void perspective(double fov_degrees, double aspect_ratio, double near, double far);$/;"	p	class:GLM	access:public	signature:(double fov_degrees, double aspect_ratio, double near, double far)
+perspective	ms3d.py	/^    def perspective(self, fov_degrees, aspect_ratio, near, far):$/;"	m	class:GLM	access:public
+pointer	ms3d_wrap.cxx	/^  } pointer;$/;"	m	class:SwigValueWrapper	typeref:struct:SwigValueWrapper::SwigMovePointer	file:	access:private
+popMatrix	GLM.cpp	/^void GLM::popMatrix(){$/;"	f	class:GLM	signature:()
+popMatrix	ms3d.h	/^	void popMatrix();$/;"	p	class:GLM	access:public	signature:()
+popMatrix	ms3d.py	/^    def popMatrix(self):$/;"	m	class:GLM	access:public
+prepare	ms3d.cpp	/^void ms3d::prepare(shader* shader){$/;"	f	class:ms3d	signature:(shader* shader)
+prepare	ms3d.h	/^	void prepare(shader* shader);$/;"	p	class:ms3d	access:public	signature:(shader* shader)
+prepare	ms3d.py	/^    def prepare(self, shader):$/;"	m	class:ms3d	access:public
+prepareToMapDepth	Shadows.cpp	/^void Shadows::prepareToMapDepth(float lightPosX, float lightPosY, float lightPosZ){$/;"	f	class:Shadows	signature:(float lightPosX, float lightPosY, float lightPosZ)
+prepareToMapDepth	ms3d.h	/^	void prepareToMapDepth(float lightPosX, float lightPosY, float lightPosZ);$/;"	p	class:Shadows	access:public	signature:(float lightPosX, float lightPosY, float lightPosZ)
+prepareToMapDepth	ms3d.py	/^    def prepareToMapDepth(self, lightPosX, lightPosY, lightPosZ):$/;"	m	class:Shadows	access:public
+prev	ms3d_wrap.cxx	/^  struct swig_cast_info  *prev;			\/* pointer to the previous cast *\/$/;"	m	struct:swig_cast_info	typeref:struct:swig_cast_info::swig_cast_info	file:	access:public
+ptr	ms3d_wrap.cxx	/^    T *ptr;$/;"	m	struct:SwigValueWrapper::SwigMovePointer	file:	access:public
+ptr	ms3d_wrap.cxx	/^  void *ptr;$/;"	m	struct:__anon3	file:	access:public
+ptype	ms3d_wrap.cxx	/^  swig_type_info **ptype;$/;"	m	struct:swig_const_info	file:	access:public
+pushMatrix	GLM.cpp	/^void GLM::pushMatrix(){$/;"	f	class:GLM	signature:()
+pushMatrix	ms3d.h	/^	void pushMatrix();$/;"	p	class:GLM	access:public	signature:()
+pushMatrix	ms3d.py	/^    def pushMatrix(self):$/;"	m	class:GLM	access:public
+pvalue	ms3d_wrap.cxx	/^  void   *pvalue;$/;"	m	struct:swig_const_info	file:	access:public
+pytype	ms3d_wrap.cxx	/^  PyTypeObject *pytype;$/;"	m	struct:__anon2	file:	access:public
+readbufferproc	ms3d_wrap.cxx	/^typedef getreadbufferproc readbufferproc;$/;"	t	file:
+returnToNormalDrawing	Shadows.cpp	/^void Shadows::returnToNormalDrawing(){$/;"	f	class:Shadows	signature:()
+returnToNormalDrawing	ms3d.h	/^	void returnToNormalDrawing();$/;"	p	class:Shadows	access:public	signature:()
+returnToNormalDrawing	ms3d.py	/^    def returnToNormalDrawing(self):$/;"	m	class:Shadows	access:public
+rotate	GLM.cpp	/^void GLM::rotate(float angle, double x, double y, double z){$/;"	f	class:GLM	signature:(float angle, double x, double y, double z)
+rotate	ms3d.h	/^	void rotate(float angle, double x, double y, double z);$/;"	p	class:GLM	access:public	signature:(float angle, double x, double y, double z)
+rotate	ms3d.py	/^    def rotate(self, angle, x, y, z):$/;"	m	class:GLM	access:public
+save	ms3d_wrap.cxx	/^         PyThreadState *save;$/;"	m	class:SWIG_Python_Thread_Allow	file:	access:private
+scale	GLM.cpp	/^void GLM::scale(double x, double y, double z){$/;"	f	class:GLM	signature:(double x, double y, double z)
+scale	ms3d.h	/^	void scale(double x, double y, double z);$/;"	p	class:GLM	access:public	signature:(double x, double y, double z)
+scale	ms3d.py	/^    def scale(self, x, y, z):$/;"	m	class:GLM	access:public
+segcountproc	ms3d_wrap.cxx	/^typedef getsegcountproc segcountproc;$/;"	t	file:
+selectMatrix	GLM.cpp	/^void GLM::selectMatrix(int Matrix){$/;"	f	class:GLM	signature:(int Matrix)
+selectMatrix	ms3d.h	/^	void selectMatrix(int Matrix);$/;"	p	class:GLM	access:public	signature:(int Matrix)
+selectMatrix	ms3d.py	/^    def selectMatrix(self, Matrix):$/;"	m	class:GLM	access:public
+setColor	Lights.cpp	/^void Lights::setColor(int light, float red, float green, float blue, float intensity){$/;"	f	class:Lights	signature:(int light, float red, float green, float blue, float intensity)
+setColor	ms3d.h	/^	void setColor(int light, float red, float green, float blue, float intensity);$/;"	p	class:Lights	access:public	signature:(int light, float red, float green, float blue, float intensity)
+setColor	ms3d.py	/^    def setColor(self, light, red, green, blue, intensity):$/;"	m	class:Lights	access:public
+setCone	Lights.cpp	/^void Lights::setCone(int light, float direction_x, float direction_y, float direction_z, float angle){$/;"	f	class:Lights	signature:(int light, float direction_x, float direction_y, float direction_z, float angle)
+setCone	ms3d.h	/^	void setCone(int light, float direction_x, float direction_y, float direction_z, float angle);$/;"	p	class:Lights	access:public	signature:(int light, float direction_x, float direction_y, float direction_z, float angle)
+setCone	ms3d.py	/^    def setCone(self, light, direction_x, direction_y, direction_z, angle):$/;"	m	class:Lights	access:public
+setPosition	Lights.cpp	/^void Lights::setPosition(int light, float x, float y, float z){$/;"	f	class:Lights	signature:(int light, float x, float y, float z)
+setPosition	ms3d.h	/^	void setPosition(int light, float x, float y, float z);$/;"	p	class:Lights	access:public	signature:(int light, float x, float y, float z)
+setPosition	ms3d.py	/^    def setPosition(self, light, x, y, z):$/;"	m	class:Lights	access:public
+setShadowType	Shadows.cpp	/^void Shadows::setShadowType(int type){$/;"	f	class:Shadows	signature:(int type)
+setShadowType	ms3d.h	/^	void setShadowType(int type);$/;"	p	class:Shadows	access:public	signature:(int type)
+setShadowType	ms3d.py	/^    def setShadowType(self, type):$/;"	m	class:Shadows	access:public
+set_attr	ms3d_wrap.cxx	/^    int       (*set_attr)(PyObject *); \/* Set the value *\/$/;"	m	struct:swig_globalvar	file:	access:public
+shader	ms3d.h	/^	shader(char* vertShader, char* fragShader);$/;"	p	class:shader	access:public	signature:(char* vertShader, char* fragShader)
+shader	ms3d.h	/^class shader{$/;"	c
+shader	ms3d.py	/^class shader(_object):$/;"	c	inherits:_object
+shader	shader.cpp	/^shader::shader(char* vertShader, char* fragShader){$/;"	f	class:shader	signature:(char* vertShader, char* fragShader)
+shader::_shader	ms3d.h	/^	Shader* _shader;$/;"	m	class:shader	access:private
+shader::getShader	ms3d.h	/^	GLuint getShader();$/;"	p	class:shader	access:public	signature:()
+shader::getShader	shader.cpp	/^GLuint shader::getShader(){$/;"	f	class:shader	signature:()
+shader::shader	ms3d.h	/^	shader(char* vertShader, char* fragShader);$/;"	p	class:shader	access:public	signature:(char* vertShader, char* fragShader)
+shader::shader	shader.cpp	/^shader::shader(char* vertShader, char* fragShader){$/;"	f	class:shader	signature:(char* vertShader, char* fragShader)
+shader::use	ms3d.h	/^	void use();$/;"	p	class:shader	access:public	signature:()
+shader::use	shader.cpp	/^void shader::use(){$/;"	f	class:shader	signature:()
+shader::~shader	ms3d.h	/^	virtual ~shader();$/;"	p	class:shader	access:public	signature:()
+shader::~shader	shader.cpp	/^shader::~shader(){$/;"	f	class:shader	signature:()
+shader_swigregister	ms3d.py	/^shader_swigregister = _ms3d.shader_swigregister$/;"	v
+size	ms3d_wrap.cxx	/^  size_t                 size;		        \/* Number of types in this module *\/$/;"	m	struct:swig_module_info	file:	access:public
+size	ms3d_wrap.cxx	/^  size_t size;$/;"	m	struct:__anon4	file:	access:public
+slots	ms3d_wrap.cxx	/^  PyObject *name, *slots;$/;"	m	struct:__anon1	file:	access:public
+ssizeargfunc	ms3d_wrap.cxx	/^typedef intargfunc ssizeargfunc;$/;"	t	file:
+ssizeobjargproc	ms3d_wrap.cxx	/^typedef intobjargproc ssizeobjargproc;$/;"	t	file:
+ssizessizeargfunc	ms3d_wrap.cxx	/^typedef intintargfunc ssizessizeargfunc;$/;"	t	file:
+ssizessizeobjargproc	ms3d_wrap.cxx	/^typedef intintobjargproc ssizessizeobjargproc;$/;"	t	file:
+state	ms3d_wrap.cxx	/^         PyGILState_STATE state;$/;"	m	class:SWIG_Python_Thread_Block	file:	access:private
+status	ms3d_wrap.cxx	/^         bool status;$/;"	m	class:SWIG_Python_Thread_Allow	file:	access:private
+status	ms3d_wrap.cxx	/^         bool status;$/;"	m	class:SWIG_Python_Thread_Block	file:	access:private
+str	ms3d_wrap.cxx	/^  const char             *str;			\/* human readable name of this type *\/$/;"	m	struct:swig_type_info	file:	access:public
+swig	ms3d_wrap.cxx	/^namespace swig {$/;"	n	file:
+swig::SwigPtr_PyObject	ms3d_wrap.cxx	/^  class SwigPtr_PyObject {$/;"	c	namespace:swig	file:
+swig::SwigPtr_PyObject::SwigPtr_PyObject	ms3d_wrap.cxx	/^    SwigPtr_PyObject() :_obj(0)$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:()
+swig::SwigPtr_PyObject::SwigPtr_PyObject	ms3d_wrap.cxx	/^    SwigPtr_PyObject(PyObject *obj, bool initial_ref = true) :_obj(obj)$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:(PyObject *obj, bool initial_ref = true)
+swig::SwigPtr_PyObject::SwigPtr_PyObject	ms3d_wrap.cxx	/^    SwigPtr_PyObject(const SwigPtr_PyObject& item) : _obj(item._obj)$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:(const SwigPtr_PyObject& item)
+swig::SwigPtr_PyObject::_obj	ms3d_wrap.cxx	/^    PyObject *_obj;$/;"	m	class:swig::SwigPtr_PyObject	file:	access:protected
+swig::SwigPtr_PyObject::operator ->	ms3d_wrap.cxx	/^    PyObject *operator->() const$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:() const
+swig::SwigPtr_PyObject::operator =	ms3d_wrap.cxx	/^    SwigPtr_PyObject & operator=(const SwigPtr_PyObject& item) $/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:(const SwigPtr_PyObject& item)
+swig::SwigPtr_PyObject::operator PyObject *	ms3d_wrap.cxx	/^    operator PyObject *() const$/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:() const
+swig::SwigPtr_PyObject::~SwigPtr_PyObject	ms3d_wrap.cxx	/^    ~SwigPtr_PyObject() $/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:()
+swig::SwigVar_PyObject	ms3d_wrap.cxx	/^  struct SwigVar_PyObject : SwigPtr_PyObject {$/;"	s	namespace:swig	file:	inherits:SwigPtr_PyObject
+swig::SwigVar_PyObject::SwigVar_PyObject	ms3d_wrap.cxx	/^    SwigVar_PyObject(PyObject* obj = 0) : SwigPtr_PyObject(obj, false) { }$/;"	f	struct:swig::SwigVar_PyObject	access:public	signature:(PyObject* obj = 0)
+swig::SwigVar_PyObject::operator =	ms3d_wrap.cxx	/^    SwigVar_PyObject & operator = (PyObject* obj)$/;"	f	struct:swig::SwigVar_PyObject	access:public	signature:(PyObject* obj)
+swig_cast_info	ms3d_wrap.cxx	/^typedef struct swig_cast_info {$/;"	s	file:
+swig_cast_info	ms3d_wrap.cxx	/^} swig_cast_info;$/;"	t	typeref:struct:swig_cast_info	file:
+swig_cast_info::converter	ms3d_wrap.cxx	/^  swig_converter_func     converter;		\/* function to cast the void pointers *\/$/;"	m	struct:swig_cast_info	file:	access:public
+swig_cast_info::next	ms3d_wrap.cxx	/^  struct swig_cast_info  *next;			\/* pointer to next cast in linked list *\/$/;"	m	struct:swig_cast_info	typeref:struct:swig_cast_info::swig_cast_info	file:	access:public
+swig_cast_info::prev	ms3d_wrap.cxx	/^  struct swig_cast_info  *prev;			\/* pointer to the previous cast *\/$/;"	m	struct:swig_cast_info	typeref:struct:swig_cast_info::swig_cast_info	file:	access:public
+swig_cast_info::type	ms3d_wrap.cxx	/^  swig_type_info         *type;			\/* pointer to type that is equivalent to this type *\/$/;"	m	struct:swig_cast_info	file:	access:public
+swig_cast_initial	ms3d_wrap.cxx	/^static swig_cast_info *swig_cast_initial[] = {$/;"	v	file:
+swig_const_info	ms3d_wrap.cxx	/^typedef struct swig_const_info {$/;"	s	file:
+swig_const_info	ms3d_wrap.cxx	/^} swig_const_info;$/;"	t	typeref:struct:swig_const_info	file:
+swig_const_info::dvalue	ms3d_wrap.cxx	/^  double dvalue;$/;"	m	struct:swig_const_info	file:	access:public
+swig_const_info::lvalue	ms3d_wrap.cxx	/^  long lvalue;$/;"	m	struct:swig_const_info	file:	access:public
+swig_const_info::name	ms3d_wrap.cxx	/^  char *name;$/;"	m	struct:swig_const_info	file:	access:public
+swig_const_info::ptype	ms3d_wrap.cxx	/^  swig_type_info **ptype;$/;"	m	struct:swig_const_info	file:	access:public
+swig_const_info::pvalue	ms3d_wrap.cxx	/^  void   *pvalue;$/;"	m	struct:swig_const_info	file:	access:public
+swig_const_info::type	ms3d_wrap.cxx	/^  int type;$/;"	m	struct:swig_const_info	file:	access:public
+swig_const_table	ms3d_wrap.cxx	/^static swig_const_info swig_const_table[] = {$/;"	v	file:
+swig_converter_func	ms3d_wrap.cxx	/^typedef void *(*swig_converter_func)(void *, int *);$/;"	t	file:
+swig_dycast_func	ms3d_wrap.cxx	/^typedef struct swig_type_info *(*swig_dycast_func)(void **);$/;"	t	typeref:struct:swig_dycast_func	file:
+swig_globalvar	ms3d_wrap.cxx	/^  typedef struct swig_globalvar {$/;"	s	file:
+swig_globalvar	ms3d_wrap.cxx	/^  } swig_globalvar;$/;"	t	typeref:struct:swig_globalvar	file:
+swig_globalvar::get_attr	ms3d_wrap.cxx	/^    PyObject *(*get_attr)(void);       \/* Return the current value *\/$/;"	m	struct:swig_globalvar	file:	access:public
+swig_globalvar::name	ms3d_wrap.cxx	/^    char       *name;                  \/* Name of global variable *\/$/;"	m	struct:swig_globalvar	file:	access:public
+swig_globalvar::next	ms3d_wrap.cxx	/^    struct swig_globalvar *next;$/;"	m	struct:swig_globalvar	typeref:struct:swig_globalvar::swig_globalvar	file:	access:public
+swig_globalvar::set_attr	ms3d_wrap.cxx	/^    int       (*set_attr)(PyObject *); \/* Set the value *\/$/;"	m	struct:swig_globalvar	file:	access:public
+swig_import_helper	ms3d.py	/^    def swig_import_helper():$/;"	f	access:public
+swig_module	ms3d_wrap.cxx	/^static swig_module_info swig_module = {swig_types, 9, 0, 0, 0, 0};$/;"	v	file:
+swig_module_info	ms3d_wrap.cxx	/^typedef struct swig_module_info {$/;"	s	file:
+swig_module_info	ms3d_wrap.cxx	/^} swig_module_info;$/;"	t	typeref:struct:swig_module_info	file:
+swig_module_info::cast_initial	ms3d_wrap.cxx	/^  swig_cast_info         **cast_initial;	\/* Array of initially generated casting structures *\/$/;"	m	struct:swig_module_info	file:	access:public
+swig_module_info::clientdata	ms3d_wrap.cxx	/^  void                    *clientdata;		\/* Language specific module data *\/$/;"	m	struct:swig_module_info	file:	access:public
+swig_module_info::next	ms3d_wrap.cxx	/^  struct swig_module_info *next;		\/* Pointer to next element in circularly linked list *\/$/;"	m	struct:swig_module_info	typeref:struct:swig_module_info::swig_module_info	file:	access:public
+swig_module_info::size	ms3d_wrap.cxx	/^  size_t                 size;		        \/* Number of types in this module *\/$/;"	m	struct:swig_module_info	file:	access:public
+swig_module_info::type_initial	ms3d_wrap.cxx	/^  swig_type_info         **type_initial;	\/* Array of initially generated type structures *\/$/;"	m	struct:swig_module_info	file:	access:public
+swig_module_info::types	ms3d_wrap.cxx	/^  swig_type_info         **types;		\/* Array of pointers to swig_type_info structures that are in this module *\/$/;"	m	struct:swig_module_info	file:	access:public
+swig_owntype	ms3d_wrap.cxx	1195;"	d	file:
+swig_this	ms3d_wrap.cxx	/^static PyObject *swig_this = NULL;$/;"	v	file:
+swig_type_info	ms3d_wrap.cxx	/^typedef struct swig_type_info {$/;"	s	file:
+swig_type_info	ms3d_wrap.cxx	/^} swig_type_info;$/;"	t	typeref:struct:swig_type_info	file:
+swig_type_info::cast	ms3d_wrap.cxx	/^  struct swig_cast_info  *cast;			\/* linked list of types that can cast into this type *\/$/;"	m	struct:swig_type_info	typeref:struct:swig_type_info::swig_cast_info	file:	access:public
+swig_type_info::clientdata	ms3d_wrap.cxx	/^  void                   *clientdata;		\/* language specific type data *\/$/;"	m	struct:swig_type_info	file:	access:public
+swig_type_info::dcast	ms3d_wrap.cxx	/^  swig_dycast_func        dcast;		\/* dynamic cast function down a hierarchy *\/$/;"	m	struct:swig_type_info	file:	access:public
+swig_type_info::name	ms3d_wrap.cxx	/^  const char             *name;			\/* mangled name of this type *\/$/;"	m	struct:swig_type_info	file:	access:public
+swig_type_info::owndata	ms3d_wrap.cxx	/^  int                    owndata;		\/* flag if the structure owns the clientdata *\/$/;"	m	struct:swig_type_info	file:	access:public
+swig_type_info::str	ms3d_wrap.cxx	/^  const char             *str;			\/* human readable name of this type *\/$/;"	m	struct:swig_type_info	file:	access:public
+swig_type_initial	ms3d_wrap.cxx	/^static swig_type_info *swig_type_initial[] = {$/;"	v	file:
+swig_types	ms3d_wrap.cxx	/^static swig_type_info *swig_types[10];$/;"	v	file:
+swig_varlink_dealloc	ms3d_wrap.cxx	/^  swig_varlink_dealloc(swig_varlinkobject *v) {$/;"	f	signature:(swig_varlinkobject *v)
+swig_varlink_getattr	ms3d_wrap.cxx	/^  swig_varlink_getattr(swig_varlinkobject *v, char *n) {$/;"	f	signature:(swig_varlinkobject *v, char *n)
+swig_varlink_print	ms3d_wrap.cxx	/^  swig_varlink_print(swig_varlinkobject *v, FILE *fp, int SWIGUNUSEDPARM(flags)) {$/;"	f	signature:(swig_varlinkobject *v, FILE *fp, int SWIGUNUSEDPARM(flags))
+swig_varlink_setattr	ms3d_wrap.cxx	/^  swig_varlink_setattr(swig_varlinkobject *v, char *n, PyObject *p) {$/;"	f	signature:(swig_varlinkobject *v, char *n, PyObject *p)
+swig_varlink_str	ms3d_wrap.cxx	/^  swig_varlink_str(swig_varlinkobject *v) {$/;"	f	signature:(swig_varlinkobject *v)
+swig_varlink_type	ms3d_wrap.cxx	/^  swig_varlink_type(void) {$/;"	f	signature:(void)
+swig_varlinkobject	ms3d_wrap.cxx	/^  typedef struct swig_varlinkobject {$/;"	s	file:
+swig_varlinkobject	ms3d_wrap.cxx	/^  } swig_varlinkobject;$/;"	t	typeref:struct:swig_varlinkobject	file:
+swig_varlinkobject::vars	ms3d_wrap.cxx	/^    swig_globalvar *vars;$/;"	m	struct:swig_varlinkobject	file:	access:public
+swigobject_methods	ms3d_wrap.cxx	/^swigobject_methods[] = {$/;"	v	file:
+translate	GLM.cpp	/^void GLM::translate(double x, double y, double z){$/;"	f	class:GLM	signature:(double x, double y, double z)
+translate	ms3d.h	/^	void translate(double x, double y, double z);$/;"	p	class:GLM	access:public	signature:(double x, double y, double z)
+translate	ms3d.py	/^    def translate(self, x, y, z):$/;"	m	class:GLM	access:public
+ty	ms3d_wrap.cxx	/^  swig_type_info *ty;$/;"	m	struct:__anon3	file:	access:public
+ty	ms3d_wrap.cxx	/^  swig_type_info *ty;$/;"	m	struct:__anon4	file:	access:public
+type	ms3d_wrap.cxx	/^  PyTypeObject type;$/;"	m	struct:__anon1	file:	access:public
+type	ms3d_wrap.cxx	/^  int type;$/;"	m	struct:swig_const_info	file:	access:public
+type	ms3d_wrap.cxx	/^  swig_type_info         *type;			\/* pointer to type that is equivalent to this type *\/$/;"	m	struct:swig_cast_info	file:	access:public
+type_initial	ms3d_wrap.cxx	/^  swig_type_info         **type_initial;	\/* Array of initially generated type structures *\/$/;"	m	struct:swig_module_info	file:	access:public
+types	ms3d_wrap.cxx	/^  swig_type_info         **types;		\/* Array of pointers to swig_type_info structures that are in this module *\/$/;"	m	struct:swig_module_info	file:	access:public
+uploadMatrix	GLM.cpp	/^void GLM::uploadMatrix(){$/;"	f	class:GLM	signature:()
+uploadMatrix	ms3d.h	/^	void uploadMatrix();$/;"	p	class:GLM	access:private	signature:()
+use	ms3d.h	/^	void use();$/;"	p	class:shader	access:public	signature:()
+use	ms3d.py	/^    def use(self):$/;"	m	class:shader	access:public
+use	shader.cpp	/^void shader::use(){$/;"	f	class:shader	signature:()
+vars	ms3d_wrap.cxx	/^    swig_globalvar *vars;$/;"	m	struct:swig_varlinkobject	file:	access:public
+version_info	ms3d.py	/^from sys import version_info$/;"	i
+writebufferproc	ms3d_wrap.cxx	/^typedef getwritebufferproc writebufferproc;$/;"	t	file:
+~GLM	GLM.cpp	/^GLM::~GLM(){$/;"	f	class:GLM	signature:()
+~GLM	ms3d.h	/^	virtual ~GLM();$/;"	p	class:GLM	access:public	signature:()
+~Lights	Lights.cpp	/^Lights::~Lights(){$/;"	f	class:Lights	signature:()
+~Lights	ms3d.h	/^	virtual ~Lights();$/;"	p	class:Lights	access:public	signature:()
+~SWIG_Python_Thread_Allow	ms3d_wrap.cxx	/^         ~SWIG_Python_Thread_Allow() { end(); }$/;"	f	class:SWIG_Python_Thread_Allow	access:public	signature:()
+~SWIG_Python_Thread_Block	ms3d_wrap.cxx	/^         ~SWIG_Python_Thread_Block() { end(); }$/;"	f	class:SWIG_Python_Thread_Block	access:public	signature:()
+~Shadows	Shadows.cpp	/^Shadows::~Shadows(){$/;"	f	class:Shadows	signature:()
+~Shadows	ms3d.h	/^	virtual ~Shadows();$/;"	p	class:Shadows	access:public	signature:()
+~SwigMovePointer	ms3d_wrap.cxx	/^    ~SwigMovePointer() { delete ptr; }$/;"	f	struct:SwigValueWrapper::SwigMovePointer	access:public	signature:()
+~SwigPtr_PyObject	ms3d_wrap.cxx	/^    ~SwigPtr_PyObject() $/;"	f	class:swig::SwigPtr_PyObject	access:public	signature:()
+~ms3d	ms3d.cpp	/^ms3d::~ms3d(){$/;"	f	class:ms3d	signature:()
+~ms3d	ms3d.h	/^	virtual ~ms3d();$/;"	p	class:ms3d	access:public	signature:()
+~shader	ms3d.h	/^	virtual ~shader();$/;"	p	class:shader	access:public	signature:()
+~shader	shader.cpp	/^shader::~shader(){$/;"	f	class:shader	signature:()

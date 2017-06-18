@@ -1,7 +1,11 @@
 #ifndef _Shadows_H_
 #define _Shadows_H_
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <glm/glm.hpp>
 #include "shader.h"
 #include "GLM.h"

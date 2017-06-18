@@ -2,7 +2,11 @@
 #define _GLM_H_
 
 #include "shader.h"
+#ifdef GLES
+#include <GLES/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>

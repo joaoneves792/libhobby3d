@@ -1,7 +1,11 @@
 #ifndef _Text_H_
 #define _Text_H_
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 
 class Text{
 private:

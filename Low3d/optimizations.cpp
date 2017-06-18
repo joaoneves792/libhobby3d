@@ -1,7 +1,11 @@
 #include "MS3DFile.h"
 #include "MS3DFileI.h"
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <iostream>
 #include <vector>
 #include <list>

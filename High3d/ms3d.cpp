@@ -1,7 +1,11 @@
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
-#include <ms3d/MS3DFile.h>
-#include <ms3d/Textures.h>
+#endif
+#include <MS3DFile.h>
+#include <Textures.h>
 #include "ms3d.h"
 #include "shader.h"
 
@@ -76,7 +80,9 @@ void ms3d::changeRectangleTexture(int texture){
 }
 
 void ms3d::initGlew(){
+#ifndef GLES
 	glewInit();
+#endif
 }
 
 void ms3d::changeMaterialEmissive(char* name, float red, float green, float blue){

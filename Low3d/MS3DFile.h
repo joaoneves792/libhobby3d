@@ -10,7 +10,11 @@
 #ifndef _MS3DFILE_H_
 #define _MS3DFILE_H_
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 
 //#include <pshpack1.h>
 

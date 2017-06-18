@@ -1,4 +1,8 @@
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <vector>
 #include <iostream>
 #include <fstream>

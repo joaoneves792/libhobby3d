@@ -1,11 +1,17 @@
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/rotate_normalized_axis.hpp>
+#ifdef GLES
+#include <GLES/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <stack>
 #include "GLM.h"
 #include "shader.h"
+
 
 GLM::GLM(shader* shader){
 	_Model = glm::mat4(1.0f);

@@ -1,8 +1,12 @@
 #ifndef _shader_H_
 #define _shader_H_
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
-#include <ms3d/Shader.h>
+#endif
+#include <Shader.h>
 
 class shader{
 private:

@@ -5,7 +5,13 @@
  *  Created on: Jun 3, 2012
  */
 //#pragma warning(disable : 4786)
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#include <GL/glut.h>
+#endif
+
 #include "MS3DFile.h"
 #include "MS3DFileI.h"
 #include <cstring>
@@ -13,7 +19,6 @@
 #include <vector>
 #include <math.h>
 #include <iterator>
-#include <GL/glut.h>
 
 
 CMS3DFile::CMS3DFile()
@@ -154,6 +159,7 @@ int CMS3DFile::GetTotalFrames()
 }
 
 void CMS3DFile::draw(){
+#ifndef GLES
 	GLboolean texEnabled = glIsEnabled( GL_TEXTURE_2D );
 	
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
@@ -169,6 +175,7 @@ void CMS3DFile::draw(){
 		glEnable( GL_TEXTURE_2D );
 	else
 		glDisable( GL_TEXTURE_2D );
+#endif
 }
 
 void CMS3DFile::drawGL3(){
@@ -215,6 +222,7 @@ void CMS3DFile::setMaterialGL3(ms3d_material_t* material, int textureIndex){
 }
 
 void CMS3DFile::setMaterial(ms3d_material_t* material, int textureIndex){
+#ifndef GLES
 	if(_overrideAmbient)
 		glMaterialfv( GL_FRONT, GL_AMBIENT, _white);
 	else
@@ -238,10 +246,12 @@ void CMS3DFile::setMaterial(ms3d_material_t* material, int textureIndex){
 		glEnable( GL_TEXTURE_2D );
 	}else
 		glDisable( GL_TEXTURE_2D );
+#endif
 }
 
 //binds an opengl texture with the material information from a given group (usually to draw that same group)
 void CMS3DFile::setMaterial(int texture, ms3d_group_t* group){
+#ifndef GLES
 	ms3d_material_t* material = &(_i->arrMaterials[group->materialIndex]);	
 	if(_overrideAmbient)
 		glMaterialfv( GL_FRONT, GL_AMBIENT, _white);
@@ -263,6 +273,7 @@ void CMS3DFile::setMaterial(int texture, ms3d_group_t* group){
 	glMaterialf( GL_FRONT, GL_SHININESS, material->shininess );
 	glBindTexture( GL_TEXTURE_2D, texture);
 	glEnable( GL_TEXTURE_2D );
+#endif
 }
 
 void CMS3DFile::setTexture(unsigned int textureIndex, int texture){
@@ -272,6 +283,7 @@ void CMS3DFile::setTexture(unsigned int textureIndex, int texture){
 
 
 void CMS3DFile::drawGroup(ms3d_group_t* group){
+#ifndef GLES
 	glBegin( GL_TRIANGLES );{
 		int numTriangles = group->numtriangles;
 		for(int j=0; j<numTriangles; j++){
@@ -294,6 +306,7 @@ void CMS3DFile::drawGroup(ms3d_group_t* group){
 			//}
 		}
 	}glEnd();
+#endif
 }
 
 void CMS3DFile::unloadModel(){

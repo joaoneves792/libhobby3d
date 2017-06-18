@@ -1,7 +1,7 @@
 #ifndef _ms3d_H_
 #define _ms3d_H_
 
-#include <ms3d/MS3DFile.h>
+#include <MS3DFile.h>
 #include "shader.h"
 
 class ms3d{

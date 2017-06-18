@@ -1,6 +1,10 @@
 #include "Text.h"
-#include <ms3d/Textures.h>
+#include <Textures.h>
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <string.h>
 
 Text::Text(char* bitmapFont, int width, int height, int rows, int columns, int fontSize, int vertSpacing, int horizSpacing){

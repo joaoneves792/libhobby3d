@@ -1,10 +1,15 @@
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <glm/glm.hpp>
 #include "Shadows.h"
 #include "shader.h"
 #include "GLM.h"
 
 Shadows::Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int window_width, int window_height, int shadow_map_width, int shadow_map_height){
+#ifndef GLES
 	_glm = glm;
 	_normalShader = normalShader;
 	_shadowMapShader = shadowMapShader;
@@ -44,6 +49,7 @@ Shadows::Shadows(GLM* glm, shader* normalShader, shader* shadowMapShader, int wi
         glDrawBuffer(GL_NONE); // No color buffer is drawn to.
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+#endif
 }
 
 Shadows::~Shadows(){
@@ -52,18 +58,21 @@ Shadows::~Shadows(){
 }
 
 void Shadows::changeOrthoBox(float left, float right, float bottom, float top, float near, float far){
+#ifndef GLES
 	_orthoBox[0] = left;
 	_orthoBox[1] = right;
 	_orthoBox[2] = bottom;
 	_orthoBox[3] = top;
 	_orthoBox[4] = near;
 	_orthoBox[5] = far;
+#endif
 }
 
 int Shadows::getShadowTexture(){
 	return _depthTexture;
 }
 void Shadows::prepareToMapDepth(float lightPosX, float lightPosY, float lightPosZ){
+#ifndef GLES
 	glm::mat4 biasMatrix(
 			0.5, 0.0, 0.0, 0.0,
 		       	0.0, 0.5, 0.0, 0.0,
@@ -95,9 +104,11 @@ void Shadows::prepareToMapDepth(float lightPosX, float lightPosY, float lightPos
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glCullFace(GL_FRONT);
+#endif
 }
 
 void Shadows::returnToNormalDrawing(){
+#ifndef GLES
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	_glm->changeShader(_normalShader);
 	_glm->selectMatrix(PROJECTION);
@@ -117,8 +128,11 @@ void Shadows::returnToNormalDrawing(){
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glCullFace(GL_BACK);
+#endif
 }
 	
 void Shadows::setShadowType(int type){
+#ifndef GLES
 	glUniform1i(_shadowTypeID, type);
+#endif
 }

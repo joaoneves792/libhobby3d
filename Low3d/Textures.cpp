@@ -6,7 +6,11 @@
  *  Created on: Jun 2, 2012
  */
 
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>

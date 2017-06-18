@@ -1,5 +1,5 @@
 #include "Tex.h"
-#include <ms3d/Textures.h>
+#include <Textures.h>
 
 Tex::Tex(char* filename){
 	_tex = LoadGLTexture(filename);

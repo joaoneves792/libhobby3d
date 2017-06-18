@@ -1,6 +1,10 @@
 #include "shader.h"
+#ifdef GLES
+#include <GLES3/gl3.h>
+#else
 #include <GL/glew.h>
-#include <ms3d/Shader.h>
+#endif
+#include <Shader.h>
 
 shader::shader(char* vertShader, char* fragShader){
 	_shader = new Shader(vertShader, fragShader);

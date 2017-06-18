@@ -1,7 +1,11 @@
 #ifndef _Lights_H_
 #define _Lights_H_
 
+#ifdef GLES
+#include <GLES/gl.h>
+#else
 #include <GL/glew.h>
+#endif
 #include "shader.h"
 
 #define MAX_LIGHTS 10

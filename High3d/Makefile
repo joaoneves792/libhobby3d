@@ -9,11 +9,11 @@ JAVA_PACKAGE=./java/src/warpenguin/hobby3d/
 CC=g++
 JC=javac
 CLASSPATH=./java/src/warpenguin/hobby3d/
-CXXFLAGS = -O3 -fPIC -c
+CXXFLAGS = -O3 -fPIC -c -I../Low3d/
 PYTHON_CXXFLAGS = $(shell pkg-config --cflags python3) 
-LDFLAGS= -shared -I../Low3d/ -lGL -lGLEW -ljpeg -lpng
+LDFLAGS= -shared  -lGL -lGLEW -ljpeg -lpng
 PYTHON_LDFLAGS = $(shell pkg-config --libs python3) 
-JAVA_LDFLAGS = -I/usr/lib/jvm/java-8-openjdk/include -I/usr/lib/jvm/java-8-openjdk/include/linux
+JAVA_LDFLAGS = -I/usr/lib/jvm/java-7-openjdk/include -I/usr/lib/jvm/java-7-openjdk/include/linux
 
 all: cpp python java
 	

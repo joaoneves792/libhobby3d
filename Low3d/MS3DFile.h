@@ -117,6 +117,11 @@ typedef struct
 #pragma pack(pop)
 #endif
 
+#ifndef GLES
+typedef GLuint indexInt;
+#else
+typedef GLushort indexInt;
+#endif
 
 class CMS3DFileI;
 class CMS3DFile
@@ -192,7 +197,7 @@ public:
 private:
 	void mergeGroups();
 	void removeUnusedMaterials();
-	void prepareGroup(ms3d_group_t* group, unsigned int groupIndex);
+	void prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuint shader);
 	void drawGroup(ms3d_group_t* group);
 };
 

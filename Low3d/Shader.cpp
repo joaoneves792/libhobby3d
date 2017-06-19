@@ -89,6 +89,10 @@ void Shader::create_program(const char *path_vert_shader, const char *path_frag_
         glDeleteShader(_vertexShader);
         glDeleteShader(_fragmentShader);
 
+
+        glBindAttribLocation(shaderProgram, 0, "position");
+        glBindAttribLocation(shaderProgram, 1, "texture_coord");
+        glBindAttribLocation(shaderProgram, 2, "normal");
         // Link and use the program
         glLinkProgram(shaderProgram);
 

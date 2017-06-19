@@ -179,22 +179,26 @@ void CMS3DFile::draw(){
 }
 
 void CMS3DFile::drawGL3(){
-	GLboolean texEnabled = glIsEnabled( GL_TEXTURE_2D );
+	//GLboolean texEnabled = glIsEnabled( GL_TEXTURE_2D );
 	
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
 			setMaterialGL3(&(_i->arrMaterials[materialIndex]),materialIndex); 
-		else
-			glDisable( GL_TEXTURE_2D );
+		//else
+		//	glDisable( GL_TEXTURE_2D );
 		glBindVertexArray(_vao[i]);
+#ifndef GLES
 		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_INT, 0);
-	}		
+#else
+		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_SHORT, 0);
+#endif
+	}
 
-	if ( texEnabled )
+	/*if ( texEnabled )
 		glEnable( GL_TEXTURE_2D );
 	else
-		glDisable( GL_TEXTURE_2D );
+		glDisable( GL_TEXTURE_2D );*/
 }
 
 
@@ -216,9 +220,9 @@ void CMS3DFile::setMaterialGL3(ms3d_material_t* material, int textureIndex){
 	
 	if( _i->arrTextures[textureIndex] > 0){
 		glBindTexture( GL_TEXTURE_2D, _i->arrTextures[textureIndex]);
-		glEnable( GL_TEXTURE_2D );
-	}else
-		glDisable( GL_TEXTURE_2D );
+		//glEnable( GL_TEXTURE_2D );
+	}//else
+	//	glDisable( GL_TEXTURE_2D );
 }
 
 void CMS3DFile::setMaterial(ms3d_material_t* material, int textureIndex){
@@ -327,20 +331,20 @@ void CMS3DFile::prepareModel(GLuint shader){
 	glGenVertexArrays(_i->arrGroups.size(), _vao);
 
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
-		prepareGroup(&(_i->arrGroups[i]), i);
+		prepareGroup(&(_i->arrGroups[i]), i, shader);
 	}		
 
 }
-void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex){
+void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuint shader){
 	glBindVertexArray(_vao[groupIndex]);
 		
 	int numTriangles = group->numtriangles;
 
-	int totalVertices = _i->arrVertices.size();
-	int *indexes_table = new int[totalVertices]; //We allocate all temporary arrays on the heap because they can potentially be quite big!
+	long totalVertices = _i->arrVertices.size();
+	indexInt* indexes_table = new indexInt[totalVertices]; //We allocate all temporary arrays on the heap because they can potentially be quite big!
 	
 	for(int i=0;i<totalVertices;i++)
-		indexes_table[i] = -1;  // -1 means this vertex has not been used yet other value means its index
+		indexes_table[i] = (indexInt)-1;  // -1 means this vertex has not been used yet other value means its index
 
 
 	GLfloat* vertices_position = new GLfloat[numTriangles*3*4];
@@ -348,21 +352,23 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex){
 	GLfloat* texture_coord = new GLfloat[numTriangles*6];
 
 	int numVertices = numTriangles*3;
-	GLuint* indices = new GLuint[numVertices];
+	//GLuint* indices = new GLuint[numVertices];
+	//GLushort* indices = new GLushort[numVertices];
+	indexInt* indices = new indexInt[numVertices];
 
 	//Fill the arrays
-	int vertex_coordinate_index = 0;
-	int texture_coordinate_index = 0;
-	int normal_coordinate_index = 0;
-	int indices_index = 0; //Current index in the indexes table
-	int index = 0; //Actual index of the vertex
+	indexInt vertex_coordinate_index = 0;
+	indexInt texture_coordinate_index = 0;
+	indexInt normal_coordinate_index = 0;
+	indexInt indices_index = 0; //Current index in the indexes table
+	indexInt index = 0; //Actual index of the vertex
 	for(int j=0; j<numTriangles; j++){
 		int triangleIndex = (int)group->triangleIndices[j];
 		ms3d_triangle_t* tri = &(_i->arrTriangles[triangleIndex]);
 		for(int k = 0; k < 3; k++){
-			int existing_tex_coord_index = indexes_table[tri->vertexIndices[k]]*2;
-			int existing_normal_index = indexes_table[tri->vertexIndices[k]]*3;
-			if( indexes_table[tri->vertexIndices[k]] == -1 || 					 //If we havent seen this vertex before
+			indexInt existing_tex_coord_index = indexes_table[tri->vertexIndices[k]]*(indexInt)2;
+			indexInt existing_normal_index = indexes_table[tri->vertexIndices[k]]*(indexInt)3;
+			if( indexes_table[tri->vertexIndices[k]] == (indexInt)-1 || 					 //If we havent seen this vertex before
 					(tri->s[k] != texture_coord[existing_tex_coord_index] 			 //Or if for some reason it has a different texture mapping
 					 || tri->t[k] != texture_coord[existing_tex_coord_index+1]) || 		
 					(tri->vertexNormals[k][0] != vertices_normals[existing_normal_index]     //Or if for some reason it has different normals...
@@ -382,10 +388,12 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex){
 				texture_coord[texture_coordinate_index++] = tri->t[k];
 
 				indexes_table[tri->vertexIndices[k]] = index; // change from -1 to the index of this vertex
-				indices[indices_index++] = index;
+				//indices[indices_index++] = (GLuint)index;
+				indices[indices_index++] = (indexInt)index;
 				index++;
 			}else{
-				indices[indices_index++] = indexes_table[tri->vertexIndices[k]];
+				//indices[indices_index++] = indexes_table[tri->vertexIndices[k]];
+				indices[indices_index++] = (indexInt)indexes_table[tri->vertexIndices[k]];
 			}
 		}
 	}
@@ -409,7 +417,9 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex){
 	//Set up the indices
 	glGenBuffers(1, &_eab[groupIndex]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _eab[groupIndex]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*numVertices , indices, GL_STATIC_DRAW);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*numVertices , indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexInt)*numVertices , indices, GL_STATIC_DRAW);
+
 
 	//Position Attribute
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*4, 0);
@@ -471,7 +481,7 @@ void CMS3DFile::createRectangle(float width, float height, GLuint texture){
 	}
 	
 	vertIndex = 0;
-	int texIndex = 0;
+	indexInt texIndex = 0;
 	
 	word nNumTriangles = 2;
 	_i->arrTriangles.resize(nNumTriangles);
@@ -479,9 +489,9 @@ void CMS3DFile::createRectangle(float width, float height, GLuint texture){
 	for(int i=0; i<nNumTriangles; i++){
 		tri = &_i->arrTriangles[i];
 		tri->flags = 0;
-		tri->vertexIndices[0] = vertIndex++;
-		tri->vertexIndices[1] = vertIndex++;
-		tri->vertexIndices[2] = vertIndex++;
+		tri->vertexIndices[0] = (word)vertIndex++;
+		tri->vertexIndices[1] = (word)vertIndex++;
+		tri->vertexIndices[2] = (word)vertIndex++;
 
 		for(int j=0; j<3; j++){
 			tri->vertexNormals[j][0] = normal[0];

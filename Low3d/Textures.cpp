@@ -8,6 +8,7 @@
 
 #ifdef GLES
 #include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
 #else
 #include <GL/glew.h>
 #endif
@@ -25,11 +26,69 @@
 /*  Load Bitmaps, Jpegs, Pngs And Convert To Textures */
 /*  Big mess of C and C++ code */
 
+unsigned short bigE2littleE(unsigned short bigEndianShort){
+    return (bigEndianShort << 8) + (bigEndianShort >> 8);
+}
+
+int loadETC1(const char* fileName, textureImage* texture){
+    texture->compressed = true;
+    texture->alpha = false;
+
+#ifndef GLES
+    return 0; //We only support this for android
+#endif
+
+    char headerBuffer[16];
+
+    FILE *fp = fopen(fileName, "rb");
+    if (fp == 0){
+        perror(fileName);
+        return 0;
+    }
+    // read the header
+    fread(headerBuffer, sizeof(char), 6, fp);
+    if(strncmp("PKM 10", headerBuffer, 6)){
+        fprintf(stderr, "error: %s is not an ETC1 file.\n", fileName);
+        fclose(fp);
+        return 0;
+    }
+
+
+    fread((headerBuffer + 6), sizeof(char), 2, fp ); //Format (ignore it (mips))
+
+    fread((headerBuffer + 8), sizeof(char), 8, fp); //read dimensions;
+
+    unsigned short textWidth = bigE2littleE(*((unsigned short*)(headerBuffer+8)));
+    unsigned short textHeight = bigE2littleE(*((unsigned short*)(headerBuffer+10)));
+    unsigned short origWidth = bigE2littleE(*((unsigned short*)(headerBuffer+12)));
+    unsigned short origHeight = bigE2littleE(*((unsigned short*)(headerBuffer+14)));
+
+    if(textHeight != origHeight || textWidth != origWidth){
+        fprintf(stderr, "error: %s dimensions must be in multiples of 4.\n", fileName);
+        fclose(fp);
+        return 0;
+    }
+
+    texture->width = (int)textWidth;
+    texture->height = (int)textHeight;
+
+
+    size_t bytesToRead = textWidth* textHeight / 2 * sizeof(char);
+    texture->data = (unsigned char *)malloc(bytesToRead);
+
+    fread(texture->data, sizeof(char), bytesToRead, fp);
+
+    fclose(fp);
+    return 1;
+}
+
 int loadPNG(const char* file_name, textureImage* texture){
     // This function was originally written by David Grayson for
     // https://github.com/DavidEGrayson/ahrs-visualizer
     //Adapted by Joao Neves
     //on 12-8-2015
+
+    texture->compressed = false;
 
     png_byte header[8];
 
@@ -175,7 +234,8 @@ int loadJPEG(const char* filename, textureImage* texture){
 	int buffer_height = 1;
 
 	texture->alpha = false;
-	
+    texture->compressed = false;
+
 	cinfo.err = jpeg_std_error(&jerr);
 	jpeg_create_decompress(&cinfo);
 	if ((infile = fopen(filename, "rb")) == NULL) {
@@ -227,6 +287,7 @@ int loadBMP(const char *filename, textureImage *texture)
     unsigned char temp;
 
 	texture->alpha = false;
+    texture->compressed = false;
 
     /* make sure the file is there and open it read-only (binary) */
     if ((file = fopen(filename, "rb")) == NULL)
@@ -303,14 +364,20 @@ int loadBMP(const char *filename, textureImage *texture)
     return 1;
 }
 
-GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha){
+GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha, bool compressed){
 	GLuint texID = 0;
      	if(data){
         	glGenTextures(1, &texID);   /* create the texture */
         	glBindTexture(GL_TEXTURE_2D, texID);
         	/* actually generate the texture */
-        	glTexImage2D(GL_TEXTURE_2D, 0, (alpha)?GL_RGBA:GL_RGB, width, height, 0,
-        	    (alpha)?GL_RGBA:GL_RGB, GL_UNSIGNED_BYTE, data);
+            if(!compressed) {
+                glTexImage2D(GL_TEXTURE_2D, 0, (alpha) ? GL_RGBA : GL_RGB, width, height, 0,
+                             (alpha) ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+            }else{
+#ifdef GLES
+                glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_ETC1_RGB8_OES, width, height, 0, GL_UNSIGNED_SHORT_5_6_5, data);
+#endif
+            }
         	/* enable linear filtering */
         	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -331,11 +398,13 @@ GLuint LoadGLTexture(const char* name){
 		loadJPEG(name, texti);
 	else if(!fn.substr(fn.find_last_of(".")+1).compare("png"))
 		loadPNG(name, texti);
+    else if(!fn.substr(fn.find_last_of(".")+1).compare("etc1"))
+        loadETC1(name, texti);
 	else
 		return 0;
 	
 	if(texti)
-		textureID = generateGLTexture(texti->data, texti->height, texti->width, texti->alpha);
+		textureID = generateGLTexture(texti->data, texti->height, texti->width, texti->alpha, texti->compressed);
 
 	/* free the ram we used in our texture generation process */
         if (texti->data)

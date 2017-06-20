@@ -285,6 +285,11 @@ void CMS3DFile::setTexture(unsigned int textureIndex, int texture){
 		_i->arrTextures[textureIndex] = texture;
 }
 
+void CMS3DFile::setGLTexture(int texture, int group){
+	int materialIndex = _i->arrGroups[group].materialIndex;
+	_i->arrTextures[materialIndex] = texture;
+}
+
 
 void CMS3DFile::drawGroup(ms3d_group_t* group){
 #ifndef GLES

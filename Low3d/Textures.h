@@ -18,10 +18,12 @@ typedef struct {
     int width;
     int height;
     bool alpha;
+    bool compressed;
     unsigned char *data;
 }textureImage;
 
+
 GLuint LoadGLTexture( const char *filename );                    // Load Bitmaps And Convert To Textures
-GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha);
+GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha, bool compressed);
 
 #endif /* TEXTURES_H_*/

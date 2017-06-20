@@ -75,6 +75,11 @@ void ms3d::changeTexture(char* groupName, char* textureFile){
 	_model->setMaterial(newTexture, group);
 }
 
+void ms3d::changeGLTexture(char* groupName, int texture){
+	int groupId = _model->FindGroupByName(groupName);
+	_model->setGLTexture(texture, groupId);
+}
+
 void ms3d::changeRectangleTexture(int texture){
 	_model->setTexture(0, texture);	
 }

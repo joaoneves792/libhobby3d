@@ -180,6 +180,7 @@ public:
 	void setMaterial(int texture, ms3d_group_t* group);
 	void setMaterialGL3(ms3d_material_t* material, int textureIndex);
 	void setTexture(unsigned int textureIndex, int texture);
+	void setGLTexture(int texture, int group);
 
 	void setOverrideAmbient(bool overrideAmbient);
 	void setOverrideDiffuse(bool overrideDiffuse);

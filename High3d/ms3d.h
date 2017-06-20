@@ -20,6 +20,7 @@ public:
 	void prepare(shader* shader);
 	float* getJointPosition(char* jointName);
 	void changeTexture(char* groupName, char* textureFile);
+	void changeGLTexture(char* groupName, int texture);
 	void changeMaterialEmissive(char* name, float red, float green, float blue);
 	void changeMaterialTransparency(char* name, float alpha);
 	static void initGlew();

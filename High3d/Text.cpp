@@ -1,7 +1,7 @@
 #include "Text.h"
 #include <Textures.h>
 #ifdef GLES
-#include <GLES3/gl3.h>
+#include <GLES2/gl2.h>
 #else
 #include <GL/glew.h>
 #endif
@@ -16,13 +16,17 @@ Text::Text(char* bitmapFont, int width, int height, int rows, int columns, int f
 	_fontSize = fontSize;
 	_vSpace = vertSpacing;
 	_hSpace = horizSpacing;
-	
+
+#ifndef GLES
 	glGenVertexArrays(1, &_vao);
+#endif
 }
 
 Text::~Text(){
 	glDeleteTextures(1, &_texture);
+#ifndef GLES
 	glDeleteVertexArrays(1, &_vao);
+#endif
 }
 
 
@@ -112,7 +116,9 @@ void Text::drawTextLine(char* text, float size){
 
 
 	GLuint vbo, eab;
+#ifndef GLES
 	glBindVertexArray(_vao);
+#endif
 	glGenBuffers(1, &vbo);
 
 	size_t positionSize = sizeof(GLfloat)*numOfChars*4*4;
@@ -143,19 +149,9 @@ void Text::drawTextLine(char* text, float size){
 	glEnableVertexAttribArray(2);
 
 
-        GLboolean texEnabled = glIsEnabled( GL_TEXTURE_2D );
-
 	glBindTexture(GL_TEXTURE_2D, _texture);
-	glEnable(GL_TEXTURE_2D);
 
-	//glBindVertexArray(_vao);
 	glDrawElements(GL_TRIANGLES, numOfChars*6, GL_UNSIGNED_INT, 0);
-
-	if ( texEnabled )
-                glEnable( GL_TEXTURE_2D );
-        else
-                glDisable( GL_TEXTURE_2D );
-
 
 	glDeleteBuffers(1, &vbo);
 	glDeleteBuffers(1, &eab);

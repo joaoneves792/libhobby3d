@@ -128,7 +128,7 @@ bool CMS3DFile::LoadFromFile(const char* lpszFileName)
 
 	for(int i=0; i<nNumMaterials; i++){
 		if(!strlen(_i->arrMaterials[i].texture)){
-			_i->arrTextures[i] = 0;
+			_i->arrTextures[i] = -1;
 		}else{
 			texturePath.assign(folderPath);
 			texturePath.append(_i->arrMaterials[i].texture);

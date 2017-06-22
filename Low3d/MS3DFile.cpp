@@ -6,7 +6,7 @@
  */
 //#pragma warning(disable : 4786)
 #ifdef GLES
-#include <GLES3/gl3.h>
+#include <GLES2/gl2.h>
 #else
 #include <GL/glew.h>
 #include <GL/glut.h>
@@ -38,10 +38,15 @@ CMS3DFile::CMS3DFile()
 		_black[i] = 0.0;
 	_black[3] = 1.0;
 
+	_vao = NULL;
+	_vbo = NULL;
+	_eab = NULL;
+
 }
 
 CMS3DFile::~CMS3DFile()
 {
+	Clear();
 	delete _i;
 	delete _white;
 	delete _black;
@@ -50,6 +55,7 @@ CMS3DFile::~CMS3DFile()
 
 void CMS3DFile::Clear()
 {
+
 	_i->arrVertices.clear();
 	_i->arrTriangles.clear();
 	_i->arrEdges.clear();
@@ -179,8 +185,7 @@ void CMS3DFile::draw(){
 }
 
 void CMS3DFile::drawGL3(){
-	//GLboolean texEnabled = glIsEnabled( GL_TEXTURE_2D );
-	
+#ifndef GLES
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
@@ -188,19 +193,35 @@ void CMS3DFile::drawGL3(){
 		//else
 		//	glDisable( GL_TEXTURE_2D );
 		glBindVertexArray(_vao[i]);
-#ifndef GLES
 		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_INT, 0);
-#else
-		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_SHORT, 0);
-#endif
 	}
-
-	/*if ( texEnabled )
-		glEnable( GL_TEXTURE_2D );
-	else
-		glDisable( GL_TEXTURE_2D );*/
+#endif
 }
 
+void CMS3DFile::drawGLES2() {
+	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
+		int materialIndex = (int)_i->arrGroups[i].materialIndex;
+		if( materialIndex >= 0 )
+			setMaterialGL3(&(_i->arrMaterials[materialIndex]),materialIndex);
+		glBindBuffer(GL_ARRAY_BUFFER, _vbo[i]); //pos normal etc
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _eab[i]);
+
+		//Position Attribute
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*4, 0);
+		glEnableVertexAttribArray(0);
+
+		//Texture coord attribute
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid *)_vboDescriptions[i].positionSize);
+		glEnableVertexAttribArray(1);
+
+		//Normals attribute
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(_vboDescriptions[i].positionSize+
+				_vboDescriptions[i].textureCoordSize) );
+		glEnableVertexAttribArray(2);
+
+		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_SHORT, 0);
+	}
+}
 
 void CMS3DFile::setMaterialGL3(ms3d_material_t* material, int textureIndex){
 	GLint ambient = glGetUniformLocation(_shader, "ambient");
@@ -319,21 +340,34 @@ void CMS3DFile::drawGroup(ms3d_group_t* group){
 }
 
 void CMS3DFile::unloadModel(){
-	GLsizei numOfGroups = _i->arrGroups.size();
-	glDeleteBuffers(numOfGroups, _eab);
-	glDeleteBuffers(numOfGroups, _vbo);
-	glDeleteVertexArrays(numOfGroups, _vao);
+	if(NULL != _vao && NULL != _eab && NULL != _vbo) {
+		GLsizei numOfGroups = _i->arrGroups.size();
+		glDeleteBuffers(numOfGroups, _eab);
+		glDeleteBuffers(numOfGroups, _vbo);
+#ifndef GLES
+		glDeleteVertexArrays(numOfGroups, _vao);
+#endif
+	}
+	for(unsigned int i=0; i< _i->arrTextures.size(); i++){
+		glDeleteTextures(1, (GLuint *)&_i->arrTextures[i]);
+	}
+
+	Clear();
 }
 
 void CMS3DFile::prepareModel(GLuint shader){
 	_shader = shader;
 
 	//We have one vao and one vbo per group (is this the best approach?)
-	_vao = new GLuint [_i->arrGroups.size()];
 	_vbo = new GLuint [_i->arrGroups.size()];
 	_eab = new GLuint [_i->arrGroups.size()];
-
+#ifndef GLES
+    //VAOs are not supported in standard GLES2.0
+	_vao = new GLuint [_i->arrGroups.size()];
 	glGenVertexArrays(_i->arrGroups.size(), _vao);
+#endif
+
+	_vboDescriptions = new vboDescription [_i->arrGroups.size()];
 
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		prepareGroup(&(_i->arrGroups[i]), i, shader);
@@ -341,8 +375,10 @@ void CMS3DFile::prepareModel(GLuint shader){
 
 }
 void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuint shader){
+#ifndef GLES
 	glBindVertexArray(_vao[groupIndex]);
-		
+#endif
+
 	int numTriangles = group->numtriangles;
 
 	long totalVertices = _i->arrVertices.size();
@@ -405,24 +441,28 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 
 	glGenBuffers(1, &_vbo[groupIndex]);
 
-	size_t positionSize = sizeof(GLfloat)*vertex_coordinate_index;
-	size_t normalsSize = sizeof(GLfloat)*normal_coordinate_index;
-	size_t textureCoordSize = sizeof(GLfloat)*texture_coordinate_index;
+	_vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*vertex_coordinate_index;
+	_vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*normal_coordinate_index;
+	_vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*texture_coordinate_index;
 
-	size_t totalSize = positionSize + normalsSize + textureCoordSize;
+	_vboDescriptions[groupIndex].totalSize = _vboDescriptions[groupIndex].positionSize
+											 + _vboDescriptions[groupIndex].normalsSize
+											 + _vboDescriptions[groupIndex].textureCoordSize;
 
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo[groupIndex]);
-	glBufferData(GL_ARRAY_BUFFER, totalSize, NULL, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].totalSize, NULL, GL_STATIC_DRAW);
 
 	/*Copy the data to the buffer*/
-	glBufferSubData(GL_ARRAY_BUFFER, 0, positionSize, vertices_position);
-	glBufferSubData(GL_ARRAY_BUFFER, positionSize, textureCoordSize, texture_coord);
-	glBufferSubData(GL_ARRAY_BUFFER, positionSize + textureCoordSize, normalsSize, vertices_normals);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, _vboDescriptions[groupIndex].positionSize, vertices_position);
+	glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize,
+					_vboDescriptions[groupIndex].textureCoordSize, texture_coord);
+	glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize +
+			_vboDescriptions[groupIndex].textureCoordSize,
+					_vboDescriptions[groupIndex].normalsSize, vertices_normals);
 
 	//Set up the indices
 	glGenBuffers(1, &_eab[groupIndex]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _eab[groupIndex]);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*numVertices , indices, GL_STATIC_DRAW);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexInt)*numVertices , indices, GL_STATIC_DRAW);
 
 
@@ -431,11 +471,13 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 	glEnableVertexAttribArray(0);
 
 	//Texture coord attribute
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid *)positionSize);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid *)_vboDescriptions[groupIndex].positionSize);
 	glEnableVertexAttribArray(1);
 
 	//Normals attribute
-	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(positionSize+textureCoordSize) );
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)
+			(_vboDescriptions[groupIndex].positionSize+
+					_vboDescriptions[groupIndex].textureCoordSize) );
 	glEnableVertexAttribArray(2);
 
 

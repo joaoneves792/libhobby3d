@@ -21,7 +21,7 @@ LOCAL_MODULE_FILENAME := libjhobby3dAndroid
 LOCAL_CPP_EXTENSION :=.cxx .cpp
 LOCAL_C_INCLUDES :=$(LOCAL_PATH)/Low3d/ /home/joao/workspace/prototypes/GLTESTANDROID/app/src/main/jni/ # <-- Change here the path to the glm headers
 LOCAL_CFLAGS := -DGLES
-LOCAL_LDLIBS := -lGLESv3 -lEGL
+LOCAL_LDLIBS := -lGLESv2 -lEGL
 LOCAL_STATIC_LIBRARIES += cocos_jpeg_static libpng
 LOCAL_SRC_FILES := High3d/hobby3d_java_wrap.cxx $(MY_LOW_SRC_FILES) $(MY_HIGH_SRC_FILES)
 

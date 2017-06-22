@@ -27,12 +27,20 @@ ms3d::~ms3d(){
 	delete _model;
 }
 
+void ms3d::free() {
+	_model->unloadModel();
+}
+
 void ms3d::draw(){
 	_model->draw();
 }
 
 void ms3d::drawGL3(){
 	_model->drawGL3();
+}
+
+void ms3d::drawGLES2(){
+    _model->drawGLES2();
 }
 
 void ms3d::createRectangle(float width, float height, int texture){
@@ -98,3 +106,4 @@ void ms3d::changeMaterialEmissive(char* name, float red, float green, float blue
 void ms3d::changeMaterialTransparency(char* name, float alpha){
 	_model->setMaterialTransparency(name, 1-alpha);
 }
+

@@ -9,5 +9,5 @@ int Tex::getTexture(){
 }
 
 int Tex::genTexture(unsigned char *data, int width, int height){
-	return generateGLTexture(data, width, height, true, false);
+	return generateGLTexture(data, width, height, true, false, 0);
 }

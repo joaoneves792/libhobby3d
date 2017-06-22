@@ -11,7 +11,7 @@
 #define _MS3DFILE_H_
 
 #ifdef GLES
-#include <GLES3/gl3.h>
+#include <GLES2/gl2.h>
 #else
 #include <GL/glew.h>
 #endif
@@ -123,6 +123,14 @@ typedef GLuint indexInt;
 typedef GLushort indexInt;
 #endif
 
+typedef struct{
+	size_t positionSize;
+	size_t textureCoordSize;
+	size_t normalsSize;
+	size_t totalSize;
+}vboDescription;
+
+
 class CMS3DFileI;
 class CMS3DFile
 {
@@ -132,6 +140,9 @@ private:
 	GLuint* _vbo;
 	GLuint* _eab;
 	GLuint _shader;
+
+	vboDescription* _vboDescriptions;
+
 	bool _overrideAmbient;
 	bool _overrideDiffuse;
 	bool _overrideSpecular;
@@ -155,6 +166,7 @@ public:
 	void prepareModel(GLuint shader);
 	void unloadModel();
 	void drawGL3();
+	void drawGLES2();
 
 	int GetNumVertices();
 	void GetVertexAt(int nIndex, ms3d_vertex_t **ppVertex);

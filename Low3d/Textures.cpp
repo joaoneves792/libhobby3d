@@ -73,7 +73,9 @@ int loadETC1(const char* fileName, textureImage* texture){
     texture->height = (int)textHeight;
 
 
-    size_t bytesToRead = textWidth* textHeight / 2 * sizeof(char);
+    //size_t bytesToRead = textWidth* textHeight / 2 * sizeof(char);
+    size_t bytesToRead = ((textWidth >> 2) * (textHeight >> 2)) << 3;
+    texture->data_lenght = bytesToRead;
     texture->data = (unsigned char *)malloc(bytesToRead);
 
     fread(texture->data, sizeof(char), bytesToRead, fp);
@@ -364,7 +366,7 @@ int loadBMP(const char *filename, textureImage *texture)
     return 1;
 }
 
-GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha, bool compressed){
+GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha, bool compressed, GLsizei length){
 	GLuint texID = 0;
      	if(data){
         	glGenTextures(1, &texID);   /* create the texture */
@@ -375,7 +377,7 @@ GLuint generateGLTexture(unsigned char* data, int height, int width, bool alpha,
                              (alpha) ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
             }else{
 #ifdef GLES
-                glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_ETC1_RGB8_OES, width, height, 0, GL_UNSIGNED_SHORT_5_6_5, data);
+                glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_ETC1_RGB8_OES, width, height, 0, length, data);
 #endif
             }
         	/* enable linear filtering */
@@ -404,7 +406,7 @@ GLuint LoadGLTexture(const char* name){
 		return 0;
 	
 	if(texti)
-		textureID = generateGLTexture(texti->data, texti->height, texti->width, texti->alpha, texti->compressed);
+		textureID = generateGLTexture(texti->data, texti->height, texti->width, texti->alpha, texti->compressed, texti->data_lenght);
 
 	/* free the ram we used in our texture generation process */
         if (texti->data)

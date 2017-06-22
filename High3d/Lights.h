@@ -18,8 +18,13 @@ private:
 	GLint _colorsID[MAX_LIGHTS];
 	GLint _conesID[MAX_LIGHTS];
 	GLint _positionID[MAX_LIGHTS];
+
+	int _lightsCount;
+
+	shader* _shader;
 public:
-	Lights(shader* shader);
+	Lights(shader* shdr);
+    Lights(shader* shdr, int count);
 	virtual ~Lights();
 
 	void enableLighting();
@@ -29,6 +34,7 @@ public:
 	void setColor(int light, float red, float green, float blue, float intensity);
 	void setPosition(int light, float x, float y, float z);
 	void setCone(int light, float direction_x, float direction_y, float direction_z, float angle);
+
 };
 
 #endif

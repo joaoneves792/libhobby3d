@@ -10,26 +10,37 @@
 #include "Lights.h"
 #include "shader.h"
 
-Lights::Lights(shader* shader){
 
-	_enabledID = glGetUniformLocation( shader->getShader(), "lightsEnabled[0]");
-	_lightingDisabledID = glGetUniformLocation( shader->getShader(), "disableLighting");
+
+
+Lights::Lights(shader* shdr){
+	Lights(shdr, MAX_LIGHTS);
+}
+
+Lights::Lights(shader *shdr, int count) {
+	_shader = shdr;
+
+	_lightsCount = count;
+	_enabledID = glGetUniformLocation( _shader->getShader(), "lightsEnabled[0]");
+	_lightingDisabledID = glGetUniformLocation( _shader->getShader(), "disableLighting");
 
 	std::string lightsPosition = "lightPosition_worldspace";
 	std::string lightsColor = "lightColor";
 	std::string lightCone = "lightCone";
-	for(int i = 0; i<MAX_LIGHTS; i++){
+
+	for(int i = 0; i<_lightsCount; i++){
 		_enabled[i] = 0;
 		std::ostringstream ss;
 		ss << i;
 		std::string id = "[" + ss.str() + "]";
-		_colorsID[i] = glGetUniformLocation( shader->getShader(), (lightsColor + id).c_str());
-		_conesID[i] = glGetUniformLocation( shader->getShader(), (lightCone + id).c_str());
-		_positionID[i] = glGetUniformLocation( shader->getShader(), (lightsPosition + id).c_str());
+		_colorsID[i] = glGetUniformLocation( _shader->getShader(), (lightsColor + id).c_str());
+		_conesID[i] = glGetUniformLocation( _shader->getShader(), (lightCone + id).c_str());
+		_positionID[i] = glGetUniformLocation( _shader->getShader(), (lightsPosition + id).c_str());
 	}
 
-	glUniform1iv(_enabledID, MAX_LIGHTS, &_enabled[0]);
+	glUniform1iv(_enabledID, _lightsCount, &_enabled[0]);
 	glUniform1i(_lightingDisabledID, 1); //Start with lighting disabled
+
 }
 
 Lights::~Lights(){

@@ -10,6 +10,7 @@ CC=g++
 JC=javac
 CLASSPATH=./java/src/warpenguin/hobby3d/
 CXXFLAGS = -O3 -fPIC -c -I../Low3d/
+#CXXFLAGS =-ggdb -g3 -fPIC -c -I../Low3d/
 PYTHON_CXXFLAGS = $(shell pkg-config --cflags python3) 
 LDFLAGS= -shared  -lGL -lGLEW -ljpeg -lpng
 PYTHON_LDFLAGS = $(shell pkg-config --libs python3) 

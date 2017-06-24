@@ -12,6 +12,7 @@
 
 #ifdef GLES
 #include <GLES2/gl2.h>
+
 #else
 #include <GL/glew.h>
 #endif
@@ -127,11 +128,12 @@ typedef struct{
 	size_t positionSize;
 	size_t textureCoordSize;
 	size_t normalsSize;
+    size_t jointsSize;
 	size_t totalSize;
 }vboDescription;
 
-
 class CMS3DFileI;
+
 class CMS3DFile
 {
 private:
@@ -204,6 +206,8 @@ public:
 
 	void translateModel(float x, float y, float z);
 
+	void setAnimationTime(float t);
+
 	CMS3DFile(const CMS3DFile& rhs);
 	CMS3DFile& operator=(const CMS3DFile& rhs);
 
@@ -212,6 +216,7 @@ private:
 	void removeUnusedMaterials();
 	void prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuint shader);
 	void drawGroup(ms3d_group_t* group);
+	void handleAnimation();
 };
 
 #endif // _MS3DFILE_H_

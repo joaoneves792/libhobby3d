@@ -1,6 +1,5 @@
 #include "Body.h"
 #define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
 Body::Body(GLM *glm, double x, double y, double z, double mass){

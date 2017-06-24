@@ -20,6 +20,12 @@
 #include <math.h>
 #include <iterator>
 
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtc/type_ptr.inl>
+#include <iostream>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 CMS3DFile::CMS3DFile()
 {
@@ -164,6 +170,75 @@ int CMS3DFile::GetTotalFrames()
 	return _i->iTotalFrames;
 }
 
+float lerp(float v0, float v1,float t){
+    return (1 - t) * v0 + t * v1;
+}
+
+void CMS3DFile::setAnimationTime(float t) {
+    _i->fCurrentTime = t;
+}
+
+void CMS3DFile::handleAnimation() {
+	//Check for the Uniform, if its none existent then do nothing
+	GLint bones = glGetUniformLocation(_shader, "bones");
+	if(-1 == bones)
+		return;
+
+
+    //for(size_t i=0; i<_i->arrJoints.size(); i++){
+    size_t i = 0;
+        ms3d_keyframe_rot_t* prevRotKeyframe = NULL;
+        ms3d_keyframe_rot_t* nextRotKeyframe = NULL;
+
+		for(int j=0; j<_i->arrJoints[i].numKeyFramesRot; j++){
+            nextRotKeyframe = &_i->arrJoints[i].keyFramesRot[j];
+            if(j>0){
+                prevRotKeyframe = &_i->arrJoints[i].keyFramesRot[j-1];
+            }else{
+                prevRotKeyframe = nextRotKeyframe;
+            }
+			if(nextRotKeyframe->time > _i->fCurrentTime){
+                break;
+            }
+		}
+
+        glm::mat4 rotation = glm::mat4(1.0f);
+
+        //if(_i->arrJoints[i].numKeyFramesRot > 0){
+            float curTime = _i->fCurrentTime;
+            float lerpFactor = (curTime - prevRotKeyframe->time)/(nextRotKeyframe->time-prevRotKeyframe->time);
+            if(lerpFactor < 0)
+                lerpFactor = 0;
+            float rx, ry, rz;
+
+            rz = -nextRotKeyframe->rotation[0];
+            rx = -nextRotKeyframe->rotation[1];
+            ry = -nextRotKeyframe->rotation[2];
+            glm::vec3 euler = glm::vec3(rx, ry, rz);
+            glm::quat nextRotation = glm::quat(euler);
+
+
+            rz = -prevRotKeyframe->rotation[0];
+            rx = -prevRotKeyframe->rotation[1];
+            rz = -prevRotKeyframe->rotation[2];
+            euler = glm::vec3(rx, ry, rz);
+            glm::quat prevRotation = glm::quat(euler);
+
+            rotation = glm::toMat4(glm::lerp(prevRotation, nextRotation, lerpFactor));
+
+            glm::mat4 bindPose = glm::translate(glm::mat4(1.0f), glm::vec3(_i->arrJoints[i].position[0], _i->arrJoints[i].position[1], _i->arrJoints[i].position[2]));
+            glm::mat4 invBindPose = glm::inverse(bindPose);
+
+            glm::mat4 finalTransform = bindPose*rotation*invBindPose;
+        //}
+
+		glUniformMatrix4fv(bones+i, 1, GL_FALSE, glm::value_ptr(finalTransform[0]));
+        glUniformMatrix4fv(bones+i+1, 1, GL_FALSE, glm::value_ptr(finalTransform[0]));
+        glUniformMatrix4fv(bones+i+2, 1, GL_FALSE, glm::value_ptr(finalTransform[0]));
+	//}
+
+}
+
 void CMS3DFile::draw(){
 #ifndef GLES
 	GLboolean texEnabled = glIsEnabled( GL_TEXTURE_2D );
@@ -186,12 +261,11 @@ void CMS3DFile::draw(){
 
 void CMS3DFile::drawGL3(){
 #ifndef GLES
+    handleAnimation();
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
 			setMaterialGL3(&(_i->arrMaterials[materialIndex]),materialIndex); 
-		//else
-		//	glDisable( GL_TEXTURE_2D );
 		glBindVertexArray(_vao[i]);
 		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_INT, 0);
 	}
@@ -199,10 +273,12 @@ void CMS3DFile::drawGL3(){
 }
 
 void CMS3DFile::drawGLES2() {
+    handleAnimation();
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
 			setMaterialGL3(&(_i->arrMaterials[materialIndex]),materialIndex);
+
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo[i]); //pos normal etc
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _eab[i]);
 
@@ -218,6 +294,12 @@ void CMS3DFile::drawGLES2() {
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(_vboDescriptions[i].positionSize+
 				_vboDescriptions[i].textureCoordSize) );
 		glEnableVertexAttribArray(2);
+
+        //Joints Index attribute
+        glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(_vboDescriptions[i].positionSize+
+                                                                      _vboDescriptions[i].textureCoordSize+
+                                                                      _vboDescriptions[i].normalsSize) );
+        glEnableVertexAttribArray(3);
 
 		glDrawElements(GL_TRIANGLES, _i->arrGroups[i].numtriangles*3, GL_UNSIGNED_SHORT, 0);
 	}
@@ -391,6 +473,7 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 	GLfloat* vertices_position = new GLfloat[numTriangles*3*4];
 	GLfloat* vertices_normals = new GLfloat[numTriangles*9];
 	GLfloat* texture_coord = new GLfloat[numTriangles*6];
+	GLfloat* joints = new GLfloat[numTriangles*3];
 
 	int numVertices = numTriangles*3;
 	//GLuint* indices = new GLuint[numVertices];
@@ -401,6 +484,7 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 	indexInt vertex_coordinate_index = 0;
 	indexInt texture_coordinate_index = 0;
 	indexInt normal_coordinate_index = 0;
+	indexInt joints_index = 0;
 	indexInt indices_index = 0; //Current index in the indexes table
 	indexInt index = 0; //Actual index of the vertex
 	for(int j=0; j<numTriangles; j++){
@@ -428,12 +512,12 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 				texture_coord[texture_coordinate_index++] = tri->s[k];
 				texture_coord[texture_coordinate_index++] = tri->t[k];
 
+				joints[joints_index++] = (GLfloat)_i->arrVertices[tri->vertexIndices[k]].boneId;
+
 				indexes_table[tri->vertexIndices[k]] = index; // change from -1 to the index of this vertex
-				//indices[indices_index++] = (GLuint)index;
 				indices[indices_index++] = (indexInt)index;
 				index++;
 			}else{
-				//indices[indices_index++] = indexes_table[tri->vertexIndices[k]];
 				indices[indices_index++] = (indexInt)indexes_table[tri->vertexIndices[k]];
 			}
 		}
@@ -444,10 +528,12 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 	_vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*vertex_coordinate_index;
 	_vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*normal_coordinate_index;
 	_vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*texture_coordinate_index;
+	_vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*joints_index;
 
 	_vboDescriptions[groupIndex].totalSize = _vboDescriptions[groupIndex].positionSize
 											 + _vboDescriptions[groupIndex].normalsSize
-											 + _vboDescriptions[groupIndex].textureCoordSize;
+											 + _vboDescriptions[groupIndex].textureCoordSize
+			                                 + _vboDescriptions[groupIndex].jointsSize;
 
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo[groupIndex]);
 	glBufferData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].totalSize, NULL, GL_STATIC_DRAW);
@@ -459,6 +545,10 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 	glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize +
 			_vboDescriptions[groupIndex].textureCoordSize,
 					_vboDescriptions[groupIndex].normalsSize, vertices_normals);
+    glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize +
+                                     _vboDescriptions[groupIndex].textureCoordSize +
+                                     _vboDescriptions[groupIndex].normalsSize,
+                    _vboDescriptions[groupIndex].jointsSize, joints);
 
 	//Set up the indices
 	glGenBuffers(1, &_eab[groupIndex]);
@@ -480,13 +570,32 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
 					_vboDescriptions[groupIndex].textureCoordSize) );
 	glEnableVertexAttribArray(2);
 
+    //Joints attribute
+    glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 0, (GLvoid *)
+            (_vboDescriptions[groupIndex].positionSize +
+             _vboDescriptions[groupIndex].textureCoordSize +
+             _vboDescriptions[groupIndex].normalsSize) );
+    glEnableVertexAttribArray(3);
 
+    /*Initialize the bones with identity matrixes*/
+    GLint currentProgramId;
+    glGetIntegerv(GL_CURRENT_PROGRAM,&currentProgramId); //Save and restore current used program
+    glUseProgram(_shader);
+    GLint bones = glGetUniformLocation(_shader, "bones");
+    if(-1 != bones) {
+        glm::mat4 identity = glm::mat4(1.0f);
+        for(size_t i=0; i<_i->arrJoints.size() ;i++) {
+            glUniformMatrix4fv(bones + (GLint )i, 1, GL_FALSE, glm::value_ptr(identity[0]));
+        }
+    }
+    glUseProgram(currentProgramId);
 	//Free all the temporary memory
 	delete[] indexes_table;
 	delete[] vertices_position;
 	delete[] vertices_normals;
 	delete[] texture_coord;
 	delete[] indices;
+	delete[] joints;
 }
 
 void CMS3DFile::setOverrideAmbient(bool overrideAmbient){

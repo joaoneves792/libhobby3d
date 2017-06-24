@@ -5,9 +5,18 @@
 #include <cstdio>
 #include <cstring>
 #include <set>
+#include <algorithm>
 
 
 #define MAKEDWORD(a, b)      ((unsigned int)(((word)(a)) | ((word)((word)(b))) << 16))
+
+bool rotKeyFrameCompare(ms3d_keyframe_rot_t l, ms3d_keyframe_rot_t r){
+	return l.time < r.time;
+}
+
+bool transKeyFrameCompare(ms3d_keyframe_pos_t l, ms3d_keyframe_pos_t r){
+	return l.time < r.time;
+}
 
 bool CMS3DFile::LoadFromFile(const char* lpszFileName)
 {
@@ -135,9 +144,27 @@ bool CMS3DFile::LoadFromFile(const char* lpszFileName)
 			_i->arrTextures[i] = LoadGLTexture(texturePath.c_str());
 		}
 	}
-	
+
+
+	//For efficiency purposes we now sort the arrJoints.keyframesRot and arrJoints.keyframes.Trans
+	// acoording to time
+	for(unsigned int i= 0; i< _i->arrJoints.size(); i++){
+		if(_i->arrJoints[i].numKeyFramesRot > 0) {
+			std::sort(&_i->arrJoints[i].keyFramesRot[0],
+					  &_i->arrJoints[i].keyFramesRot[_i->arrJoints[i].numKeyFramesRot - 1],
+					  &rotKeyFrameCompare);
+		}
+
+		if(_i->arrJoints[i].numKeyFramesTrans > 0) {
+			std::sort(&_i->arrJoints[i].keyFramesTrans[0],
+					  &_i->arrJoints[i].keyFramesTrans[_i->arrJoints[i].numKeyFramesTrans - 1],
+					  &transKeyFrameCompare);
+		}
+	}
+
 	return true;
 }
+
 
 bool CMS3DFile::SaveToFile(const char* lpszFileName)
 {

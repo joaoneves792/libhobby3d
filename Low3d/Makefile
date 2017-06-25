@@ -7,7 +7,7 @@ LDFLAGS=-O3 -shared -Wl,-soname,libms3d.so.1
 LIBS=-lGL -lGLEW -ljpeg -lpng 
 
 all: $(OBJS)
-	$(CC) $(LDFLAGS) -o libms3d.so.1.0.1 $(OBJS)
+	#$(CC) $(LDFLAGS) -o libms3d.so.1.0.1 $(OBJS)
 
 optimizer:
 	$(CC) -o optimizer optimizer.cpp -lms3d $(LIBS)

@@ -35,6 +35,9 @@ public:
 	void setPosition(int light, float x, float y, float z);
 	void setCone(int light, float direction_x, float direction_y, float direction_z, float angle);
 
+private:
+	void init(shader* shdr, int count);
+
 };
 
 #endif

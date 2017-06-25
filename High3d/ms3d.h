@@ -25,6 +25,7 @@ public:
 	void changeGLTexture(char* groupName, int texture);
 	void changeMaterialEmissive(char* name, float red, float green, float blue);
 	void changeMaterialTransparency(char* name, float alpha);
+	void enableAnimation(bool isAnimated);
 	void setAnimationTime(float t);
 	static void initGlew();
 };

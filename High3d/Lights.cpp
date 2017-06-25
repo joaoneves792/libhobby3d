@@ -13,11 +13,8 @@
 
 
 
-Lights::Lights(shader* shdr){
-	Lights(shdr, MAX_LIGHTS);
-}
+void Lights::init(shader* shdr, int count){
 
-Lights::Lights(shader *shdr, int count) {
 	_shader = shdr;
 
 	_lightsCount = count;
@@ -40,7 +37,14 @@ Lights::Lights(shader *shdr, int count) {
 
 	glUniform1iv(_enabledID, _lightsCount, &_enabled[0]);
 	glUniform1i(_lightingDisabledID, 1); //Start with lighting disabled
+}
 
+Lights::Lights(shader* shdr){
+	init(shdr, MAX_LIGHTS);
+}
+
+Lights::Lights(shader *shdr, int count) {
+	init(shdr, count);
 }
 
 Lights::~Lights(){

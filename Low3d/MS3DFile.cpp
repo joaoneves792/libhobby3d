@@ -14,10 +14,6 @@
 
 #include "MS3DFile.h"
 #include "MS3DFileI.h"
-#include <cstring>
-#include <set>
-#include <vector>
-#include <math.h>
 #include <iterator>
 
 #define GLM_ENABLE_EXPERIMENTAL
@@ -26,6 +22,7 @@
 #include <iostream>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/matrix_interpolation.hpp>
 
 CMS3DFile::CMS3DFile()
 {
@@ -47,6 +44,8 @@ CMS3DFile::CMS3DFile()
 	_vao = NULL;
 	_vbo = NULL;
 	_eab = NULL;
+
+	_isAnimated = false;
 
 }
 
@@ -174,8 +173,131 @@ float lerp(float v0, float v1,float t){
     return (1 - t) * v0 + t * v1;
 }
 
+void CMS3DFile::enableAnimation(bool isAnimated) {
+	_isAnimated = isAnimated;
+}
+
 void CMS3DFile::setAnimationTime(float t) {
     _i->fCurrentTime = t;
+}
+
+void CMS3DFile::recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, int jointIndex){
+	if(_i->arrJoints[jointIndex].parentIndex != -1 && !hasParentTransform[jointIndex]){
+		int parentIndex =_i->arrJoints[jointIndex].parentIndex;
+		recursiveParentTransform(transforms, hasParentTransform, parentIndex);
+		transforms[jointIndex] = transforms[parentIndex] * transforms[jointIndex];
+		hasParentTransform[jointIndex] = true;
+	}
+}
+
+glm::mat4 CMS3DFile::getBoneRotation(int i) {
+	ms3d_keyframe_rot_t* prevRotKeyframe = NULL;
+	ms3d_keyframe_rot_t* nextRotKeyframe = NULL;
+
+	for(int j=0; j<_i->arrJoints[i].numKeyFramesRot; j++){
+		nextRotKeyframe = &_i->arrJoints[i].keyFramesRot[j];
+		if(j>0){
+			prevRotKeyframe = &_i->arrJoints[i].keyFramesRot[j-1];
+		}else{
+			prevRotKeyframe = nextRotKeyframe;
+		}
+		if(nextRotKeyframe->time > _i->fCurrentTime){
+			break;
+		}
+	}
+
+
+	if(_i->arrJoints[i].numKeyFramesRot > 0) {
+		float curTime = _i->fCurrentTime;
+		float lerpFactor;
+		if (nextRotKeyframe->time - prevRotKeyframe->time == 0) {
+			lerpFactor = 0;
+		} else {
+			lerpFactor = (curTime - prevRotKeyframe->time) /
+						 (nextRotKeyframe->time - prevRotKeyframe->time);
+		}
+		if (lerpFactor < 0)
+			lerpFactor = 0;
+		float rx, ry, rz;
+
+		rx = nextRotKeyframe->rotation[0];
+		ry = nextRotKeyframe->rotation[1];
+		rz = nextRotKeyframe->rotation[2];
+		glm::vec3 euler = glm::vec3(rx, ry, rz);
+		glm::quat nextRotation = glm::quat(euler);
+
+
+		rx = prevRotKeyframe->rotation[0];
+		ry = prevRotKeyframe->rotation[1];
+		rz = prevRotKeyframe->rotation[2];
+		euler = glm::vec3(rx, ry, rz);
+		glm::quat prevRotation = glm::quat(euler);
+
+		return glm::toMat4(glm::lerp(prevRotation, nextRotation, lerpFactor));
+	}
+	return glm::mat4(1.0f);
+}
+glm::mat4 CMS3DFile::getBoneTranslation(int i) {
+	ms3d_keyframe_pos_t* prevKeyframe = NULL;
+	ms3d_keyframe_pos_t* nextKeyframe = NULL;
+
+	for(int j=0; j<_i->arrJoints[i].numKeyFramesTrans; j++){
+		nextKeyframe = &_i->arrJoints[i].keyFramesTrans[j];
+		if(j>0){
+			prevKeyframe = &_i->arrJoints[i].keyFramesTrans[j-1];
+		}else{
+			prevKeyframe = nextKeyframe;
+		}
+		if(nextKeyframe->time > _i->fCurrentTime){
+			break;
+		}
+	}
+
+
+	if(_i->arrJoints[i].numKeyFramesTrans > 0) {
+		float curTime = _i->fCurrentTime;
+		float lerpFactor;
+		if (nextKeyframe->time - prevKeyframe->time == 0) {
+			lerpFactor = 0;
+		} else {
+			lerpFactor = (curTime - prevKeyframe->time) /
+						 (nextKeyframe->time - prevKeyframe->time);
+		}
+		if (lerpFactor < 0)
+			lerpFactor = 0;
+		float rx, ry, rz;
+
+		rx = nextKeyframe->position[0];
+		ry = nextKeyframe->position[1];
+		rz = nextKeyframe->position[2];
+		glm::mat4 nextTrans = glm::translate(glm::mat4(1.0f), glm::vec3(rx, ry, rz));
+
+
+		rx = prevKeyframe->position[0];
+		ry = prevKeyframe->position[1];
+		rz = prevKeyframe->position[2];
+		glm::mat4 prevTrans = glm::translate(glm::mat4(1.0f), glm::vec3(rx, ry, rz));
+
+		return glm::interpolate(prevTrans, nextTrans, lerpFactor);
+	}
+	return glm::mat4(1.0f);
+}
+
+glm::mat4 CMS3DFile::recursiveBindPose(int i) {
+	glm::mat4 bindPoseTranslation = glm::translate(glm::mat4(1.0f),
+												   glm::vec3(_i->arrJoints[i].position[0],
+															 _i->arrJoints[i].position[1],
+															 _i->arrJoints[i].position[2]));
+
+	glm::mat4 bindPoseRotation = glm::toMat4(glm::quat(glm::vec3(_i->arrJoints[i].rotation[0],
+																 _i->arrJoints[i].rotation[1],
+																 _i->arrJoints[i].rotation[2])));
+
+	glm::mat4 bindPose = bindPoseTranslation * bindPoseRotation;
+	if(_i->arrJoints[i].parentIndex == -1){
+		return bindPose;
+	}
+	return recursiveBindPose(_i->arrJoints[i].parentIndex) * bindPose;
 }
 
 void CMS3DFile::handleAnimation() {
@@ -184,58 +306,39 @@ void CMS3DFile::handleAnimation() {
 	if(-1 == bones)
 		return;
 
+    glm::mat4 transforms[_i->arrJoints.size()];
+	for(size_t i=0; i<_i->arrJoints.size(); i++){
+		transforms[i] = glm::mat4(1.0f);
+	}
 
-    //for(size_t i=0; i<_i->arrJoints.size(); i++){
-    size_t i = 0;
-        ms3d_keyframe_rot_t* prevRotKeyframe = NULL;
-        ms3d_keyframe_rot_t* nextRotKeyframe = NULL;
+    for(size_t i=0; i<_i->arrJoints.size(); i++){
+		if(_i->arrJoints[i].numKeyFramesRot == 0 ||
+				_i->arrJoints[i].numKeyFramesTrans ==0 )
+			return;
+		glm::mat4 rotation = getBoneRotation(i);
+		glm::mat4 translation = getBoneTranslation(i);
 
-		for(int j=0; j<_i->arrJoints[i].numKeyFramesRot; j++){
-            nextRotKeyframe = &_i->arrJoints[i].keyFramesRot[j];
-            if(j>0){
-                prevRotKeyframe = &_i->arrJoints[i].keyFramesRot[j-1];
-            }else{
-                prevRotKeyframe = nextRotKeyframe;
-            }
-			if(nextRotKeyframe->time > _i->fCurrentTime){
-                break;
-            }
-		}
+		glm::mat4 bindPose = recursiveBindPose(i);
 
-        glm::mat4 rotation = glm::mat4(1.0f);
+		glm::mat4 invBindPose = glm::inverse(bindPose);
 
-        //if(_i->arrJoints[i].numKeyFramesRot > 0){
-            float curTime = _i->fCurrentTime;
-            float lerpFactor = (curTime - prevRotKeyframe->time)/(nextRotKeyframe->time-prevRotKeyframe->time);
-            if(lerpFactor < 0)
-                lerpFactor = 0;
-            float rx, ry, rz;
+		transforms[i] = bindPose * translation * rotation * invBindPose;
+    }
 
-            rz = -nextRotKeyframe->rotation[0];
-            rx = -nextRotKeyframe->rotation[1];
-            ry = -nextRotKeyframe->rotation[2];
-            glm::vec3 euler = glm::vec3(rx, ry, rz);
-            glm::quat nextRotation = glm::quat(euler);
+	//Recursively check and apply parent transforms
+	bool hasParentTransform[_i->arrJoints.size()];
+	for(unsigned int i=0;i<_i->arrJoints.size();i++){
+		hasParentTransform[i] = false;
+	}
 
+	for(size_t i=0; i<_i->arrJoints.size(); i++) {
+		recursiveParentTransform(transforms, hasParentTransform, i);
+	}
 
-            rz = -prevRotKeyframe->rotation[0];
-            rx = -prevRotKeyframe->rotation[1];
-            rz = -prevRotKeyframe->rotation[2];
-            euler = glm::vec3(rx, ry, rz);
-            glm::quat prevRotation = glm::quat(euler);
+    for(size_t i=0; i<_i->arrJoints.size(); i++) {
+        glUniformMatrix4fv(bones + i, 1, GL_FALSE, glm::value_ptr(transforms[i]));
+    }
 
-            rotation = glm::toMat4(glm::lerp(prevRotation, nextRotation, lerpFactor));
-
-            glm::mat4 bindPose = glm::translate(glm::mat4(1.0f), glm::vec3(_i->arrJoints[i].position[0], _i->arrJoints[i].position[1], _i->arrJoints[i].position[2]));
-            glm::mat4 invBindPose = glm::inverse(bindPose);
-
-            glm::mat4 finalTransform = bindPose*rotation*invBindPose;
-        //}
-
-		glUniformMatrix4fv(bones+i, 1, GL_FALSE, glm::value_ptr(finalTransform[0]));
-        glUniformMatrix4fv(bones+i+1, 1, GL_FALSE, glm::value_ptr(finalTransform[0]));
-        glUniformMatrix4fv(bones+i+2, 1, GL_FALSE, glm::value_ptr(finalTransform[0]));
-	//}
 
 }
 
@@ -261,7 +364,8 @@ void CMS3DFile::draw(){
 
 void CMS3DFile::drawGL3(){
 #ifndef GLES
-    handleAnimation();
+    if(_isAnimated)
+	    handleAnimation();
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
@@ -273,7 +377,8 @@ void CMS3DFile::drawGL3(){
 }
 
 void CMS3DFile::drawGLES2() {
-    handleAnimation();
+	if(_isAnimated)
+    	handleAnimation();
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
@@ -577,7 +682,7 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
              _vboDescriptions[groupIndex].normalsSize) );
     glEnableVertexAttribArray(3);
 
-    /*Initialize the bones with identity matrixes*/
+    /*Initialize the bones with identity matrixes
     GLint currentProgramId;
     glGetIntegerv(GL_CURRENT_PROGRAM,&currentProgramId); //Save and restore current used program
     glUseProgram(_shader);
@@ -588,7 +693,7 @@ void CMS3DFile::prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuin
             glUniformMatrix4fv(bones + (GLint )i, 1, GL_FALSE, glm::value_ptr(identity[0]));
         }
     }
-    glUseProgram(currentProgramId);
+    glUseProgram(currentProgramId);*/
 	//Free all the temporary memory
 	delete[] indexes_table;
 	delete[] vertices_position;

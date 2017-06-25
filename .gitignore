@@ -4,3 +4,5 @@
 *.a
 *.class
 *.java
+*.cxx
+*.jar

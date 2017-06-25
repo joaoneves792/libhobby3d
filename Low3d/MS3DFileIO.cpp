@@ -161,6 +161,17 @@ bool CMS3DFile::LoadFromFile(const char* lpszFileName)
 					  &transKeyFrameCompare);
 		}
 	}
+	//Now we must fill in the parents joints ids
+	for(unsigned int i= 0; i< _i->arrJoints.size(); i++){
+        char* parent = _i->arrJoints[i].parentName;
+        _i->arrJoints[i].parentIndex = -1;
+        for(unsigned int j=0; j<_i->arrJoints.size(); j++){
+            if(!strncmp(parent, _i->arrJoints[j].name, 32)){
+                _i->arrJoints[i].parentIndex = (char)j;
+                break;
+			}
+        }
+    }
 
 	return true;
 }

@@ -23,6 +23,8 @@
 #pragma pack(push,1)
 #endif
 
+#include <vector>
+#include <glm/detail/type_mat.hpp>
 
 #ifndef byte
 typedef unsigned char byte;
@@ -103,7 +105,8 @@ typedef struct
     byte            flags;                              // SELECTED | DIRTY
     char            name[32];                           //
     char            parentName[32];                     //
-    float           rotation[3];                        // local reference matrix
+    char 			parentIndex; 						// -1 if no parent
+	float           rotation[3];                        // local reference matrix
     float           position[3];
 
     word            numKeyFramesRot;                    //
@@ -111,6 +114,7 @@ typedef struct
 
 	ms3d_keyframe_rot_t* keyFramesRot;      // local animation matrices
     ms3d_keyframe_pos_t* keyFramesTrans;  // local animation matrices
+
 } ms3d_joint_t;
 
 //#include <poppack.h>
@@ -152,6 +156,8 @@ private:
 	
 	float* _white;
 	float* _black;
+
+	bool _isAnimated;
 
 public:
 	CMS3DFile();
@@ -206,6 +212,7 @@ public:
 
 	void translateModel(float x, float y, float z);
 
+	void enableAnimation(bool isAnimated);
 	void setAnimationTime(float t);
 
 	CMS3DFile(const CMS3DFile& rhs);
@@ -216,7 +223,11 @@ private:
 	void removeUnusedMaterials();
 	void prepareGroup(ms3d_group_t* group, unsigned int groupIndex, GLuint shader);
 	void drawGroup(ms3d_group_t* group);
+	void recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, int jointIndex);
+	glm::mat4 recursiveBindPose(int i);
 	void handleAnimation();
+    glm::mat4 getBoneRotation(int i);
+    glm::mat4 getBoneTranslation(int i);
 };
 
 #endif // _MS3DFILE_H_

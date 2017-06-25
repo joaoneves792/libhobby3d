@@ -107,6 +107,10 @@ void ms3d::changeMaterialTransparency(char* name, float alpha){
 	_model->setMaterialTransparency(name, 1-alpha);
 }
 
+void ms3d::enableAnimation(bool isAnimated) {
+	_model->enableAnimation(isAnimated);
+}
+
 void ms3d::setAnimationTime(float t) {
 	_model->setAnimationTime(t);
 }

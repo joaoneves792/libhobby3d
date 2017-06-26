@@ -167,7 +167,7 @@ bool CMS3DFile::LoadFromFile(const char* lpszFileName)
         _i->arrJoints[i].parentIndex = -1;
         for(unsigned int j=0; j<_i->arrJoints.size(); j++){
             if(!strncmp(parent, _i->arrJoints[j].name, 32)){
-                _i->arrJoints[i].parentIndex = (char)j;
+                _i->arrJoints[i].parentIndex = j;
                 break;
 			}
         }

@@ -44,7 +44,7 @@ typedef struct
 {
     byte    flags;                                      // SELECTED | SELECTED2 | HIDDEN
     float   vertex[3];                                  //
-    char    boneId;                                     // -1 = no bone
+    signed char    boneId;                                     // -1 = no bone
     byte    referenceCount;
 } ms3d_vertex_t;
 
@@ -105,7 +105,7 @@ typedef struct
     byte            flags;                              // SELECTED | DIRTY
     char            name[32];                           //
     char            parentName[32];                     //
-    char 			parentIndex; 						// -1 if no parent
+    int 			parentIndex; 						// -1 if no parent
 	float           rotation[3];                        // local reference matrix
     float           position[3];
 

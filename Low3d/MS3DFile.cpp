@@ -182,8 +182,8 @@ void CMS3DFile::setAnimationTime(float t) {
 }
 
 void CMS3DFile::recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, int jointIndex){
-	if(_i->arrJoints[jointIndex].parentIndex != -1 && !hasParentTransform[jointIndex]){
-		int parentIndex =_i->arrJoints[jointIndex].parentIndex;
+    int parentIndex =_i->arrJoints[jointIndex].parentIndex;
+	if(parentIndex != -1 && !hasParentTransform[jointIndex]){
 		recursiveParentTransform(transforms, hasParentTransform, parentIndex);
 		transforms[jointIndex] = transforms[parentIndex] * transforms[jointIndex];
 		hasParentTransform[jointIndex] = true;
@@ -294,10 +294,11 @@ glm::mat4 CMS3DFile::recursiveBindPose(int i) {
 																 _i->arrJoints[i].rotation[2])));
 
 	glm::mat4 bindPose = bindPoseTranslation * bindPoseRotation;
-	if(_i->arrJoints[i].parentIndex == -1){
+	int parentIndex = _i->arrJoints[i].parentIndex;
+    if(parentIndex == -1){
 		return bindPose;
 	}
-	return recursiveBindPose(_i->arrJoints[i].parentIndex) * bindPose;
+	return recursiveBindPose(parentIndex) * bindPose;
 }
 
 void CMS3DFile::handleAnimation() {
@@ -307,9 +308,17 @@ void CMS3DFile::handleAnimation() {
 		return;
 
     glm::mat4 transforms[_i->arrJoints.size()];
-	for(size_t i=0; i<_i->arrJoints.size(); i++){
-		transforms[i] = glm::mat4(1.0f);
-	}
+    for(size_t i=0; i<_i->arrJoints.size(); i++){
+        transforms[i] = glm::mat4(1.0f);
+    }
+
+    if(!_isAnimated){ //If not animated the we still have to upload identities if the bones exist
+        for(size_t i=0; i<_i->arrJoints.size(); i++) {
+            glUniformMatrix4fv(bones + i, 1, GL_FALSE, glm::value_ptr(transforms[i]));
+        }
+        return;
+    }
+
 
     for(size_t i=0; i<_i->arrJoints.size(); i++){
 		if(_i->arrJoints[i].numKeyFramesRot == 0 ||
@@ -364,8 +373,7 @@ void CMS3DFile::draw(){
 
 void CMS3DFile::drawGL3(){
 #ifndef GLES
-    if(_isAnimated)
-	    handleAnimation();
+    handleAnimation();
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )
@@ -377,8 +385,7 @@ void CMS3DFile::drawGL3(){
 }
 
 void CMS3DFile::drawGLES2() {
-	if(_isAnimated)
-    	handleAnimation();
+   	handleAnimation();
 	for(unsigned int i=0; i < _i->arrGroups.size(); i++){
 		int materialIndex = (int)_i->arrGroups[i].materialIndex;
 		if( materialIndex >= 0 )

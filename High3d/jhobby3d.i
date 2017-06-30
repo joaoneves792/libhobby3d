@@ -9,6 +9,7 @@
         #include "Shadows.h"
         #include "Text.h"
         #include "Body.h"
+        #include "DAE.h"
 %}
 
 %include "shader.h"
@@ -19,3 +20,4 @@
 %include "Shadows.h"
 %include "Text.h"
 %include "Body.h"
+%include "DAE.h"

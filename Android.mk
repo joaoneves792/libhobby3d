@@ -13,8 +13,8 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_CARS)
 
-MY_LOW_SRC_FILES  :=./Low3d/MS3DFileIO.cpp ./Low3d/optimizations.cpp ./Low3d/Shader.cpp ./Low3d/MS3DFile.cpp ./Low3d/Textures.cpp
-MY_HIGH_SRC_FILES :=./High3d/ms3d.cpp ./High3d/Tex.cpp ./High3d/shader.cpp ./High3d/GLM.cpp ./High3d/Lights.cpp ./High3d/Shadows.cpp ./High3d/Text.cpp ./High3d/Body.cpp
+MY_LOW_SRC_FILES  :=./Low3d/MS3DFileIO.cpp ./Low3d/optimizations.cpp ./Low3d/Shader.cpp ./Low3d/MS3DFile.cpp ./Low3d/Textures.cpp ./Low3d/DAEMesh.cpp
+MY_HIGH_SRC_FILES :=./High3d/ms3d.cpp ./High3d/Tex.cpp ./High3d/shader.cpp ./High3d/GLM.cpp ./High3d/Lights.cpp ./High3d/Shadows.cpp ./High3d/Text.cpp ./High3d/Body.cpp ./High3d/DAE.cpp
 
 LOCAL_MODULE := jhobby3d
 LOCAL_MODULE_FILENAME := libjhobby3dAndroid

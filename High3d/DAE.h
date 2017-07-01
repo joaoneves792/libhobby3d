@@ -13,7 +13,6 @@ public:
 	DAE(char* filename);
 	virtual ~DAE();
 	void free();
-	void draw();
 	void drawGL2();
 	void drawGLES2();
 	void prepare(shader* shader);

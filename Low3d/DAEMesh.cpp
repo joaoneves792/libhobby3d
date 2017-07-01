@@ -71,14 +71,16 @@ void DAEMesh::prepareModel(GLuint shader) {
         }
 }
 
+
+//Pretty dumb implementation we should filter out duplicates and use the indexes properly
 void DAEMesh::prepareGroup(dae_geometry *group, unsigned int groupIndex, GLuint shader) {
 #ifndef GLES
     glBindVertexArray(_vao[groupIndex]);
 #endif
 
-    //GLfloat *vertices  = new GLfloat[numTriangles*3*4]
-    GLfloat *normals   = new GLfloat[group->verticesCount*3];
-    GLfloat *texCoords = new GLfloat[group->verticesCount*2];
+    GLfloat *vertices  = new GLfloat[group->trianglesCount*3*4];
+    GLfloat *normals   = new GLfloat[group->trianglesCount*3*3];
+    GLfloat *texCoords = new GLfloat[group->trianglesCount*3*2];
     GLfloat *joints    = new GLfloat[0];
 
     indexInt *indices  = new indexInt[group->trianglesCount*3];
@@ -88,52 +90,37 @@ void DAEMesh::prepareGroup(dae_geometry *group, unsigned int groupIndex, GLuint 
     int tex_coord_index = 0;
     int indexes_index = 0;
     for(int i=0;i<group->trianglesCount; i++){
-        /*for(int j=0; j<3;j++){
+        for(int j=0;j<3;j++) {
+            //indices[indexes_index++] = (indexInt)group->triangles[i].vertexIndexes[j];
+            indices[indexes_index] = indexes_index;
+            indexes_index++;
+
             int vi = group->triangles[i].vertexIndexes[j];
+            int ni = group->triangles[i].normalIndexes[j];
+            int ti = group->triangles[i].tcoordIndexes[j];
+
             vertices[vertex_index++] = group->vertices[vi].position[0];
             vertices[vertex_index++] = group->vertices[vi].position[1];
             vertices[vertex_index++] = group->vertices[vi].position[2];
             vertices[vertex_index++] = 1.0;
-        }*/
-        for(int j=0;j<3;j++) {
-            //Copy the normals and the tcoords to new buffers so their indexes are the same as
-            // the corresponding vertex index (this might create duplicates)
-            int vi = group->triangles[i].vertexIndexes[j];
-            int ni = group->triangles[i].normalIndexes[j];
-            int ti = group->triangles[i].tcoordIndexes[j];
 
-            int new_ni = vi*3;
-            normals[new_ni++] = group->normals[ni].vector[0];
-            normals[new_ni++] = group->normals[ni].vector[1];
-            normals[new_ni++] = group->normals[ni].vector[2];
+            normals[normal_index++] = group->normals[ni].vector[0];
+            normals[normal_index++] = group->normals[ni].vector[1];
+            normals[normal_index++] = group->normals[ni].vector[2];
 
-            int new_ti = vi*2;
-            texCoords[new_ti++] = group->tcoords[ti].st[0];
-            texCoords[new_ti++] = group->tcoords[ti].st[1];
+            texCoords[tex_coord_index++] = group->tcoords[ti].st[0];
+            texCoords[tex_coord_index++] = group->tcoords[ti].st[1];
 
-
-            indices[indexes_index++] = (indexInt)group->triangles[i].vertexIndexes[j];
         }
-        /*for(int j=0; j<3;j++){
-            int ni = group->triangles[i].normalIndexes[j];
-            normals[normal_index++] = group->normals[ni]->vector[0];
-            normals[normal_index++] = group->normals[ni]->vector[1];
-            normals[normal_index++] = group->normals[ni]->vector[2];
-        }
-        for(int j=0; j<3;j++){
-            int ti = group->triangles[i].tcoordIndexes[j];
-            texCoords[tex_coord_index++] = group->tcoords[ni].st[0];
-            texCoords[tex_coord_index++] = group->tcoords[ni].st[1];
-        }*/
-
-
     }
+
 
     glGenBuffers(1, &_vbo[groupIndex]);
 
-    _vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->verticesPositionCount;
-    _vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*group->verticesCount*3;
-    _vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*group->verticesCount*2;
+    //_vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->verticesPositionCount;
+    _vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->trianglesCount*3*4;
+    _vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*group->trianglesCount*3*3;
+    _vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*group->trianglesCount*3*2;
     _vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*0;
 
     _vboDescriptions[groupIndex].totalSize = _vboDescriptions[groupIndex].positionSize
@@ -145,7 +132,8 @@ void DAEMesh::prepareGroup(dae_geometry *group, unsigned int groupIndex, GLuint 
     glBufferData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].totalSize, NULL, GL_STATIC_DRAW);
 
     /*Copy the data to the buffer*/
-    glBufferSubData(GL_ARRAY_BUFFER, 0, _vboDescriptions[groupIndex].positionSize, group->verticesPosition);
+    //glBufferSubData(GL_ARRAY_BUFFER, 0, _vboDescriptions[groupIndex].positionSize, group->verticesPosition);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, _vboDescriptions[groupIndex].positionSize, vertices);
     glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize,
                     _vboDescriptions[groupIndex].textureCoordSize, texCoords);
     glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize +
@@ -372,7 +360,12 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
             }
         }
         if(NULL != mat->textureFile) {
-            mat->textureId = LoadGLTexture(mat->textureFile);
+            std::string folderPath(lpszFileName);
+            std::string texturePath("./");
+            folderPath = folderPath.substr(0, folderPath.find_last_of("/")+1);
+            texturePath.assign(folderPath);
+            texturePath.append(mat->textureFile);
+            mat->textureId = LoadGLTexture(texturePath.c_str());
         }else{
             mat->textureId = -1;
         }
@@ -381,7 +374,6 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 
     xml_node<> * geometries;
 	geometries = root_node->first_node("library_geometries");
-    cout << "Found the following groups: " << "\n";
 	for (xml_node<> * geometry = geometries->first_node("geometry"); geometry; geometry = geometry->next_sibling()) {
 		int vertex_offset = -1;
 		int normal_offset = -1;
@@ -398,8 +390,6 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
         g->tcoordCount = 0;
 
 		strncpy(g->name, name, 32);
-
-	    printf("Name: %s\n", g->name);
 
 		xml_node<>* mesh = geometry->first_node("mesh");
 
@@ -432,7 +422,7 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 		if(normal_offset >= 0)
 			p_count += g->trianglesCount*3;
 		if(tcoord_offset >= 0)
-			p_count += g->trianglesCount*2;
+			p_count += g->trianglesCount*3;
 
 		int p[p_count];
 
@@ -451,15 +441,15 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 		int triangle_i = 0;
 		for(int i=0;i<p_count;){
 			for(int j=0; j<3; j++) {
-				i += vertex_offset;
-				g->triangles[triangle_i].vertexIndexes[j] = p[i];
-				i += normal_offset;
-				g->triangles[triangle_i].normalIndexes[j] = p[i];
+				g->triangles[triangle_i].vertexIndexes[j] = p[i+vertex_offset];
+				g->triangles[triangle_i].normalIndexes[j] = p[i+normal_offset];
 				if(tcoord_offset >= 0) {
-					i += tcoord_offset;
-					g->triangles[triangle_i].tcoordIndexes[j] = p[i];
+					g->triangles[triangle_i].tcoordIndexes[j] = p[i+tcoord_offset];
+                    i=i+1;
 				}
+                i=i+2;
 			}
+            triangle_i++;
 		}
 
 		/*-----------------Get the vertices source-------------------*/
@@ -473,7 +463,6 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 		/*------------------SOURCES-----------------------*/
 	    for(xml_node<> * source = mesh->first_node("source"); source; source = source->next_sibling("source")) {
 			if (!strcmp(source->first_attribute("id")->value(), (vertex_source + 1))) {
-				printf("Getting the vertexes from : %s\n", vertex_source);
 				xml_node<> *float_array = source->first_node("float_array");
 				int f_count = str2int(float_array->first_attribute("count")->value());
 				char *floats = float_array->value();
@@ -489,24 +478,23 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 
 				g->verticesCount = f_count / 3;
 				g->vertices = new dae_vertex[g->verticesCount];
-                g->verticesPosition = new float[g->verticesCount*4];
+                //g->verticesPosition = new float[g->verticesCount*4];
 				int f_index = 0;
                 int position_index = 0;
 				for (int i = 0; i < g->verticesCount; i++) {
+                    /*g->verticesPosition[position_index++] = f[f_index++];
                     g->verticesPosition[position_index++] = f[f_index++];
                     g->verticesPosition[position_index++] = f[f_index++];
-                    g->verticesPosition[position_index++] = f[f_index++];
-                    g->verticesPosition[position_index++] = 1.0;
+                    g->verticesPosition[position_index++] = 1.0;*/
 
-					/*g->vertices[i].position[0] = f[f_index];
+					g->vertices[i].position[0] = f[f_index];
 					g->vertices[i].position[1] = f[f_index + 1];
 					g->vertices[i].position[2] = f[f_index + 2];
-					f_index += 3;*/
+					f_index += 3;
 				}
-                g->verticesPositionCount = position_index;
+                //g->verticesPositionCount = position_index;
 
 			} else if (!strcmp(source->first_attribute("id")->value(), (normal_source + 1))) {
-				printf("Getting the normals from : %s\n", normal_source);
 				xml_node<> *float_array = source->first_node("float_array");
 				int f_count = str2int(float_array->first_attribute("count")->value());
 				char *floats = float_array->value();
@@ -524,14 +512,12 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 				g->normals = new dae_normal[g->normalsCount];
 				int f_index = 0;
 				for (int i = 0; i < g->normalsCount; i++) {
-					g->normals[i].vector[0] = f[f_index];
-					g->normals[i].vector[1] = f[f_index + 1];
-					g->normals[i].vector[2] = f[f_index + 2];
-					f_index += 3;
+					g->normals[i].vector[0] = f[f_index++];
+					g->normals[i].vector[1] = f[f_index++];
+					g->normals[i].vector[2] = f[f_index++];
 				}
 
 			} else if (!strcmp(source->first_attribute("id")->value(), (tcoord_source + 1))) {
-				printf("Getting the texture coords from : %s\n", tcoord_source);
 				xml_node<> *float_array = source->first_node("float_array");
 				int f_count = str2int(float_array->first_attribute("count")->value());
 				char *floats = float_array->value();
@@ -549,9 +535,8 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 				g->tcoords = new dae_texture_coordinates[g->tcoordCount];
 				int f_index = 0;
 				for (int i = 0; i < g->tcoordCount; i++) {
-					g->tcoords[i].st[0] = f[f_index];
-					g->tcoords[i].st[1] = f[f_index + 1];
-					f_index += 2;
+					g->tcoords[i].st[0] = f[f_index++];
+					g->tcoords[i].st[1] = f[f_index++];
 				}
 
 			}
@@ -568,7 +553,6 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 
             _mesh->groups.push_back(g);
         }
-        cout << endl;
 	}
     return true;
 }

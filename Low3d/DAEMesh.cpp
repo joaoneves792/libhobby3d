@@ -303,29 +303,37 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
                 xml_node<>* technique = profile->first_node("technique");
                 if(!strcmp(technique->first_attribute("sid")->value(), "common")){
                     xml_node<>* phong = technique->first_node("phong");
-                    xml_node<>* emmisive = phong->first_node("emission")->first_node("color");
+                    if(!phong){
+                        phong = technique->first_node("lambert");
+                    }
+                    if(!phong){
+                        continue;
+                    }
+                    xml_node<>* emmisive = phong->first_node("emission");
                     if(emmisive){
-                        char2floatArray(emmisive->value(), mat->emission, 4);
+                        char2floatArray(emmisive->first_node("color")->value(), mat->emission, 4);
                     }
-                    xml_node<>* ambient = phong->first_node("ambient")->first_node("color");
+                    xml_node<>* ambient = phong->first_node("ambient");
                     if(ambient){
-                        char2floatArray(ambient->value(), mat->ambient, 4);
+                        char2floatArray(ambient->first_node("color")->value(), mat->ambient, 4);
                     }
-                    xml_node<>* diffuse = phong->first_node("diffuse")->first_node("color");
+                    xml_node<>* diffuse = phong->first_node("diffuse");
                     if(diffuse){
-                        char2floatArray(diffuse->value(), mat->diffuse, 4);
+                        if(diffuse->first_node("color")) {
+                            char2floatArray(diffuse->first_node("color")->value(), mat->diffuse, 4);
+                        }else if(diffuse->first_node("texture")) {
+                            xml_node<> *diffuse_texture = phong->first_node("diffuse")->first_node(
+                                    "texture");
+                            textureParam = diffuse_texture->first_attribute("texture")->value();
+                        }
                     }
-                    xml_node<>* diffuse_texture = phong->first_node("diffuse")->first_node("texture");
-                    if(diffuse_texture){
-                        textureParam = diffuse_texture->first_attribute("texture")->value();
-                    }
-                    xml_node<>* specular = phong->first_node("specular")->first_node("color");
+                    xml_node<>* specular = phong->first_node("specular");
                     if(specular){
-                        char2floatArray(specular->value(), mat->specular, 4);
+                        char2floatArray(specular->first_node("color")->value(), mat->specular, 4);
                     }
-                    xml_node<>* shininess = phong->first_node("shininess")->first_node("float");
+                    xml_node<>* shininess = phong->first_node("shininess");
                     if(shininess){
-                        mat->shininess = atof(shininess->value());
+                        mat->shininess = atof(shininess->first_node("float")->value());
                     }
 
                 }
@@ -378,6 +386,7 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 		int vertex_offset = -1;
 		int normal_offset = -1;
 		int tcoord_offset = -1;
+        int max_offset = -1;
 
 		char* vertex_source = NULL;
 		char* normal_source = NULL;
@@ -400,29 +409,36 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 			materialName = polylist->first_attribute("material")->value();
 		}
 
+        int inputCount = 0;
         for(xml_node<> * input = polylist->first_node("input"); input; input = input->next_sibling("input")) {
 			char* semantic = input->first_attribute("semantic")->value();
+            inputCount++;
 			if(!strncmp("VERTEX", semantic, 6)){
 				vertex_offset = str2int(input->first_attribute("offset")->value());
 				vertex_source = input->first_attribute("source")->value();
+                if(vertex_offset > max_offset)
+                    max_offset = vertex_offset;
 			}else if(!strncmp("NORMAL", semantic, 6)){
 				normal_offset = str2int(input->first_attribute("offset")->value());
 				normal_source = input->first_attribute("source")->value();
+                if(normal_offset > max_offset)
+                    max_offset = normal_offset;
 			}else if(!strncmp("TEXCOORD", semantic, 8)){
 				tcoord_offset = str2int(input->first_attribute("offset")->value());
 				tcoord_source = input->first_attribute("source")->value();
-			}
+                if(tcoord_offset > max_offset)
+                    max_offset = tcoord_offset;
+			}else{
+                int other_offset = str2int(input->first_attribute("offset")->value());
+                if(other_offset > max_offset)
+                    max_offset = other_offset;
+            }
 		}
+        inputCount = max_offset+1;
 		g->trianglesCount= str2int(polylist->first_attribute("count")->value());
 
 		char* str_indexes = polylist->first_node("p")->value();
-		int p_count = 0;
-		if(vertex_offset >= 0)
-			p_count += g->trianglesCount*3;
-		if(normal_offset >= 0)
-			p_count += g->trianglesCount*3;
-		if(tcoord_offset >= 0)
-			p_count += g->trianglesCount*3;
+		int p_count = g->trianglesCount*3*inputCount;
 
 		int p[p_count];
 
@@ -438,18 +454,17 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 
 		/*Fill the triangles data*/
 		g->triangles = new dae_triangle[g->trianglesCount];
-		int triangle_i = 0;
-		for(int i=0;i<p_count;){
+        //g->triangles = (dae_triangle*)malloc(sizeof(dae_triangle)*g->trianglesCount);
+		i = 0;
+		for(int triangle_i=0;triangle_i<g->trianglesCount;triangle_i++){
 			for(int j=0; j<3; j++) {
 				g->triangles[triangle_i].vertexIndexes[j] = p[i+vertex_offset];
 				g->triangles[triangle_i].normalIndexes[j] = p[i+normal_offset];
 				if(tcoord_offset >= 0) {
 					g->triangles[triangle_i].tcoordIndexes[j] = p[i+tcoord_offset];
-                    i=i+1;
 				}
-                i=i+2;
+                i = i+inputCount;
 			}
-            triangle_i++;
 		}
 
 		/*-----------------Get the vertices source-------------------*/
@@ -498,7 +513,7 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 				xml_node<> *float_array = source->first_node("float_array");
 				int f_count = str2int(float_array->first_attribute("count")->value());
 				char *floats = float_array->value();
-				float f[f_count];
+				float* f = new float[f_count];
 				i = 0;
 				stringstream ssin(floats);
 				while (ssin.good() && i < f_count) {
@@ -516,12 +531,12 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 					g->normals[i].vector[1] = f[f_index++];
 					g->normals[i].vector[2] = f[f_index++];
 				}
-
+                delete[] f;
 			} else if (!strcmp(source->first_attribute("id")->value(), (tcoord_source + 1))) {
 				xml_node<> *float_array = source->first_node("float_array");
 				int f_count = str2int(float_array->first_attribute("count")->value());
 				char *floats = float_array->value();
-				float f[f_count];
+				float* f = new float[f_count];
 				i = 0;
 				stringstream ssin(floats);
 				while (ssin.good() && i < f_count) {
@@ -538,7 +553,7 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 					g->tcoords[i].st[0] = f[f_index++];
 					g->tcoords[i].st[1] = f[f_index++];
 				}
-
+                delete[] f;
 			}
 
 			if (NULL == materialName) {
@@ -551,8 +566,8 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 				}
 			}
 
-            _mesh->groups.push_back(g);
         }
+        _mesh->groups.push_back(g);
 	}
     return true;
 }

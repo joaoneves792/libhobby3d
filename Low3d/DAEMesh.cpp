@@ -6,6 +6,10 @@
 #include <vector>
 #include <rapidxml.hpp>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #ifdef GLES
 #include <GLES2/gl2.h>
 #else
@@ -172,6 +176,7 @@ void DAEMesh::prepareGroup(dae_geometry *group, unsigned int groupIndex, GLuint 
     glEnableVertexAttribArray(3);
 
     //Free all the temporary memory
+    delete[] vertices;
     delete[] indices;
     delete[] normals;
     delete[] texCoords;
@@ -244,7 +249,7 @@ void DAEMesh::setMaterialGL3(dae_material* material){
     //TODO
     //glUniform1f(transparency, 1-(material->transparency));
 
-    if( material->textureId > 0){
+    if( material->textureId >= 0){
         glBindTexture( GL_TEXTURE_2D, material->textureId);
     }
 }
@@ -394,6 +399,7 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 
 		dae_geometry* g = new dae_geometry;
 		char* name = geometry->first_attribute("name")->value();
+        g->geometryId = geometry->first_attribute("id")->value();
         g->verticesCount = 0;
         g->normalsCount = 0;
         g->tcoordCount = 0;
@@ -477,97 +483,136 @@ bool DAEMesh::LoadFromFile(const char *lpszFileName) {
 
 		/*------------------SOURCES-----------------------*/
 	    for(xml_node<> * source = mesh->first_node("source"); source; source = source->next_sibling("source")) {
-			if (!strcmp(source->first_attribute("id")->value(), (vertex_source + 1))) {
-				xml_node<> *float_array = source->first_node("float_array");
-				int f_count = str2int(float_array->first_attribute("count")->value());
-				char *floats = float_array->value();
-				float f[f_count];
-				i = 0;
-				stringstream ssin(floats);
-				while (ssin.good() && i < f_count) {
-					float fl;
-					ssin >> fl;
-					f[i] = fl;
-					++i;
-				}
+            if (!strcmp(source->first_attribute("id")->value(), (vertex_source + 1))) {
+                xml_node<> *float_array = source->first_node("float_array");
+                int f_count = str2int(float_array->first_attribute("count")->value());
+                char *floats = float_array->value();
+                float f[f_count];
+                i = 0;
+                stringstream ssin(floats);
+                while (ssin.good() && i < f_count) {
+                    float fl;
+                    ssin >> fl;
+                    f[i] = fl;
+                    ++i;
+                }
 
-				g->verticesCount = f_count / 3;
-				g->vertices = new dae_vertex[g->verticesCount];
+                g->verticesCount = f_count / 3;
+                g->vertices = new dae_vertex[g->verticesCount];
                 //g->verticesPosition = new float[g->verticesCount*4];
-				int f_index = 0;
+                int f_index = 0;
                 int position_index = 0;
-				for (int i = 0; i < g->verticesCount; i++) {
+                for (int i = 0; i < g->verticesCount; i++) {
                     /*g->verticesPosition[position_index++] = f[f_index++];
                     g->verticesPosition[position_index++] = f[f_index++];
                     g->verticesPosition[position_index++] = f[f_index++];
                     g->verticesPosition[position_index++] = 1.0;*/
 
-					g->vertices[i].position[0] = f[f_index];
-					g->vertices[i].position[1] = f[f_index + 1];
-					g->vertices[i].position[2] = f[f_index + 2];
-					f_index += 3;
-				}
+                    g->vertices[i].position[0] = f[f_index];
+                    g->vertices[i].position[1] = f[f_index + 1];
+                    g->vertices[i].position[2] = f[f_index + 2];
+                    f_index += 3;
+                }
                 //g->verticesPositionCount = position_index;
 
-			} else if (!strcmp(source->first_attribute("id")->value(), (normal_source + 1))) {
-				xml_node<> *float_array = source->first_node("float_array");
-				int f_count = str2int(float_array->first_attribute("count")->value());
-				char *floats = float_array->value();
-				float* f = new float[f_count];
-				i = 0;
-				stringstream ssin(floats);
-				while (ssin.good() && i < f_count) {
-					float fl;
-					ssin >> fl;
-					f[i] = fl;
-					++i;
-				}
+            } else if (!strcmp(source->first_attribute("id")->value(), (normal_source + 1))) {
+                xml_node<> *float_array = source->first_node("float_array");
+                int f_count = str2int(float_array->first_attribute("count")->value());
+                char *floats = float_array->value();
+                float *f = new float[f_count];
+                i = 0;
+                stringstream ssin(floats);
+                while (ssin.good() && i < f_count) {
+                    float fl;
+                    ssin >> fl;
+                    f[i] = fl;
+                    ++i;
+                }
 
-				g->normalsCount = f_count / 3;
-				g->normals = new dae_normal[g->normalsCount];
-				int f_index = 0;
-				for (int i = 0; i < g->normalsCount; i++) {
-					g->normals[i].vector[0] = f[f_index++];
-					g->normals[i].vector[1] = f[f_index++];
-					g->normals[i].vector[2] = f[f_index++];
-				}
+                g->normalsCount = f_count / 3;
+                g->normals = new dae_normal[g->normalsCount];
+                int f_index = 0;
+                for (int i = 0; i < g->normalsCount; i++) {
+                    g->normals[i].vector[0] = f[f_index++];
+                    g->normals[i].vector[1] = f[f_index++];
+                    g->normals[i].vector[2] = f[f_index++];
+                }
                 delete[] f;
-			} else if (!strcmp(source->first_attribute("id")->value(), (tcoord_source + 1))) {
-				xml_node<> *float_array = source->first_node("float_array");
-				int f_count = str2int(float_array->first_attribute("count")->value());
-				char *floats = float_array->value();
-				float* f = new float[f_count];
-				i = 0;
-				stringstream ssin(floats);
-				while (ssin.good() && i < f_count) {
-					float fl;
-					ssin >> fl;
-					f[i] = fl;
-					++i;
-				}
+            } else if (!strcmp(source->first_attribute("id")->value(), (tcoord_source + 1))) {
+                xml_node<> *float_array = source->first_node("float_array");
+                int f_count = str2int(float_array->first_attribute("count")->value());
+                char *floats = float_array->value();
+                float *f = new float[f_count];
+                i = 0;
+                stringstream ssin(floats);
+                while (ssin.good() && i < f_count) {
+                    float fl;
+                    ssin >> fl;
+                    f[i] = fl;
+                    ++i;
+                }
 
-				g->tcoordCount = f_count / 2;
-				g->tcoords = new dae_texture_coordinates[g->tcoordCount];
-				int f_index = 0;
-				for (int i = 0; i < g->tcoordCount; i++) {
-					g->tcoords[i].st[0] = f[f_index++];
-					g->tcoords[i].st[1] = f[f_index++];
-				}
+                g->tcoordCount = f_count / 2;
+                g->tcoords = new dae_texture_coordinates[g->tcoordCount];
+                int f_index = 0;
+                for (int i = 0; i < g->tcoordCount; i++) {
+                    g->tcoords[i].st[0] = f[f_index];
+                    g->tcoords[i].st[1] = 1-f[f_index+1]; //Why? no idea...
+                    f_index += 2;
+                }
                 delete[] f;
-			}
-
-			if (NULL == materialName) {
-				g->materialIndex = -1;
-			} else {
-				for (int i = 0; i < _mesh->materials.size(); i++) {
-					if (!strcmp(_mesh->materials[i]->materialId, materialName)) {
-						g->materialIndex = i;
-					}
-				}
-			}
-
+            }
         }
+		if (NULL == materialName) {
+			g->materialIndex = -1;
+		} else {
+			for (int i = 0; i < _mesh->materials.size(); i++) {
+				if (!strcmp(_mesh->materials[i]->materialId, materialName)) {
+					g->materialIndex = i;
+                    break;
+				}
+			}
+		}
+
+
         _mesh->groups.push_back(g);
 	}
+
+    /*------------------Controllers-----------------------------*/
+    xml_node<>* controllers = root_node->first_node("library_controllers");
+    for (xml_node<> * controller = controllers->first_node("controller"); controller; controller = controller->next_sibling("controller")) {
+        xml_node<>* skin = controller->first_node("skin");
+        char* source = skin->first_attribute("source")->value();
+        dae_geometry* group = NULL;
+        for(int i=0; i<_mesh->groups.size();i++){
+            if(!strcmp((source+1), _mesh->groups[i]->geometryId)){
+                group = _mesh->groups[i];
+            }
+        }
+        if(NULL == group)
+            continue;
+
+        xml_node<>* bind_shape_matrix = skin->first_node("bind_shape_matrix");
+        if(bind_shape_matrix){
+            char* matrix_chars =  bind_shape_matrix->value();
+            float bind_shape[16];
+            char2floatArray(matrix_chars, bind_shape, 16);
+            transformGroup(group, glm::make_mat4(bind_shape));
+        }
+    }
     return true;
+}
+
+void DAEMesh::transformGroup(dae_geometry *group, glm::mat4 mat) {
+    for(int i=0;i<group->verticesCount;i++){
+        glm::vec4 vertex = glm::vec4(group->vertices[i].position[0],
+                                     group->vertices[i].position[1],
+                                     group->vertices[i].position[2],
+                                     1.0f);
+
+        glm::vec4 newVertex = mat * vertex;
+        group->vertices[i].position[0] = newVertex[0];
+        group->vertices[i].position[1] = newVertex[1];
+        group->vertices[i].position[2] = newVertex[2];
+    }
 }

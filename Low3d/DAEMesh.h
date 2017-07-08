@@ -37,6 +37,7 @@ typedef struct{
 
 typedef struct{
     char name[32];
+    char *geometryId;
     dae_vertex* vertices;
     float* verticesPosition;
     int verticesCount;
@@ -105,6 +106,7 @@ public:
 private:
     void prepareGroup(dae_geometry* group, unsigned int groupIndex, GLuint shader);
     void setMaterialGL3(dae_material* material);
+    void transformGroup(dae_geometry* group, glm::mat4 mat);
 
 };
 

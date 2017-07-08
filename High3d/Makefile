@@ -1,4 +1,4 @@
-OBJS= ms3d.o Tex.o shader.o GLM.o Lights.o Shadows.o Text.o Body.o DAE.o
+OBJS= ms3d.o Tex.o shader.o GLM.o Lights.o Shadows.o Text.o Body.o H3D.o #DAE.o
 LOW_OBJS=../Low3d/*.o
 
 PYTHON_WRAPPER=hobby3d_python_wrap.o

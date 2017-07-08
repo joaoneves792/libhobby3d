@@ -1,4 +1,4 @@
-OBJS= MS3DFile.o DAEMesh.o optimizations.o Shader.o MS3DFileIO.o Textures.o
+OBJS= MS3DFile.o H3DFile.o optimizations.o Shader.o MS3DFileIO.o Textures.o #DAEMesh.o
 
 CC=g++
 #CXXFLAGS=-c -Wall -O3 -fPIC #-DGLES

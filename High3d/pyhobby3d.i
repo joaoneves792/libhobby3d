@@ -9,7 +9,7 @@
         #include "Shadows.h"
         #include "Text.h"
         #include "Body.h"
-        #include "DAE.h"
+        #include "H3D.h"
 %}
 
 %typemap(out) float* getJointPosition{
@@ -61,4 +61,4 @@
 %include "Shadows.h"
 %include "Text.h"
 %include "Body.h"
-%include "DAE.h"
+%include "H3D.h"

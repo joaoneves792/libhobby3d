@@ -61,7 +61,7 @@ typedef struct
 typedef struct
 {
     char*           name;
-    float           ambient[4];                         //
+    float           ambient[4];                             //
     float           diffuse[4];                         //
     float           specular[4];                        //
     float           emissive[4];                        //

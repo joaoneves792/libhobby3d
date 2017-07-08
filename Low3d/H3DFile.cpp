@@ -229,7 +229,7 @@ void H3DFile::drawGLES2() {
 
 
 void H3DFile::setMaterialGL3(h3d_material* material){
-    /*GLint ambient = glGetUniformLocation(_shader, "ambient");
+    GLint ambient = glGetUniformLocation(_shader, "ambient");
     GLint diffuse = glGetUniformLocation(_shader, "diffuse");
     GLint specular = glGetUniformLocation(_shader, "specular");
     GLint emissive = glGetUniformLocation(_shader, "emissive");
@@ -239,11 +239,10 @@ void H3DFile::setMaterialGL3(h3d_material* material){
     glUniform4fv(ambient, 1, material->ambient);
     glUniform4fv(diffuse, 1, material->diffuse);
     glUniform4fv(specular, 1, material->specular);
-    glUniform4fv(emissive, 1, material->emission);
+    glUniform4fv(emissive, 1, material->emissive);
 
     glUniform1f(shininess, material->shininess);
-    //TODO
-    //glUniform1f(transparency, 1-(material->transparency));*/
+    glUniform1f(transparency, 1-(material->transparency));
 
     if( material->textureId >= 0){
         glBindTexture( GL_TEXTURE_2D, material->textureId);
@@ -322,6 +321,19 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
         }else {
             _materials[i].textureId = -1;
         }
+
+        fread(&_materials[i].ambient, 1, sizeof(float), fp);
+        fread(&_materials[i].diffuse, 3, sizeof(float), fp);
+        fread(&_materials[i].specular, 3, sizeof(float), fp);
+        fread(&_materials[i].emissive, 3, sizeof(float), fp);
+        fread(&_materials[i].shininess, 1, sizeof(float), fp);
+        fread(&_materials[i].transparency, 1, sizeof(float), fp);
+        _materials[i].ambient[1] = _materials[i].ambient[0];
+        _materials[i].ambient[2] = _materials[i].ambient[0];
+        _materials[i].ambient[3] = 1.0f;
+        _materials[i].diffuse[3] = 1.0f;
+        _materials[i].specular[3] = 1.0f;
+        _materials[i].emissive[3] = 1.0f;
     }
 
     return true;

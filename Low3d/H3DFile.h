@@ -55,22 +55,23 @@ typedef struct
     h3d_triangle*  	triangles;
 	int 			numVertices;
 	h3d_vertex* 	vertices;
-    char            materialIndex;                      // -1 = no material
+    int             materialIndex;                      // -1 = no material
 } h3d_group;
 
-/* UNUSED (FOR NOW)
 typedef struct
 {
-    char            name[32];                           //
+    char*           name;
     float           ambient[4];                         //
     float           diffuse[4];                         //
     float           specular[4];                        //
     float           emissive[4];                        //
     float           shininess;                          // 0.0f - 128.0f
     float           transparency;                       // 0.0f - 1.0f
-    char            texture[128];                        // texture.bmp
-} h3d_material_t;
+    char*           textureImage;
+	GLint 			textureId;
+} h3d_material;
 
+/* UNUSED (FOR NOW)
 typedef struct
 {
     float           time;                               // time in seconds
@@ -124,7 +125,8 @@ class H3DFile
 private:
 	h3d_group* _groups;
 	int _groupCount;
-	//h3d_material* _materials;
+	h3d_material* _materials;
+	int _materialCount;
 
 	GLuint* _vao;
 	GLuint* _vbo;
@@ -149,8 +151,7 @@ public:
 
 private:
 	void prepareGroup(h3d_group* group, unsigned int groupIndex, GLuint shader);
-	void drawGroup(h3d_group* group);
-	void setMaterialGL3();
+	void setMaterialGL3(h3d_material* material);
 	/*void recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, int jointIndex);
 	glm::mat4 recursiveBindPose(int i);
 	void handleAnimation();

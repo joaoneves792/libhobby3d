@@ -120,7 +120,7 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     //_vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->verticesPositionCount;
     _vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->numVertices*4;
     _vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*group->numVertices*3;
-    _vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*group->numTriangles*2;
+    _vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*group->numVertices*2;
     _vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*0;
 
     _vboDescriptions[groupIndex].totalSize = _vboDescriptions[groupIndex].positionSize
@@ -185,9 +185,9 @@ void H3DFile::drawGL2() {
 #ifndef GLES
     //handleAnimation();
     for(int i=0; i < _groupCount; i++){
-        /*int materialIndex = (int)_mesh->groups[i]->materialIndex;
+        int materialIndex = _groups[i].materialIndex;
         if( materialIndex >= 0 )
-            setMaterialGL3(_mesh->materials[materialIndex]);*/
+            setMaterialGL3(&_materials[materialIndex]);
         glBindVertexArray(_vao[i]);
         glDrawElements(GL_TRIANGLES, _groups[i].numTriangles*3, GL_UNSIGNED_INT, 0);
     }
@@ -197,9 +197,9 @@ void H3DFile::drawGL2() {
 void H3DFile::drawGLES2() {
     //handleAnimation();
     for(int i=0; i < _groupCount; i++){
-        /*int materialIndex = (int)_mesh->groups[i]->materialIndex;
+        int materialIndex = _groups[i].materialIndex;
         if( materialIndex >= 0 )
-            setMaterialGL3(_mesh->materials[materialIndex]);*/
+            setMaterialGL3(&_materials[materialIndex]);
 
         glBindBuffer(GL_ARRAY_BUFFER, _vbo[i]); //pos normal etc
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _eab[i]);
@@ -228,7 +228,7 @@ void H3DFile::drawGLES2() {
 }
 
 
-void H3DFile::setMaterialGL3(){
+void H3DFile::setMaterialGL3(h3d_material* material){
     /*GLint ambient = glGetUniformLocation(_shader, "ambient");
     GLint diffuse = glGetUniformLocation(_shader, "diffuse");
     GLint specular = glGetUniformLocation(_shader, "specular");
@@ -243,11 +243,11 @@ void H3DFile::setMaterialGL3(){
 
     glUniform1f(shininess, material->shininess);
     //TODO
-    //glUniform1f(transparency, 1-(material->transparency));
+    //glUniform1f(transparency, 1-(material->transparency));*/
 
     if( material->textureId >= 0){
         glBindTexture( GL_TEXTURE_2D, material->textureId);
-    }*/
+    }
 }
 
 
@@ -280,6 +280,9 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
         fread(_groups[i].name, numChars, sizeof(char), fp);
         _groups[i].name[numChars] = '\0';
 
+        //Get the material index
+        fread(&_groups[i].materialIndex, 1, sizeof(int), fp);
+
         //Read the triangles and their vertex indexes
         fread(&_groups[i].numTriangles, 1, sizeof(int), fp);
         _groups[i].triangles = new h3d_triangle[_groups[i].numTriangles];
@@ -294,6 +297,31 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
             fread(&_groups[i].vertices[j], 1, sizeof(h3d_vertex), fp);
         }
 
+    }
+
+    fread(&_materialCount, 1, sizeof(int), fp);
+    _materials = new h3d_material[_materialCount];
+
+    std::string folderPath(lpszFileName);
+    folderPath = folderPath.substr(0, folderPath.find_last_of("/")+1);
+
+    for(int i=0;i<_materialCount;i++){
+        //Get the texture file
+        byte numChars;
+        fread(&numChars, 1, sizeof(byte), fp);
+        _materials[i].textureImage = new char[numChars+1];
+        if(numChars > 0) {
+            fread(_materials[i].textureImage, numChars, sizeof(char), fp);
+            _materials[i].textureImage[numChars] = '\0';
+
+            //Load the texture
+            std::string texturePath("./");
+            texturePath.assign(folderPath);
+            texturePath.append(_materials[i].textureImage);
+            _materials[i].textureId = LoadGLTexture(texturePath.c_str());
+        }else {
+            _materials[i].textureId = -1;
+        }
     }
 
     return true;

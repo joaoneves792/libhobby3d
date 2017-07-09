@@ -40,7 +40,8 @@ typedef struct
     float   vertex[3];
 	float 	normal[3];
 	float 	uv[2];
-    //signed char    boneId;                                     // -1 = no bone
+	int     boneID;                                    // -1 = no bone
+    float   weight;
 } h3d_vertex;
 
 typedef struct
@@ -56,6 +57,8 @@ typedef struct
 	int 			numVertices;
 	h3d_vertex* 	vertices;
     int             materialIndex;                      // -1 = no material
+	char 			isAnimated; 						// 0 if no armature
+	char* 			armatureName;						// if isAnimated is 1
 } h3d_group;
 
 typedef struct

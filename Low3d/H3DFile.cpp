@@ -296,6 +296,15 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
             fread(&_groups[i].vertices[j], 1, sizeof(h3d_vertex), fp);
         }
 
+        fread(&_groups[i].isAnimated, 1, sizeof(byte), fp);
+        if(_groups[i].isAnimated){
+            byte numChars;
+            fread(&numChars, 1, sizeof(byte), fp);
+            _groups[i].armatureName = new char[numChars+1];
+            fread(_groups[i].armatureName, numChars, sizeof(char), fp);
+            _groups[i].armatureName[numChars] = '\0';
+        }
+
     }
 
     fread(&_materialCount, 1, sizeof(int), fp);

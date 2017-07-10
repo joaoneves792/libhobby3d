@@ -19,6 +19,14 @@ H3DFile::H3DFile() {
     _vao = NULL;
     _vbo = NULL;
     _eab = NULL;
+
+    _groups = NULL;
+    _armatures = NULL;
+    _materials = NULL;
+
+    _groupCount = 0;
+    _materialCount = 0;
+    _armatureCount = 0;
 }
 
 H3DFile::~H3DFile() {
@@ -33,8 +41,19 @@ void H3DFile::Clear() {
         delete[] _groups[i].vertices;
         delete[] _groups[i].triangles;
     }
+
+    for(int i=0; i< _armatureCount; i++){
+        delete[] _armatures[i].name;
+    }
+
     delete[] _groups;
     _groups = NULL;
+    delete[] _armatures;
+    _armatures = NULL;
+
+    _groupCount = 0;
+    _materialCount = 0;
+    _armatureCount = 0;
 }
 
 void H3DFile::unloadModel() {
@@ -344,6 +363,50 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
         _materials[i].specular[3] = 1.0f;
         _materials[i].emissive[3] = 1.0f;
     }
+
+    fread(&_armatureCount, 1, sizeof(int), fp);
+    _armatures = new h3d_armature[_armatureCount];
+    for(int i=0;i<_armatureCount;i++){
+        //Get the Armature name file
+        byte numChars;
+        fread(&numChars, 1, sizeof(byte), fp);
+        _armatures[i].name = new char[numChars+1];
+        fread(_armatures[i].name, numChars, sizeof(char), fp);
+        _armatures[i].name[numChars] = '\0';
+
+        fread(&_armatures[i].jointsCount, 1, sizeof(int), fp);
+        _armatures[i].joints = new h3d_joint[_armatures[i].jointsCount];
+
+        for(int j=0;j<_armatures[i].jointsCount;j++){
+            fread(&numChars, 1, sizeof(byte), fp);
+            _armatures[i].joints[j].name = new char[numChars+1];
+            fread(_armatures[i].joints[j].name, numChars, sizeof(char), fp);
+            _armatures[i].joints[j].name[numChars] = '\0';
+
+            fread(&_armatures[i].joints[j].position[0], 1, sizeof(float), fp);
+            fread(&_armatures[i].joints[j].position[1], 1, sizeof(float), fp);
+            fread(&_armatures[i].joints[j].position[2], 1, sizeof(float), fp);
+
+            fread(&_armatures[i].joints[j].rotation[0], 1, sizeof(float), fp);
+            fread(&_armatures[i].joints[j].rotation[1], 1, sizeof(float), fp);
+            fread(&_armatures[i].joints[j].rotation[2], 1, sizeof(float), fp);
+
+            fread(&_armatures[i].joints[j].parentIndex, 1, sizeof(int), fp);
+
+        }
+
+    }
+
+    for(int i=0;i<_groupCount;i++){
+        if(_groups[i].isAnimated){
+            for(int j=0;j<_armatureCount;j++){
+                if(!strcmp(_groups[i].armatureName, _armatures[j].name)){
+                    _groups[i].armatureIndex = j;
+                }
+            }
+        }
+    }
+
 
     return true;
 }

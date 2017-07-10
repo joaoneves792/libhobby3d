@@ -51,6 +51,29 @@ typedef struct
 
 typedef struct
 {
+    char*           name;                           	//
+    int 			parentIndex; 						// -1 if no parent
+    float           position[3];						//
+	float           rotation[3];                        //euler
+
+    int            numKeyFramesRot;                    //
+    int            numKeyFramesTrans;                  //
+
+    /*ms3d_keyframe_rot_t* keyFramesRot;      // local animation matrices
+    ms3d_keyframe_pos_t* keyFramesTrans;  // local animation matrices*/
+
+} h3d_joint;
+
+typedef struct
+{
+    char*           name;
+	int 			jointsCount;
+	h3d_joint*		joints;
+
+}h3d_armature;
+
+typedef struct
+{
     char*           name;
     int             numTriangles;
     h3d_triangle*  	triangles;
@@ -59,6 +82,7 @@ typedef struct
     int             materialIndex;                      // -1 = no material
 	char 			isAnimated; 						// 0 if no armature
 	char* 			armatureName;						// if isAnimated is 1
+	int 			armatureIndex;
 } h3d_group;
 
 typedef struct
@@ -87,22 +111,6 @@ typedef struct
     float           position[3];                        // local position
 } ms3d_keyframe_pos_t;
 
-typedef struct
-{
-    byte            flags;                              // SELECTED | DIRTY
-    char            name[32];                           //
-    char            parentName[32];                     //
-    int 			parentIndex; 						// -1 if no parent
-	float           rotation[3];                        // local reference matrix
-    float           position[3];
-
-    word            numKeyFramesRot;                    //
-    word            numKeyFramesTrans;                  //
-
-	ms3d_keyframe_rot_t* keyFramesRot;      // local animation matrices
-    ms3d_keyframe_pos_t* keyFramesTrans;  // local animation matrices
-
-} ms3d_joint_t;
 */
 //#include <poppack.h>
 #ifndef RC_INVOKED
@@ -130,6 +138,8 @@ private:
 	int _groupCount;
 	h3d_material* _materials;
 	int _materialCount;
+	h3d_armature* _armatures;
+	int _armatureCount;
 
 	GLuint* _vao;
 	GLuint* _vbo;

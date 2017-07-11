@@ -1,9 +1,13 @@
 #include <string.h>
 #include <iostream>
 
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtc/type_ptr.inl>
+#include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/matrix_interpolation.hpp>
 
 #ifdef GLES
 #include <GLES2/gl2.h>
@@ -27,6 +31,10 @@ H3DFile::H3DFile() {
     _groupCount = 0;
     _materialCount = 0;
     _armatureCount = 0;
+
+    _currentFrame = 0;
+
+    _isAnimated = false;
 }
 
 H3DFile::~H3DFile() {
@@ -105,13 +113,15 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     GLfloat *vertices  = new GLfloat[group->numVertices*4];
     GLfloat *normals   = new GLfloat[group->numVertices*3];
     GLfloat *texCoords = new GLfloat[group->numVertices*2];
-    GLfloat *joints    = new GLfloat[0];
+    GLfloat *joints    = new GLfloat[group->numVertices*1];
 
     indexInt *indices  = new indexInt[group->numTriangles*3];
 
     int vi=0;
     int ni=0;
     int ti=0;
+    int ji=0;
+
     for(int i=0;i<group->numVertices;i++){
         vertices[vi++] = group->vertices[i].vertex[0];
         vertices[vi++] = group->vertices[i].vertex[1];
@@ -124,6 +134,8 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
 
         texCoords[ti++] = group->vertices[i].uv[0];
         texCoords[ti++] = group->vertices[i].uv[1];
+
+        joints[ji++] = (GLfloat)group->vertices[i].boneID;
     }
 
 
@@ -140,7 +152,7 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     _vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->numVertices*4;
     _vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*group->numVertices*3;
     _vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*group->numVertices*2;
-    _vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*0;
+    _vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*group->numVertices*1;
 
     _vboDescriptions[groupIndex].totalSize = _vboDescriptions[groupIndex].positionSize
                                              + _vboDescriptions[groupIndex].normalsSize
@@ -199,11 +211,152 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
 
 }
 
+void H3DFile::setCurrentFrame(int f) {
+    _currentFrame = f;
+}
+
+void H3DFile::recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, h3d_joint* joints, int jointIndex){
+    int parentIndex =joints[jointIndex].parentIndex;
+    if(parentIndex != -1 && !hasParentTransform[jointIndex]){
+        recursiveParentTransform(transforms, hasParentTransform, joints, parentIndex);
+        transforms[jointIndex] = transforms[parentIndex] * transforms[jointIndex];
+        hasParentTransform[jointIndex] = true;
+    }
+}
+
+glm::mat4 H3DFile::getBoneTransform(h3d_joint* joint) {
+    h3d_keyframe* prevKeyframe = NULL;
+    h3d_keyframe* nextKeyframe = NULL;
+
+    for(int j=0; j<joint->numKeyframes; j++){
+        nextKeyframe = &joint->keyframes[j];
+        if(j>0){
+            prevKeyframe = &joint->keyframes[j-1];
+        }else{
+            prevKeyframe = nextKeyframe;
+        }
+        if(nextKeyframe->frame > _currentFrame){
+            break;
+        }
+    }
+
+
+    if(joint->numKeyframes > 0) {
+        float lerpFactor;
+        if (nextKeyframe->frame - prevKeyframe->frame == 0) {
+            lerpFactor = 0;
+        } else {
+            lerpFactor = ((float)(_currentFrame - prevKeyframe->frame)) /
+                         ((float)(nextKeyframe->frame - prevKeyframe->frame));
+        }
+        if (lerpFactor < 0)
+            lerpFactor = 0;
+        float rx, ry, rz;
+
+        rx = nextKeyframe->rotation[0];
+        ry = nextKeyframe->rotation[1];
+        rz = nextKeyframe->rotation[2];
+        glm::vec3 euler = glm::vec3(rx, ry, rz);
+        glm::quat nextRotation = glm::quat(euler);
+
+
+        rx = prevKeyframe->rotation[0];
+        ry = prevKeyframe->rotation[1];
+        rz = prevKeyframe->rotation[2];
+        euler = glm::vec3(rx, ry, rz);
+        glm::quat prevRotation = glm::quat(euler);
+
+        glm::mat4 rotation = glm::toMat4(glm::lerp(prevRotation, nextRotation, lerpFactor));
+
+        rx = nextKeyframe->position[0];
+        ry = nextKeyframe->position[1];
+        rz = nextKeyframe->position[2];
+        glm::mat4 nextTrans = glm::translate(glm::mat4(1.0f), glm::vec3(rx, ry, rz));
+
+
+        rx = prevKeyframe->position[0];
+        ry = prevKeyframe->position[1];
+        rz = prevKeyframe->position[2];
+        glm::mat4 prevTrans = glm::translate(glm::mat4(1.0f), glm::vec3(rx, ry, rz));
+
+        glm::mat4 translation = glm::interpolate(prevTrans, nextTrans, lerpFactor);
+
+        return translation * rotation;
+
+    }
+    return glm::mat4(1.0f);
+}
+
+
+glm::mat4 H3DFile::getBindPose(h3d_joint* joints, int i) {
+    glm::mat4 bindPoseTranslation = glm::translate(glm::mat4(1.0f),
+                                                   glm::vec3(joints[i].position[0],
+                                                             joints[i].position[1],
+                                                             joints[i].position[2]));
+
+    glm::mat4 bindPoseRotation = glm::toMat4(glm::quat(glm::vec3(joints[i].rotation[0],
+                                                                 joints[i].rotation[1],
+                                                                 joints[i].rotation[2])));
+
+    glm::mat4 bindPose = bindPoseTranslation * bindPoseRotation;
+    return bindPose;
+}
+
+void H3DFile::handleAnimation(h3d_group* group) {
+    //Check for the Uniform, if its none existent then do nothing
+    GLint bones = glGetUniformLocation(_shader, "bones");
+    if(-1 == bones)
+        return;
+
+    h3d_armature armature = _armatures[group->armatureIndex];
+
+    glm::mat4 transforms[armature.jointsCount];
+    for(int i=0; i<armature.jointsCount; i++){
+        transforms[i] = glm::mat4(1.0f);
+    }
+
+    if(!group->isAnimated){ //If not animated the we still have to upload identities if the bones exist
+        for(int i=0; i<armature.jointsCount; i++) {
+            glUniformMatrix4fv(bones + i, 1, GL_FALSE, glm::value_ptr(transforms[i]));
+        }
+        return;
+    }
+
+
+    for(int i=0; i<armature.jointsCount; i++){
+        if(armature.joints[i].numKeyframes == 0)
+            continue;
+        glm::mat4 transform = getBoneTransform(&armature.joints[i]);
+
+        //glm::mat4 bindPose = recursiveBindPose(armature.joints, i);
+        glm::mat4 bindPose = getBindPose(armature.joints, i);
+
+        glm::mat4 invBindPose = glm::inverse(bindPose);
+
+        transforms[i] = bindPose * transform * invBindPose;
+    }
+
+    //Recursively check and apply parent transforms
+    bool hasParentTransform[armature.jointsCount];
+    for(int i=0;i<armature.jointsCount;i++){
+        hasParentTransform[i] = false;
+    }
+
+    for(int i=0; i<armature.jointsCount; i++) {
+        recursiveParentTransform(transforms, hasParentTransform, armature.joints, i);
+    }
+
+    for(int i=0; i<armature.jointsCount; i++) {
+        glUniformMatrix4fv(bones + i, 1, GL_FALSE, glm::value_ptr(transforms[i]));
+    }
+
+
+}
 
 void H3DFile::drawGL2() {
 #ifndef GLES
-    //handleAnimation();
     for(int i=0; i < _groupCount; i++){
+        handleAnimation(&_groups[i]);
         int materialIndex = _groups[i].materialIndex;
         if( materialIndex >= 0 )
             setMaterialGL3(&_materials[materialIndex]);
@@ -214,8 +367,8 @@ void H3DFile::drawGL2() {
 }
 
 void H3DFile::drawGLES2() {
-    //handleAnimation();
     for(int i=0; i < _groupCount; i++){
+        handleAnimation(&_groups[i]);
         int materialIndex = _groups[i].materialIndex;
         if( materialIndex >= 0 )
             setMaterialGL3(&_materials[materialIndex]);
@@ -392,6 +545,12 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
             fread(&_armatures[i].joints[j].rotation[2], 1, sizeof(float), fp);
 
             fread(&_armatures[i].joints[j].parentIndex, 1, sizeof(int), fp);
+
+            fread(&_armatures[i].joints[j].numKeyframes, 1, sizeof(int), fp);
+            _armatures[i].joints[j].keyframes = new h3d_keyframe[_armatures[i].joints[j].numKeyframes];
+            for(int k=0;k<_armatures[i].joints[j].numKeyframes;k++){
+                fread(&_armatures[i].joints[j].keyframes[k], 1, sizeof(h3d_keyframe), fp);
+            }
 
         }
 

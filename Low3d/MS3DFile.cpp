@@ -15,11 +15,11 @@
 #include "MS3DFile.h"
 #include "MS3DFileI.h"
 #include <iterator>
+#include <iostream>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtc/type_ptr.inl>
-#include <iostream>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/matrix_interpolation.hpp>
@@ -323,7 +323,7 @@ void CMS3DFile::handleAnimation() {
     for(size_t i=0; i<_i->arrJoints.size(); i++){
 		if(_i->arrJoints[i].numKeyFramesRot == 0 ||
 				_i->arrJoints[i].numKeyFramesTrans ==0 )
-			return;
+			continue;
 		glm::mat4 rotation = getBoneRotation(i);
 		glm::mat4 translation = getBoneTranslation(i);
 

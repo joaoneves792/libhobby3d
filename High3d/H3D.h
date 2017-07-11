@@ -15,6 +15,8 @@ public:
 	void drawGL2();
 	void drawGLES2();
 	void prepare(shader* shader);
+
+    void setCurrentFrame(int f);
 };
 
 #endif

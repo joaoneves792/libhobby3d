@@ -51,18 +51,23 @@ typedef struct
 
 typedef struct
 {
+	int             frame;
+	float           position[3];
+	float           rotation[3];
+}h3d_keyframe;
+
+typedef struct
+{
     char*           name;                           	//
     int 			parentIndex; 						// -1 if no parent
     float           position[3];						//
 	float           rotation[3];                        //euler
 
-    int            numKeyFramesRot;                    //
-    int            numKeyFramesTrans;                  //
-
-    /*ms3d_keyframe_rot_t* keyFramesRot;      // local animation matrices
-    ms3d_keyframe_pos_t* keyFramesTrans;  // local animation matrices*/
+    int             numKeyframes;                       //
+    h3d_keyframe*  	keyframes;
 
 } h3d_joint;
+
 
 typedef struct
 {
@@ -98,20 +103,7 @@ typedef struct
 	GLint 			textureId;
 } h3d_material;
 
-/* UNUSED (FOR NOW)
-typedef struct
-{
-    float           time;                               // time in seconds
-    float           rotation[3];                        // x, y, z angles
-} ms3d_keyframe_rot_t;
 
-typedef struct
-{
-    float           time;                               // time in seconds
-    float           position[3];                        // local position
-} ms3d_keyframe_pos_t;
-
-*/
 //#include <poppack.h>
 #ifndef RC_INVOKED
 #pragma pack(pop)
@@ -149,6 +141,7 @@ private:
 	h3d_vboDescription* _vboDescriptions;
 
 	bool _isAnimated;
+	int _currentFrame;
 
 public:
 	H3DFile();
@@ -162,14 +155,16 @@ public:
 	void drawGL2();
 	void drawGLES2();
 
+	void setCurrentFrame(int f);
+
 private:
 	void prepareGroup(h3d_group* group, unsigned int groupIndex, GLuint shader);
 	void setMaterialGL3(h3d_material* material);
-	/*void recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, int jointIndex);
-	glm::mat4 recursiveBindPose(int i);
-	void handleAnimation();
-    glm::mat4 getBoneRotation(int i);
-    glm::mat4 getBoneTranslation(int i);*/
+	void recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, h3d_joint* joints, int jointIndex);
+	glm::mat4 recursiveBindPose(h3d_joint* joints, int i);
+    glm::mat4 getBindPose(h3d_joint* joints, int i);
+	void handleAnimation(h3d_group* group);
+    glm::mat4 getBoneTransform(h3d_joint* joint);
 };
 
 #endif // _H3DFILE_H_

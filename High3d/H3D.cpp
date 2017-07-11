@@ -35,3 +35,7 @@ void H3D::drawGLES2(){
 void H3D::prepare(shader* shader){
     _model->prepareModel(shader->getShader());
 }
+
+void H3D::setCurrentFrame(int f) {
+    _model->setCurrentFrame(f);
+}

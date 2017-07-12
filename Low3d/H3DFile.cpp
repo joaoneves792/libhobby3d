@@ -251,6 +251,8 @@ glm::mat4 H3DFile::getBoneTransform(h3d_joint* joint) {
         }
         if (lerpFactor < 0)
             lerpFactor = 0;
+        if (lerpFactor > 1)
+            lerpFactor = 1;
         float rx, ry, rz;
 
         rx = nextKeyframe->rotation[0];
@@ -288,15 +290,15 @@ glm::mat4 H3DFile::getBoneTransform(h3d_joint* joint) {
 }
 
 
-glm::mat4 H3DFile::getBindPose(h3d_joint* joints, int i) {
+glm::mat4 H3DFile::getBindPose(h3d_joint* joint) {
     glm::mat4 bindPoseTranslation = glm::translate(glm::mat4(1.0f),
-                                                   glm::vec3(joints[i].position[0],
-                                                             joints[i].position[1],
-                                                             joints[i].position[2]));
+                                                   glm::vec3(joint->position[0],
+                                                             joint->position[1],
+                                                             joint->position[2]));
 
-    glm::mat4 bindPoseRotation = glm::toMat4(glm::quat(glm::vec3(joints[i].rotation[0],
-                                                                 joints[i].rotation[1],
-                                                                 joints[i].rotation[2])));
+    glm::mat4 bindPoseRotation = glm::toMat4(glm::quat(glm::vec3(joint->rotation[0],
+                                                                 joint->rotation[1],
+                                                                 joint->rotation[2])));
 
     glm::mat4 bindPose = bindPoseTranslation * bindPoseRotation;
     return bindPose;
@@ -328,12 +330,12 @@ void H3DFile::handleAnimation(h3d_group* group) {
             continue;
         glm::mat4 transform = getBoneTransform(&armature.joints[i]);
 
-        //glm::mat4 bindPose = recursiveBindPose(armature.joints, i);
-        glm::mat4 bindPose = getBindPose(armature.joints, i);
+        glm::mat4 bindPose = armature.joints[i].bindPose;
 
-        glm::mat4 invBindPose = glm::inverse(bindPose);
+        glm::mat4 invBindPose = armature.joints[i].invBindPose;
 
         transforms[i] = bindPose * transform * invBindPose;
+
     }
 
     //Recursively check and apply parent transforms
@@ -545,6 +547,10 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
             fread(&_armatures[i].joints[j].rotation[2], 1, sizeof(float), fp);
 
             fread(&_armatures[i].joints[j].parentIndex, 1, sizeof(int), fp);
+
+            //Calculate the bindpose matrix
+            _armatures[i].joints[j].bindPose = getBindPose(&_armatures[i].joints[j]);
+            _armatures[i].joints[j].invBindPose = glm::inverse(_armatures[i].joints[j].bindPose);
 
             fread(&_armatures[i].joints[j].numKeyframes, 1, sizeof(int), fp);
             _armatures[i].joints[j].keyframes = new h3d_keyframe[_armatures[i].joints[j].numKeyframes];

@@ -52,19 +52,22 @@ typedef struct
 typedef struct
 {
 	int             frame;
-	float           position[3];
-	float           rotation[3];
+	float           position[3];						//local reference
+	float           rotation[3];						//local reference
 }h3d_keyframe;
 
 typedef struct
 {
     char*           name;                           	//
     int 			parentIndex; 						// -1 if no parent
-    float           position[3];						//
-	float           rotation[3];                        //euler
+    float           position[3];						//world reference
+	float           rotation[3];                        //eulerXYZ	//world reference
 
     int             numKeyframes;                       //
     h3d_keyframe*  	keyframes;
+
+	glm::mat4 		bindPose;							//Filled when loading
+	glm::mat4		invBindPose;						//Filled when loading
 
 } h3d_joint;
 
@@ -162,7 +165,7 @@ private:
 	void setMaterialGL3(h3d_material* material);
 	void recursiveParentTransform(glm::mat4* transforms, bool* hasParentTransform, h3d_joint* joints, int jointIndex);
 	glm::mat4 recursiveBindPose(h3d_joint* joints, int i);
-    glm::mat4 getBindPose(h3d_joint* joints, int i);
+    glm::mat4 getBindPose(h3d_joint* joint);
 	void handleAnimation(h3d_group* group);
     glm::mat4 getBoneTransform(h3d_joint* joint);
 };

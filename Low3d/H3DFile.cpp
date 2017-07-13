@@ -253,37 +253,8 @@ glm::mat4 H3DFile::getBoneTransform(h3d_joint* joint) {
             lerpFactor = 0;
         if (lerpFactor > 1)
             lerpFactor = 1;
-        float rx, ry, rz;
 
-        rx = nextKeyframe->rotation[0];
-        ry = nextKeyframe->rotation[1];
-        rz = nextKeyframe->rotation[2];
-        glm::vec3 euler = glm::vec3(rx, ry, rz);
-        glm::quat nextRotation = glm::quat(euler);
-
-
-        rx = prevKeyframe->rotation[0];
-        ry = prevKeyframe->rotation[1];
-        rz = prevKeyframe->rotation[2];
-        euler = glm::vec3(rx, ry, rz);
-        glm::quat prevRotation = glm::quat(euler);
-
-        glm::mat4 rotation = glm::toMat4(glm::lerp(prevRotation, nextRotation, lerpFactor));
-
-        rx = nextKeyframe->position[0];
-        ry = nextKeyframe->position[1];
-        rz = nextKeyframe->position[2];
-        glm::mat4 nextTrans = glm::translate(glm::mat4(1.0f), glm::vec3(rx, ry, rz));
-
-
-        rx = prevKeyframe->position[0];
-        ry = prevKeyframe->position[1];
-        rz = prevKeyframe->position[2];
-        glm::mat4 prevTrans = glm::translate(glm::mat4(1.0f), glm::vec3(rx, ry, rz));
-
-        glm::mat4 translation = glm::interpolate(prevTrans, nextTrans, lerpFactor);
-
-        return translation * rotation;
+        return glm::interpolate(prevKeyframe->transform, nextKeyframe->transform, lerpFactor);
 
     }
     return glm::mat4(1.0f);
@@ -310,45 +281,45 @@ void H3DFile::handleAnimation(h3d_group* group) {
     if(-1 == bones)
         return;
 
-    h3d_armature armature = _armatures[group->armatureIndex];
+    h3d_armature* armature = &_armatures[group->armatureIndex];
 
-    glm::mat4 transforms[armature.jointsCount];
-    for(int i=0; i<armature.jointsCount; i++){
+    glm::mat4 transforms[armature->jointsCount];
+    for(int i=0; i<armature->jointsCount; i++){
         transforms[i] = glm::mat4(1.0f);
     }
 
     if(!group->isAnimated){ //If not animated the we still have to upload identities if the bones exist
-        for(int i=0; i<armature.jointsCount; i++) {
+        for(int i=0; i<armature->jointsCount; i++) {
             glUniformMatrix4fv(bones + i, 1, GL_FALSE, glm::value_ptr(transforms[i]));
         }
         return;
     }
 
 
-    for(int i=0; i<armature.jointsCount; i++){
-        if(armature.joints[i].numKeyframes == 0)
+    for(int i=0; i<armature->jointsCount; i++){
+        if(armature->joints[i].numKeyframes == 0)
             continue;
-        glm::mat4 transform = getBoneTransform(&armature.joints[i]);
+        glm::mat4 transform = getBoneTransform(&armature->joints[i]);
 
-        glm::mat4 bindPose = armature.joints[i].bindPose;
+        glm::mat4 bindPose = armature->joints[i].bindPose;
 
-        glm::mat4 invBindPose = armature.joints[i].invBindPose;
+        glm::mat4 invBindPose = armature->joints[i].invBindPose;
 
         transforms[i] = bindPose * transform * invBindPose;
 
     }
 
     //Recursively check and apply parent transforms
-    bool hasParentTransform[armature.jointsCount];
-    for(int i=0;i<armature.jointsCount;i++){
+    bool hasParentTransform[armature->jointsCount];
+    for(int i=0;i<armature->jointsCount;i++){
         hasParentTransform[i] = false;
     }
 
-    for(int i=0; i<armature.jointsCount; i++) {
-        recursiveParentTransform(transforms, hasParentTransform, armature.joints, i);
+    for(int i=0; i<armature->jointsCount; i++) {
+        recursiveParentTransform(transforms, hasParentTransform, armature->joints, i);
     }
 
-    for(int i=0; i<armature.jointsCount; i++) {
+    for(int i=0; i<armature->jointsCount; i++) {
         glUniformMatrix4fv(bones + i, 1, GL_FALSE, glm::value_ptr(transforms[i]));
     }
 
@@ -555,7 +526,22 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
             fread(&_armatures[i].joints[j].numKeyframes, 1, sizeof(int), fp);
             _armatures[i].joints[j].keyframes = new h3d_keyframe[_armatures[i].joints[j].numKeyframes];
             for(int k=0;k<_armatures[i].joints[j].numKeyframes;k++){
-                fread(&_armatures[i].joints[j].keyframes[k], 1, sizeof(h3d_keyframe), fp);
+                fread(&_armatures[i].joints[j].keyframes[k].frame, 1, sizeof(int), fp);
+                fread(_armatures[i].joints[j].keyframes[k].position, 3, sizeof(float), fp);
+                fread(_armatures[i].joints[j].keyframes[k].rotation, 3, sizeof(float), fp);
+                float x, y, z;
+                h3d_keyframe* keyframe = &_armatures[i].joints[j].keyframes[k];
+
+                x = keyframe->rotation[0];
+                y = keyframe->rotation[1];
+                z = keyframe->rotation[2];
+                glm::vec3 euler = glm::vec3(x, y, z);
+
+                x = keyframe->position[0];
+                y = keyframe->position[1];
+                z = keyframe->position[2];
+                keyframe->transform = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z)) *
+                                        glm::toMat4(glm::quat(euler));
             }
 
         }

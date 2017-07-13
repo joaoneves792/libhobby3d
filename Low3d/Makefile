@@ -1,8 +1,8 @@
 OBJS= MS3DFile.o H3DFile.o optimizations.o Shader.o MS3DFileIO.o Textures.o #DAEMesh.o
 
 CC=g++
-#CXXFLAGS=-c -Wall -O3 -fPIC #-DGLES
-CXXFLAGS=-c -ggdb -g3  -Wall -fPIC #-DGLES
+CXXFLAGS=-c -Wall -O3 -fPIC #-DGLES
+#CXXFLAGS=-c -ggdb -g3  -Wall -fPIC #-DGLES
 LDFLAGS=-O3 -shared -Wl,-soname,libms3d.so.1
 LIBS=-lGL -lGLEW -ljpeg -lpng 
 

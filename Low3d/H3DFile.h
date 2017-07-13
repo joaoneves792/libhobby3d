@@ -20,6 +20,7 @@
 
 #include <vector>
 #include <glm/detail/type_mat.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 #ifndef byte
 typedef unsigned char byte;
@@ -54,6 +55,7 @@ typedef struct
 	int             frame;
 	float           position[3];						//local reference
 	float           rotation[3];						//local reference
+    glm::mat4       transform;
 }h3d_keyframe;
 
 typedef struct

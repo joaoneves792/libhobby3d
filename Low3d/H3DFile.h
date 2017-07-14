@@ -30,6 +30,8 @@ typedef unsigned char byte;
 typedef unsigned short word;
 #endif // word
 
+#define BONE_COUNT 3
+
 typedef struct
 {
     char    id[3];                                     // always "H3D"
@@ -41,8 +43,8 @@ typedef struct
     float   vertex[3];
 	float 	normal[3];
 	float 	uv[2];
-	int     boneID;                                    // -1 = no bone
-    float   weight;
+	int     boneID[BONE_COUNT];                                    // -1 = no bone
+    float   weight[BONE_COUNT];
 } h3d_vertex;
 
 typedef struct
@@ -125,6 +127,7 @@ typedef struct{
 	size_t textureCoordSize;
 	size_t normalsSize;
     size_t jointsSize;
+	size_t weightsSize;
 	size_t totalSize;
 }h3d_vboDescription;
 

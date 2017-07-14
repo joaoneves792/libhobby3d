@@ -113,14 +113,15 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     GLfloat *vertices  = new GLfloat[group->numVertices*4];
     GLfloat *normals   = new GLfloat[group->numVertices*3];
     GLfloat *texCoords = new GLfloat[group->numVertices*2];
-    GLfloat *joints    = new GLfloat[group->numVertices*1];
+    GLfloat *bone_indices = new GLfloat[group->numVertices*BONE_COUNT];
+    GLfloat *bone_weights = new GLfloat[group->numVertices*BONE_COUNT];
 
     indexInt *indices  = new indexInt[group->numTriangles*3];
 
     int vi=0;
     int ni=0;
     int ti=0;
-    int ji=0;
+    int bi=0;
 
     for(int i=0;i<group->numVertices;i++){
         vertices[vi++] = group->vertices[i].vertex[0];
@@ -135,7 +136,10 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
         texCoords[ti++] = group->vertices[i].uv[0];
         texCoords[ti++] = group->vertices[i].uv[1];
 
-        joints[ji++] = (GLfloat)group->vertices[i].boneID;
+        for(int k=0;k<BONE_COUNT;k++) {
+            bone_indices[bi] = (GLfloat) group->vertices[i].boneID[k];
+            bone_weights[bi++] = (GLfloat) group->vertices[i].weight[k];
+        }
     }
 
 
@@ -152,12 +156,14 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     _vboDescriptions[groupIndex].positionSize     = sizeof(GLfloat)*group->numVertices*4;
     _vboDescriptions[groupIndex].normalsSize      = sizeof(GLfloat)*group->numVertices*3;
     _vboDescriptions[groupIndex].textureCoordSize = sizeof(GLfloat)*group->numVertices*2;
-    _vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*group->numVertices*1;
+    _vboDescriptions[groupIndex].jointsSize       = sizeof(GLfloat)*group->numVertices*BONE_COUNT*2;
+    _vboDescriptions[groupIndex].weightsSize      = sizeof(GLfloat)*group->numVertices*BONE_COUNT*2;
 
     _vboDescriptions[groupIndex].totalSize = _vboDescriptions[groupIndex].positionSize
                                              + _vboDescriptions[groupIndex].normalsSize
                                              + _vboDescriptions[groupIndex].textureCoordSize
-                                             + _vboDescriptions[groupIndex].jointsSize;
+                                             + _vboDescriptions[groupIndex].jointsSize
+                                             + _vboDescriptions[groupIndex].weightsSize;
 
     glBindBuffer(GL_ARRAY_BUFFER, _vbo[groupIndex]);
     glBufferData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].totalSize, NULL, GL_STATIC_DRAW);
@@ -173,7 +179,13 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize +
                                      _vboDescriptions[groupIndex].textureCoordSize +
                                      _vboDescriptions[groupIndex].normalsSize,
-                    _vboDescriptions[groupIndex].jointsSize, joints);
+                    _vboDescriptions[groupIndex].jointsSize, bone_indices);
+
+    glBufferSubData(GL_ARRAY_BUFFER, _vboDescriptions[groupIndex].positionSize +
+                                     _vboDescriptions[groupIndex].textureCoordSize +
+                                     _vboDescriptions[groupIndex].normalsSize +
+                                     _vboDescriptions[groupIndex].jointsSize,
+                    _vboDescriptions[groupIndex].weightsSize, bone_weights);
 
     //Set up the indices
     glGenBuffers(1, &_eab[groupIndex]);
@@ -195,19 +207,27 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
              _vboDescriptions[groupIndex].textureCoordSize) );
     glEnableVertexAttribArray(2);
 
-    //Joints attribute
-    glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 0, (GLvoid *)
+    //bone indexes attribute
+    glVertexAttribPointer(3, BONE_COUNT, GL_FLOAT, GL_FALSE, 0, (GLvoid *)
             (_vboDescriptions[groupIndex].positionSize +
              _vboDescriptions[groupIndex].textureCoordSize +
              _vboDescriptions[groupIndex].normalsSize) );
     glEnableVertexAttribArray(3);
+
+    glVertexAttribPointer(4, BONE_COUNT, GL_FLOAT, GL_FALSE, 0, (GLvoid *)
+            (_vboDescriptions[groupIndex].positionSize +
+             _vboDescriptions[groupIndex].textureCoordSize +
+             _vboDescriptions[groupIndex].normalsSize +
+             _vboDescriptions[groupIndex].jointsSize) );
+    glEnableVertexAttribArray(4);
 
     //Free all the temporary memory
     delete[] vertices;
     delete[] indices;
     delete[] normals;
     delete[] texCoords;
-    delete[] joints;
+    delete[] bone_indices;
+    delete[] bone_weights;
 
 }
 
@@ -438,7 +458,14 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
         fread(&_groups[i].numVertices, 1, sizeof(int), fp);
         _groups[i].vertices = new h3d_vertex[_groups[i].numVertices];
         for(int j=0; j<_groups[i].numVertices; j++){
-            fread(&_groups[i].vertices[j], 1, sizeof(h3d_vertex), fp);
+            /*fread(&_groups[i].vertices[j], 1, sizeof(h3d_vertex), fp);*/
+            fread(_groups[i].vertices[j].vertex, 3, sizeof(float), fp);
+            fread(_groups[i].vertices[j].normal, 3, sizeof(float), fp);
+            fread(_groups[i].vertices[j].uv, 2, sizeof(float), fp);
+            for(int k=0;k<BONE_COUNT;k++) {
+                fread(&_groups[i].vertices[j].boneID[k], 1, sizeof(int), fp);
+                fread(&_groups[i].vertices[j].weight[k], 1, sizeof(float), fp);
+            }
         }
 
         fread(&_groups[i].isAnimated, 1, sizeof(byte), fp);

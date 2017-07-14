@@ -383,10 +383,17 @@ void H3DFile::drawGLES2() {
         glEnableVertexAttribArray(2);
 
         //Joints Index attribute
-        glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(_vboDescriptions[i].positionSize+
+        glVertexAttribPointer(3, BONE_COUNT, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(_vboDescriptions[i].positionSize+
                                                                       _vboDescriptions[i].textureCoordSize+
                                                                       _vboDescriptions[i].normalsSize) );
         glEnableVertexAttribArray(3);
+
+        //Joints Index attribute
+        glVertexAttribPointer(4, BONE_COUNT, GL_FLOAT, GL_FALSE, 0, (GLvoid *)(_vboDescriptions[i].positionSize+
+                                                                      _vboDescriptions[i].textureCoordSize+
+                                                                      _vboDescriptions[i].normalsSize+
+                                                                      _vboDescriptions[i].jointsSize) );
+        glEnableVertexAttribArray(4);
 
         glDrawElements(GL_TRIANGLES, _groups[i].numTriangles*3, GL_UNSIGNED_SHORT, 0);
     }

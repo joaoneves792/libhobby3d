@@ -94,6 +94,7 @@ void Shader::create_program(const char *path_vert_shader, const char *path_frag_
         glBindAttribLocation(shaderProgram, 1, "texture_coord");
         glBindAttribLocation(shaderProgram, 2, "normal");
         glBindAttribLocation(shaderProgram, 3, "jointIndex");
+        glBindAttribLocation(shaderProgram, 4, "jointWeight");
         // Link and use the program
         glLinkProgram(shaderProgram);
 

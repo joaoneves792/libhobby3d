@@ -86,6 +86,13 @@ typedef struct
 
 typedef struct
 {
+	char* 			name;
+	int 			numVertices;
+	h3d_vertex*		vertices;
+}h3d_shape_key;
+
+typedef struct
+{
     char*           name;
     int             numTriangles;
     h3d_triangle*  	triangles;
@@ -95,6 +102,9 @@ typedef struct
 	char 			isAnimated; 						// 0 if no armature
 	char* 			armatureName;						// if isAnimated is 1
 	int 			armatureIndex;
+
+	int 			shapeKeyCount;
+	h3d_shape_key*	shapeKeys;
 } h3d_group;
 
 typedef struct
@@ -128,6 +138,7 @@ typedef struct{
 	size_t normalsSize;
     size_t jointsSize;
 	size_t weightsSize;
+    size_t* shapeKeysIndices; //Size is same as position/normals size
 	size_t totalSize;
 }h3d_vboDescription;
 

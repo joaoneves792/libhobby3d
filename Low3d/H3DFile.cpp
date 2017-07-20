@@ -124,15 +124,26 @@ void H3DFile::prepareGroup(h3d_group *group, unsigned int groupIndex, GLuint sha
     int bi=0;
 
     for(int i=0;i<group->numVertices;i++){
-        vertices[vi++] = group->vertices[i].vertex[0];
-        vertices[vi++] = group->vertices[i].vertex[1];
-        vertices[vi++] = group->vertices[i].vertex[2];
-        vertices[vi++] = 1.0;
 
-        normals[ni++] = group->vertices[i].normal[0];
-        normals[ni++] = group->vertices[i].normal[1];
-        normals[ni++] = group->vertices[i].normal[2];
+    //    if(group->shapeKeyCount == 0) {
+            vertices[vi++] = group->vertices[i].vertex[0];
+            vertices[vi++] = group->vertices[i].vertex[1];
+            vertices[vi++] = group->vertices[i].vertex[2];
+            vertices[vi++] = 1.0;
 
+            normals[ni++] = group->vertices[i].normal[0];
+            normals[ni++] = group->vertices[i].normal[1];
+            normals[ni++] = group->vertices[i].normal[2];
+    /*    }else{
+            vertices[vi++] = group->shapeKeys[1].vertices[i].vertex[0];
+            vertices[vi++] = group->shapeKeys[1].vertices[i].vertex[1];
+            vertices[vi++] = group->shapeKeys[1].vertices[i].vertex[2];
+            vertices[vi++] = 1.0;
+
+            normals[ni++] = group->shapeKeys[1].vertices[i].normal[0];
+            normals[ni++] = group->shapeKeys[1].vertices[i].normal[1];
+            normals[ni++] = group->shapeKeys[1].vertices[i].normal[2];
+        }*/
         texCoords[ti++] = group->vertices[i].uv[0];
         texCoords[ti++] = group->vertices[i].uv[1];
 
@@ -482,6 +493,24 @@ bool H3DFile::LoadFromFile(const char *lpszFileName) {
             _groups[i].armatureName = new char[numChars+1];
             fread(_groups[i].armatureName, numChars, sizeof(char), fp);
             _groups[i].armatureName[numChars] = '\0';
+        }
+
+        fread(&_groups[i].shapeKeyCount, 1, sizeof(int), fp);
+        _groups[i].shapeKeys = new h3d_shape_key[_groups[i].shapeKeyCount];
+        for(int j=0; j<_groups[i].shapeKeyCount; j++){
+            byte numChars;
+            fread(&numChars, 1, sizeof(byte), fp);
+            _groups[i].shapeKeys[j].name = new char[numChars+1];
+            fread(_groups[i].shapeKeys[j].name, numChars, sizeof(char), fp);
+            _groups[i].shapeKeys[j].name[numChars] = '\0';
+
+
+            fread(&_groups[i].shapeKeys[j].numVertices, 1, sizeof(int), fp);
+            _groups[i].shapeKeys[j].vertices = new h3d_vertex[_groups[i].shapeKeys[j].numVertices];
+            for(int k=0; k<_groups[i].shapeKeys[j].numVertices; k++) {
+                fread(_groups[i].shapeKeys[j].vertices[k].vertex, 3, sizeof(float), fp);
+                fread(_groups[i].shapeKeys[j].vertices[k].normal, 3, sizeof(float), fp);
+            }
         }
 
     }
